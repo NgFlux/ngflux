@@ -2,10 +2,10 @@ import { ComponentRef, Injector, signal, ViewContainerRef } from "@angular/core"
 import { AsyncSubject } from "rxjs";
 
 import { NgFlexComponent } from "../../core";
-import { NgFlexDialogCommand, NgFlexDialogConfig } from "../interfaces/Dialog";
+import { NgFlexDialogCommand, NgFlexDialogConfig, NgFlexDialogEvents } from "../interfaces/Dialog";
 import { NgFlexDialogComponent } from "../components/dialog/dialog.component";
 import { NgFlexDialogRef } from "./DialogRef";
-import { NGF_DIALOG_CONFIG, NGF_DIALOG_CONTENT } from "../internal/Tokens";
+import { NGF_DIALOG_CONFIG, NGF_DIALOG_CONTENT, NGF_DIALOG_INSTANCE } from "../internal/Tokens";
 
 type OnClosedFn<T = any> = (ins: NgFlexDialogInstance<T>) => void;
 
@@ -14,7 +14,10 @@ export class NgFlexDialogInstance<T = any> {
   private readonly xDialogComponentRef: ComponentRef<NgFlexDialogComponent> = null as any;
 
   private readonly xAfterClosed = new AsyncSubject<T | undefined>();
-  readonly afterClosed = this.xAfterClosed.asObservable();
+
+  readonly result: NgFlexDialogEvents<T> = {
+    afterClosed: this.xAfterClosed.asObservable(),
+  };
 
   constructor(
     private readonly viewContainer: ViewContainerRef,
@@ -30,7 +33,8 @@ export class NgFlexDialogInstance<T = any> {
       providers: [
         { provide: NgFlexDialogRef, useValue: dialogRef },
         { provide: NGF_DIALOG_CONFIG, useValue: config },
-        { provide: NGF_DIALOG_CONTENT, useValue: component }
+        { provide: NGF_DIALOG_CONTENT, useValue: component },
+        { provide: NGF_DIALOG_INSTANCE, useValue: this }
       ],
     });
 
@@ -45,15 +49,15 @@ export class NgFlexDialogInstance<T = any> {
 
     switch (cmd.name) {
       case 'esc.close': {
-        // if (config.closeOnEsc) this.close();
+        if (config.closeOnEsc) this.close();
       } break;
 
       case 'backdrop.close': {
-        // if (config.backdropClose) this.close();
+        if (config.backdropClose) this.close();
       } break;
 
       case 'close': {
-        // this.close(cmd.value);
+        this.close(cmd.value);
       } break;
     }
   }

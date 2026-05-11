@@ -1,4 +1,5 @@
 import { InjectionToken, Injector, Signal, ViewContainerRef } from "@angular/core";
+import { Observable } from "rxjs";
 
 export type NgFlexDialogRoot = {
   viewContainer: Signal<ViewContainerRef>;
@@ -19,3 +20,7 @@ export type NgFlexDialogCommand<T = any> = {
 };
 
 export const NGF_DIALOG_DATA = new InjectionToken<any>('ngf-dialog-data');
+
+export type NgFlexDialogEvents<T = any> = {
+  readonly afterClosed: Observable<T | undefined>;
+};
