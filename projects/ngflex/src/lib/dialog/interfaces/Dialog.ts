@@ -24,3 +24,8 @@ export const NGF_DIALOG_DATA = new InjectionToken<any>('ngf-dialog-data');
 export type NgFlexDialogEvents<T = any> = {
   readonly afterClosed: Observable<T | undefined>;
 };
+
+export type NgFlexDialogAlertOptions = {
+  title: string;
+  content: string;
+};

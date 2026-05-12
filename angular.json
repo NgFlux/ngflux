@@ -55,7 +55,10 @@
                 "input": "projects/docs/public"
               }
             ],
-            "styles": ["projects/docs/src/styles.scss"]
+            "styles": [
+              "projects/docs/src/styles.scss",
+              "dist/ngflex/scss/_index.scss"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,15 @@
+@use './variables' as vars;
+
+@mixin device($key: md) {
+  $width: 0;
+
+  @if map-has-key(vars.$device, $key) {
+    $width: map-get(vars.$device, $key);
+  } @else {
+    $width: map-get(vars.$device, md);
+  }
+
+  @media (min-width: $width) {
+    @content;
+  }
+}

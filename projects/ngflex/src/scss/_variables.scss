@@ -1,0 +1,94 @@
+$default: #CCC !default;
+$default-fg: #333 !default;
+
+$primary: #02AFEE !default;
+$primary-fg: #FFF !default;
+
+$secondary: #6C757D !default;
+$secondary-fg: #FFF !default;
+
+$error: #F00 !default;
+$error-fg: #FFF !default;
+
+$danger: #DC3545 !default;
+$danger-fg: #FFF !default;
+
+$success: #090 !default;
+$success-fg: #FFF !default;
+
+$warning: #FFC107 !default;
+$warning-fg: #333 !default;
+
+$info: #0DCAF0 !default;
+$info-fg: #333 !default;
+
+$light: #F8F9FA !default;
+$light-fg: #333 !default;
+
+$dark: #212529 !default;
+$dark-fg: #FFF !default;
+
+$color: (
+  default: $default,
+  default-fg: $default-fg,
+
+  primary: $primary,
+  primary-fg: $primary-fg,
+
+  secondary: $secondary,
+  secondary-fg: $secondary-fg,
+
+  error: $error,
+  error-fg: $error-fg,
+
+  danger: $danger,
+  danger-fg: $danger-fg,
+
+  success: $success,
+  success-fg: $success-fg,
+
+  warning: $warning,
+  warning-fg: $warning-fg,
+
+  info: $info,
+  info-fg: $info-fg,
+
+  light: $light,
+  light-fg: $light-fg,
+
+  dark: $dark,
+  dark-fg: $dark-fg,
+);
+
+$device: (
+  xs: 375px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+$backdrop: rgba(0, 0, 0, .3) !default;
+
+// BEGIN: Loading Variables
+$loading-background: $backdrop !default;
+$loading-z-index: 2000 !default;
+// END: Loading Variables
+
+
+// BEGIN: Dialog Variables
+$dialog-z-index: 1500 !default;
+$dialog-backdrop-color: $backdrop !default;
+
+$dialog-closebtn-color: rgba(0, 0, 0, .7) !default;
+$dialog-closebtn-opacity: .7 !default;
+
+$dialog-text-color: #333 !default;
+$dialog-header-text-color: #333 !default;
+$dialog-footer-text-color: #333 !default;
+
+$dialog-padding: 20px !default;
+$dialog-background-color: #FFF !default;
+$dialog-box-shadow: 0px 0px 5px rgba(0, 0, 0, .4) !default;
+$dialog-border: 1px solid $light !default;
+// END: Dialog Variables

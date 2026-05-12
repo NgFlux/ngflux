@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { NgFlexComponent } from "../../core";
-import { NgFlexDialogConfig } from "../interfaces/Dialog";
+import { NgFlexDialogAlertOptions, NgFlexDialogConfig, NgFlexDialogEvents } from "../interfaces/Dialog";
 import { NgFlexDialogInstance } from "./DialogInstance";
 import { DialogRootMap } from "../internal/Mapper";
+import { NgFlexAlertDialog } from "../boxes/alert/alert.dialog";
 
 @Injectable({ providedIn: 'root' })
 export class NgFlexDialog {
 
-  open<T = any>(component: NgFlexComponent<any>, config?: NgFlexDialogConfig): NgFlexDialogInstance<T> {
+  open<T = any>(component: NgFlexComponent<any>, config?: NgFlexDialogConfig): NgFlexDialogEvents<T> {
     config ??= {};
     config.backdropClose ??= true;
     config.closeBtn ??= true;
@@ -36,23 +37,23 @@ export class NgFlexDialog {
 
     // this.registry.add(instance);
 
-    return instance;
+    return instance.events;
   }
 
   // readonly closeAll = () => this.registry.closeAll();
 
-  // alert(title: string, message: string) {
-  //   const data: NGSuiteDialogPopupOptions = { title, message };
+  alert(title: string, content: string) {
+    const data: NgFlexDialogAlertOptions = { title, content };
 
-  //   const dialog = this.open(NGSuiteDialogAlertComponent, {
-  //     closeOnBackBtn: false,
-  //     backdropClose: false,
-  //     closeOnEsc: false,
-  //     data
-  //   });
+    const dialog = this.open<boolean>(NgFlexAlertDialog, {
+      closeOnBackBtn: false,
+      backdropClose: false,
+      closeOnEsc: false,
+      data
+    });
 
-  //   return dialog.afterClosed;
-  // }
+    return dialog.afterClosed;
+  }
 
   // success(title: string, message: string) {
   //   message = `<div class="mbi-success">${message}</div>`;

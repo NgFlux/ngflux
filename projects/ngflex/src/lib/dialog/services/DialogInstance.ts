@@ -15,7 +15,7 @@ export class NgFlexDialogInstance<T = any> {
 
   private readonly xAfterClosed = new AsyncSubject<T | undefined>();
 
-  readonly result: NgFlexDialogEvents<T> = {
+  readonly events: NgFlexDialogEvents<T> = {
     afterClosed: this.xAfterClosed.asObservable(),
   };
 
@@ -34,7 +34,7 @@ export class NgFlexDialogInstance<T = any> {
         { provide: NgFlexDialogRef, useValue: dialogRef },
         { provide: NGF_DIALOG_CONFIG, useValue: config },
         { provide: NGF_DIALOG_CONTENT, useValue: component },
-        { provide: NGF_DIALOG_INSTANCE, useValue: this }
+        { provide: NgFlexDialogInstance, useValue: this }
       ],
     });
 

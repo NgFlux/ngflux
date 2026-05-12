@@ -1,0 +1,43 @@
+@use '../system' as ngf;
+
+:root {
+  --ngf-dialog-z-index: #{ngf.$dialog-z-index};
+  --ngf-dialog-backdrop-color: #{ngf.$dialog-backdrop-color};
+
+  --ngf-dialog-closebtn-color: #{ngf.$dialog-closebtn-color};
+  --ngf-dialog-closebtn-opacity: #{ngf.$dialog-closebtn-opacity};
+
+  --ngf-dialog-text-color: #{ngf.$dialog-text-color};
+  --ngf-dialog-header-text-color: #{ngf.$dialog-header-text-color};
+  --ngf-dialog-footer-text-color: #{ngf.$dialog-footer-text-color};
+
+  --ngf-dialog-padding: #{ngf.$dialog-padding};
+  --ngf-dialog-background-color: #{ngf.$dialog-background-color};
+  --ngf-dialog-box-shadow: #{ngf.$dialog-box-shadow};
+  --ngf-dialog-border: #{ngf.$dialog-border};
+}
+
+.ngf-dialog-box {
+  display: block;
+  position: relative;
+  background-color: var(--ngf-dialog-background-color) !important;
+  box-shadow: var(--ngf-dialog-box-shadow) !important;
+  border: 1px solid transparent;
+  border-top: none;
+  border-bottom: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  [ngf-dialog-title] {
+    margin: 0px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+.ngf-dialog-open {
+  overflow: clip !important;
+}

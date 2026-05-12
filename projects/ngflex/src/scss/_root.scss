@@ -1,0 +1,13 @@
+@use './system' as ngf;
+@use 'sass:color';
+
+:root {
+  @each $name, $value in ngf.$color {
+    --ngf-#{$name}-red: #{color.channel($value, "red", $space: rgb)};
+    --ngf-#{$name}-green: #{color.channel($value, "green", $space: rgb)};
+    --ngf-#{$name}-blue: #{color.channel($value, "blue", $space: rgb)};
+
+    --ngf-#{$name}-rgb: var(--ngf-#{$name}-red), var(--ngf-#{$name}-green), var(--ngf-#{$name}-blue);
+    --ngf-#{$name}: rgb(var(--ngf-#{$name}-rgb));
+  }
+}

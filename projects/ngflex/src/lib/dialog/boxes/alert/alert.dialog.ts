@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { NgFlexDialogRef } from "../../services/DialogRef";
 
 @Component({
   selector: 'ngf-dialog-box-alert',
@@ -7,5 +8,7 @@ import { Component } from "@angular/core";
   imports: [],
 })
 export class NgFlexAlertDialog {
+
+  readonly dialogRef = inject<NgFlexDialogRef<boolean>>(NgFlexDialogRef);
 
 }

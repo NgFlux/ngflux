@@ -15,7 +15,6 @@ export const provideNgFlex = (config?: NgFlexConfig) => {
   return makeEnvironmentProviders([
     NgFlexDialog,
     NgFlexDialogRef,
-    NgFlexDialogInstance,
     NgFlexDialogRegistry,
   ]);
 };

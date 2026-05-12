@@ -2,6 +2,13 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngflex",
   "lib": {
-    "entryFile": "src/public-api.ts"
-  }
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": [
+      "./src/scss"
+    ]
+  },
+  "assets": [
+    { "input": "src/scss", "glob": "**/*.scss", "output": "scss" },
+    "./LICENSE"
+  ]
 }
