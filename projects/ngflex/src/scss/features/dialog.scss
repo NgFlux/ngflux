@@ -25,9 +25,17 @@
   border: 1px solid transparent;
   border-top: none;
   border-bottom: none;
+  animation: ngfDialogOpen .5s forwards;
 
   &:focus {
     outline: none;
+  }
+
+  &.close {
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    animation: ngfDialogClose .3s forwards;
   }
 
   [ngf-dialog-title] {
@@ -40,4 +48,13 @@
 
 .ngf-dialog-open {
   overflow: clip !important;
+}
+
+@keyframes ngfDialogOpen {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ngfDialogClose {
+  to { opacity: 0; }
 }

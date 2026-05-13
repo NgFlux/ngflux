@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  background-color: var(--ngf-dialog-background-color) !important;
+  border-bottom: var(--ngf-dialog-border) !important;
+  min-height: 50px;
+  gap: 10px;
+  top: 0px;
+
+  > .left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px;
+  }
+
+  > .middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px 12px;
+    flex: 1 0 0;
+    width: 0px;
+  }
+
+  > .right {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px;
+  }
+}

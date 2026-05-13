@@ -5,7 +5,7 @@ import { NgFlexComponent } from "../../core";
 import { NgFlexDialogCommand, NgFlexDialogConfig, NgFlexDialogEvents } from "../interfaces/Dialog";
 import { NgFlexDialogComponent } from "../components/dialog/dialog.component";
 import { NgFlexDialogRef } from "./DialogRef";
-import { NGF_DIALOG_CONFIG, NGF_DIALOG_CONTENT, NGF_DIALOG_INSTANCE } from "../internal/Tokens";
+import { NGF_DIALOG_CLOSE_FN, NGF_DIALOG_CONFIG, NGF_DIALOG_CONTENT, NGF_DIALOG_INSTANCE } from "../internal/Tokens";
 
 type OnClosedFn<T = any> = (ins: NgFlexDialogInstance<T>) => void;
 
@@ -34,6 +34,7 @@ export class NgFlexDialogInstance<T = any> {
         { provide: NgFlexDialogRef, useValue: dialogRef },
         { provide: NGF_DIALOG_CONFIG, useValue: config },
         { provide: NGF_DIALOG_CONTENT, useValue: component },
+        { provide: NGF_DIALOG_CLOSE_FN, useValue: this.afterClosedFn },
         { provide: NgFlexDialogInstance, useValue: this }
       ],
     });
@@ -62,12 +63,7 @@ export class NgFlexDialogInstance<T = any> {
     }
   }
 
-  focus() {
-    const { xDialogComponentRef: { instance } } = this;
-    instance.focus();
-  }
-
-  close(data?: T) {
+  private readonly afterClosedFn = (data?: T) => {
     const { xDialogComponentRef } = this;
     xDialogComponentRef.destroy();
 
@@ -75,6 +71,16 @@ export class NgFlexDialogInstance<T = any> {
     this.xAfterClosed.complete();
 
     this.onClosed(this);
+  }
+
+  focus() {
+    const { xDialogComponentRef: { instance } } = this;
+    instance.focus();
+  }
+
+  close(data?: T) {
+    const { xDialogComponentRef } = this;
+    xDialogComponentRef.instance.close(data);
   }
 
   send(cmd: NgFlexDialogCommand<T>) {
