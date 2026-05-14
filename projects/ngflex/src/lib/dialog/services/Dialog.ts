@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { NgFlexComponent } from "../../core";
-import { NgFlexDialogAlertOptions, NgFlexDialogConfig, NgFlexDialogEvents } from "../interfaces/Dialog";
+import { NgFlexDialogAlertOptions, NgFlexDialogButton, NgFlexDialogConfig, NgFlexDialogEvents } from "../interfaces/Dialog";
 import { NgFlexDialogInstance } from "./DialogInstance";
 import { DialogRootMap } from "../internal/Mapper";
 import { NgFlexAlertDialog } from "../boxes/alert/alert.dialog";
@@ -42,8 +42,8 @@ export class NgFlexDialog {
 
   // readonly closeAll = () => this.registry.closeAll();
 
-  alert(title: string, content: string) {
-    const data: NgFlexDialogAlertOptions = { title, content };
+  alert(title: string, content: string, buttons?: NgFlexDialogButton[]) {
+    const data: NgFlexDialogAlertOptions = { title, content, buttons };
 
     const dialog = this.open<boolean>(NgFlexAlertDialog, {
       closeOnBackBtn: false,
@@ -52,7 +52,7 @@ export class NgFlexDialog {
       data
     });
 
-    return dialog.afterClosed;
+    return dialog.closed;
   }
 
   // success(title: string, message: string) {

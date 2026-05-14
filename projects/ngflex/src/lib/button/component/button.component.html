@@ -1,0 +1,15 @@
+<button [type]="type()" [disabled]="disabled()">
+  <div class="wrapper" [ngClass]="btnClassNames()">
+    @if (icon(); as ico) {
+      <div class="icon">
+        <i [ngClass]="ico"></i>
+      </div>
+    }
+
+    <div class="content">
+      <div>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</button>

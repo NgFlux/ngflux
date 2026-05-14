@@ -17,9 +17,7 @@ export class App {
   openDialog(e: MouseEvent) {
     e.preventDefault();
 
-    this.dialog.alert('Demo Dialog', 'Just testing').subscribe(resp => {
-      console.log(resp);
-    });
+    this.dialog.alert('Demo Dialog', 'Just testing');
   }
 
 }

@@ -1,13 +1,21 @@
 <ngf-dialog-header>
-  <h1 ngf-dialog-title>Alert Dialog</h1>
+  <h1 ngf-dialog-title>{{ options.title }}</h1>
 </ngf-dialog-header>
 
 <ngf-dialog-body>
-  <!--  -->
+  <div [innerHTML]="options.content"></div>
 </ngf-dialog-body>
 
 <ngf-dialog-footer>
-  <button (click)="dialogRef.close(true)">
-    <span>Close</span>
-  </button>
+  @for (btn of buttons(); track $index) {
+    @switch (btn) {
+      @case ('flex') {<div ngf-flex-x></div>}
+
+      @default {
+        <ngf-button [theme]="btn.theme" [size]="btn.size" [direction]="btn.direction" (click)="onButtonClick($event, btn)">
+          <span>{{ btn.text }}</span>
+        </ngf-button>
+      }
+    }
+  }
 </ngf-dialog-footer>

@@ -1,0 +1,126 @@
+@use '../../../scss/system' as ngf;
+
+:host {
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  overflow: clip;
+
+  &.block { display: block; }
+
+  &.disabled {
+    opacity: .5 !important;
+    user-select: none !important;
+    cursor: not-allowed;
+  }
+
+  &.xs { font-size: .6rem; }
+  &.sm { font-size: .8rem; }
+  &.md { font-size: 1rem; }
+  &.lg { font-size: 1.25rem; }
+  &.xl { font-size: 1.5rem; }
+
+  &.default {
+    background-color: var(--ngf-default) !important;
+    color: var(--ngf-default-fg) !important;
+  }
+
+  &.primary {
+    background-color: var(--ngf-primary) !important;
+    color: var(--ngf-primary-fg) !important;
+  }
+
+  &.secondary {
+    background-color: var(--ngf-secondary) !important;
+    color: var(--ngf-secondary-fg) !important;
+  }
+
+  &.error {
+    background-color: var(--ngf-error) !important;
+    color: var(--ngf-error-fg) !important;
+  }
+
+  &.danger {
+    background-color: var(--ngf-danger) !important;
+    color: var(--ngf-danger-fg) !important;
+  }
+
+  &.success {
+    background-color: var(--ngf-success) !important;
+    color: var(--ngf-success-fg) !important;
+  }
+
+  &.warning {
+    background-color: var(--ngf-warning) !important;
+    color: var(--ngf-warning-fg) !important;
+  }
+
+  &.info {
+    background-color: var(--ngf-info) !important;
+    color: var(--ngf-info-fg) !important;
+  }
+
+  &.light {
+    background-color: var(--ngf-light) !important;
+    color: var(--ngf-light-fg) !important;
+  }
+
+  &.dark {
+    background-color: var(--ngf-dark) !important;
+    color: var(--ngf-dark-fg) !important;
+  }
+
+  > button {
+    display: block;
+    padding: 0px !important;
+    background-color: transparent;
+    border: none !important;
+    width: 100% !important;
+    cursor: inherit !important;
+    color: inherit !important;
+    font-weight: 500;
+    font-size: 1em;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: var(--flex-direction) !important;
+
+    --flex-direction: row;
+    --icon-border-left: none;
+    --icon-border-right: 1px solid rgba(0, 0, 0, .2);
+
+    &.reversed {
+      --flex-direction: row-reverse;
+      --icon-border-left: 1px solid rgba(0, 0, 0, .2);
+      --icon-border-right: none;
+    }
+
+    > .icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.05em;
+      border-left: var(--icon-border-left) !important;
+      border-right: var(--icon-border-right) !important;
+      padding: 0px .5em;
+    }
+
+    > .content {
+      display: block;
+      flex-grow: 1;
+      padding: .5em 1em;
+      white-space: nowrap !important;
+      text-align: center !important;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

@@ -13,10 +13,12 @@ export class NgFlexDialogInstance<T = any> {
 
   private readonly xDialogComponentRef: ComponentRef<NgFlexDialogComponent> = null as any;
 
-  private readonly xAfterClosed = new AsyncSubject<T | undefined>();
+  private readonly xClosing = new AsyncSubject<T | null>();
+  private readonly xAfterClosed = new AsyncSubject<T | null>();
 
   readonly events: NgFlexDialogEvents<T> = {
-    afterClosed: this.xAfterClosed.asObservable(),
+    closing: this.xClosing.asObservable(),
+    closed: this.xAfterClosed.asObservable(),
   };
 
   constructor(
@@ -67,7 +69,7 @@ export class NgFlexDialogInstance<T = any> {
     const { xDialogComponentRef } = this;
     xDialogComponentRef.destroy();
 
-    this.xAfterClosed.next(data);
+    this.xAfterClosed.next(data ?? null);
     this.xAfterClosed.complete();
 
     this.onClosed(this);
@@ -80,6 +82,10 @@ export class NgFlexDialogInstance<T = any> {
 
   close(data?: T) {
     const { xDialogComponentRef } = this;
+
+    this.xClosing.next(data ?? null);
+    this.xClosing.complete();
+
     xDialogComponentRef.instance.close(data);
   }
 

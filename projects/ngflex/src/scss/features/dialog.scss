@@ -17,6 +17,18 @@
   --ngf-dialog-border: #{ngf.$dialog-border};
 }
 
+[ngf-flex-x] {
+  display: block;
+  flex: 1 0 0;
+  width: 0px;
+}
+
+[ngf-flex-y] {
+  display: block;
+  flex: 1 0 0;
+  height: 0px;
+}
+
 .ngf-dialog-box {
   display: block;
   position: relative;

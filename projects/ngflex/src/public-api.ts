@@ -9,3 +9,4 @@ export * from './lib/ngflex';
 
 export * from './lib/loading';
 export * from './lib/dialog';
+export * from './lib/button';

@@ -6,13 +6,7 @@
   position: sticky;
   background-color: var(--ngf-dialog-background-color) !important;
   border-top: var(--ngf-dialog-border) !important;
-  padding: 5px 15px;
+  padding: 7px 15px;
   bottom: 0px;
   gap: 10px;
-
-  > [flex] {
-    display: block;
-    flex: 1 0 0;
-    width: 0px;
-  }
 }
