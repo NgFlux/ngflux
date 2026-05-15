@@ -11,6 +11,8 @@ type OnClosedFn<T = any> = (ins: NgFlexDialogInstance<T>) => void;
 
 export class NgFlexDialogInstance<T = any> {
 
+
+
   private readonly xDialogComponentRef: ComponentRef<NgFlexDialogComponent> = null as any;
 
   private readonly xClosing = new AsyncSubject<T | null>();
@@ -26,7 +28,7 @@ export class NgFlexDialogInstance<T = any> {
     private readonly component: NgFlexComponent<any>,
     private readonly injector: Injector,
     private readonly onClosed: OnClosedFn<T>,
-    private readonly config: NgFlexDialogConfig,
+    readonly config: NgFlexDialogConfig,
   ) {
     const dialogRef = new NgFlexDialogRef<T>(this.onCommand);
 
@@ -57,6 +59,10 @@ export class NgFlexDialogInstance<T = any> {
 
       case 'backdrop.close': {
         if (config.backdropClose) this.close();
+      } break;
+
+      case 'backButton.close': {
+        if (config.closeOnBackBtn) this.close();
       } break;
 
       case 'close': {

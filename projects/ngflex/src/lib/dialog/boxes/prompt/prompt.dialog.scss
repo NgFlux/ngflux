@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  width: 90%;
+  max-width: 350px;
+  background-color: #FFF;
+
+  .content {
+    margin: 0px 0px 10px 0px;
+  }
+
+  input {
+    display: block;
+    width: 100% !important;
+    border: 1px solid #DDD;
+    background-color: #FFF;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    
+    &:focus {
+      outline: 2px solid #DDD;
+      box-shadow: none !important;
+    }
+  }
+}

@@ -14,10 +14,19 @@ export class App {
 
   protected readonly title = signal('docs');
 
-  openDialog(e: MouseEvent) {
+  openAlert(e: MouseEvent) {
     e.preventDefault();
+    this.dialog.alert('Demo Alert', 'Just testing');
+  }
 
-    this.dialog.alert('Demo Dialog', 'Just testing');
+  openConfirm(e: MouseEvent) {
+    e.preventDefault();
+    this.dialog.confirm('Demo Confirm', 'Just testing');
+  }
+
+  openPrompt(e: MouseEvent) {
+    e.preventDefault();
+    this.dialog.prompt('Demo Prompt', 'Just testing');
   }
 
 }

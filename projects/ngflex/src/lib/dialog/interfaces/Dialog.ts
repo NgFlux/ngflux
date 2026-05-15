@@ -45,3 +45,8 @@ export type NgFlexDialogAlertOptions = {
   content: string;
   buttons?: NgFlexDialogButton<boolean>[]
 };
+
+export type NgFlexDialogConfirmOptions = {
+  title: string;
+  content: string;
+};

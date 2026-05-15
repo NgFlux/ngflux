@@ -1,0 +1,18 @@
+<ngf-dialog-header>
+  <h1 ngf-dialog-title>{{ options.title }}</h1>
+</ngf-dialog-header>
+
+<ngf-dialog-body>
+  <div class="content" [innerHTML]="options.content"></div>
+  <input type="text" name="text" [(ngModel)]="text">
+</ngf-dialog-body>
+
+<ngf-dialog-footer>
+  <ngf-button theme="dark" (click)="dialogRef.close()">
+    <span>Cancel</span>
+  </ngf-button>
+
+  <ngf-button theme="primary" (click)="dialogRef.close(value())" [disabled]="!value()">
+    <span>Submit</span>
+  </ngf-button>
+</ngf-dialog-footer>

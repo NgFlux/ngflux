@@ -1,11 +1,15 @@
-<div class="left">
-  <!--  -->
-</div>
+@if (icon(); as ico) {
+  <div class="left">
+    <i [ngClass]="ico"></i>
+  </div>
+}
 
 <div class="middle">
   <ng-content></ng-content>
 </div>
 
-<div class="right">
-  <!--  -->
-</div>
+@if (config.closeBtn) {
+  <div class="right" title="Close" (click)="dialogRef.close()">
+    <i class="ngf-icon close"></i>
+  </div>
+}

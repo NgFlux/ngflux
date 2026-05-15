@@ -1,12 +1,17 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { NgFlexComponent } from "../../core";
-import { NgFlexDialogAlertOptions, NgFlexDialogButton, NgFlexDialogConfig, NgFlexDialogEvents } from "../interfaces/Dialog";
+import { NgFlexDialogAlertOptions, NgFlexDialogButton, NgFlexDialogConfig, NgFlexDialogConfirmOptions, NgFlexDialogEvents } from "../interfaces/Dialog";
 import { NgFlexDialogInstance } from "./DialogInstance";
 import { DialogRootMap } from "../internal/Mapper";
 import { NgFlexAlertDialog } from "../boxes/alert/alert.dialog";
+import { NgFlexConfirmDialog } from "../boxes/confirm/confirm.dialog";
+import { NgFlexPromptDialog } from "../boxes/prompt/prompt.dialog";
+import { NgFlexDialogRegistry } from "./DialogRegistry";
 
 @Injectable({ providedIn: 'root' })
 export class NgFlexDialog {
+
+  private readonly registry = inject(NgFlexDialogRegistry);
 
   open<T = any>(component: NgFlexComponent<any>, config?: NgFlexDialogConfig): NgFlexDialogEvents<T> {
     config ??= {};
@@ -24,7 +29,7 @@ export class NgFlexDialog {
     );
 
     const onClosed = (ins: NgFlexDialogInstance<T>) => {
-      // this.registry.remove(ins);
+      this.registry.remove(ins);
     };
 
     const instance = new NgFlexDialogInstance<T>(
@@ -35,12 +40,12 @@ export class NgFlexDialog {
       config
     );
 
-    // this.registry.add(instance);
+    this.registry.add(instance);
 
     return instance.events;
   }
 
-  // readonly closeAll = () => this.registry.closeAll();
+  readonly closeAll = () => this.registry.closeAll();
 
   alert(title: string, content: string, buttons?: NgFlexDialogButton[]) {
     const data: NgFlexDialogAlertOptions = { title, content, buttons };
@@ -55,27 +60,40 @@ export class NgFlexDialog {
     return dialog.closed;
   }
 
-  // success(title: string, message: string) {
-  //   message = `<div class="mbi-success">${message}</div>`;
-  //   return this.alert(title, message);
-  // }
+  success(title: string, message: string, buttons?: NgFlexDialogButton[]) {
+    message = `<div class="mbi-success">${message}</div>`;
+    return this.alert(title, message, buttons);
+  }
 
-  // error(title: string, message: string) {
-  //   message = `<div class="mbi-error">${message}</div>`;
-  //   return this.alert(title, message);
-  // }
+  error(title: string, message: string, buttons?: NgFlexDialogButton[]) {
+    message = `<div class="mbi-error">${message}</div>`;
+    return this.alert(title, message, buttons);
+  }
 
-  // confirm(title: string, message: string): Observable<boolean> {
-  //   const data: NGSuiteDialogPopupOptions = { title, message };
+  confirm(title: string, content: string) {
+    const data: NgFlexDialogConfirmOptions = { title, content };
 
-  //   const dialog = this.open(NGSuiteDialogConfirmComponent, {
-  //     closeOnBackBtn: false,
-  //     backdropClose: false,
-  //     closeOnEsc: false,
-  //     data
-  //   });
+    const dialog = this.open(NgFlexConfirmDialog, {
+      closeOnBackBtn: false,
+      backdropClose: false,
+      closeOnEsc: false,
+      data
+    });
 
-  //   return dialog.afterClosed;
-  // }
+    return dialog.closed;
+  }
+
+  prompt(title: string, content: string = '') {
+    const data: NgFlexDialogConfirmOptions = { title, content };
+
+    const dialog = this.open(NgFlexPromptDialog, {
+      closeOnBackBtn: false,
+      backdropClose: false,
+      closeOnEsc: false,
+      data
+    });
+
+    return dialog.closed;
+  }
 
 }

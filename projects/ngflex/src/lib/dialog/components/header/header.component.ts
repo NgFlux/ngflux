@@ -1,11 +1,22 @@
-import { Component } from "@angular/core";
+import { NgClass } from "@angular/common";
+import { Component, inject, input } from "@angular/core";
+
+import { NGF_DIALOG_CONFIG } from "../../internal/Tokens";
+import { NgFlexDialogRef } from "../../services/DialogRef";
 
 @Component({
   selector: 'ngf-dialog-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
-  imports: [],
+  imports: [
+    NgClass,
+  ],
 })
 export class NgFlexDialogHeaderComponent {
-  //
+
+  readonly config = inject(NGF_DIALOG_CONFIG);
+  readonly dialogRef = inject(NgFlexDialogRef);
+
+  readonly icon = input<string>();
+
 }
