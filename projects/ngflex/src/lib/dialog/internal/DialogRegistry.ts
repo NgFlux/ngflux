@@ -1,6 +1,6 @@
 import { computed, effect, Injectable, signal } from "@angular/core";
 
-import { NgFlexDialogInstance } from "./DialogInstance";
+import { NgFlexDialogInstance } from "../services/DialogInstance";
 
 @Injectable({ providedIn: 'root' })
 export class NgFlexDialogRegistry {

@@ -1,16 +1,27 @@
 import { inject, Injectable } from "@angular/core";
+
 import { NgFlexComponent } from "../../core";
-import { NgFlexDialogAlertOptions, NgFlexDialogButton, NgFlexDialogConfig, NgFlexDialogConfirmOptions, NgFlexDialogEvents } from "../interfaces/Dialog";
 import { NgFlexDialogInstance } from "./DialogInstance";
 import { DialogRootMap } from "../internal/Mapper";
 import { NgFlexAlertDialog } from "../boxes/alert/alert.dialog";
 import { NgFlexConfirmDialog } from "../boxes/confirm/confirm.dialog";
 import { NgFlexPromptDialog } from "../boxes/prompt/prompt.dialog";
-import { NgFlexDialogRegistry } from "./DialogRegistry";
+
+import { NgFlexDialogInternal } from "../internal/Dialog";
+
+import {
+  NgFlexDialogAlertOptions,
+  NgFlexDialogButton,
+  NgFlexDialogConfig,
+  NgFlexDialogConfirmOptions,
+  NgFlexDialogEvents,
+} from "../interfaces/Dialog";
+import { NgFlexDialogRegistry } from "../internal/DialogRegistry";
 
 @Injectable({ providedIn: 'root' })
 export class NgFlexDialog {
 
+  private readonly internal = inject(NgFlexDialogInternal);
   private readonly registry = inject(NgFlexDialogRegistry);
 
   open<T = any>(component: NgFlexComponent<any>, config?: NgFlexDialogConfig): NgFlexDialogEvents<T> {

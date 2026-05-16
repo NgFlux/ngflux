@@ -9,4 +9,3 @@ export * from './components/body/body.component';
 export * from './services/Dialog';
 export * from './services/DialogInstance';
 export * from './services/DialogRef';
-export * from './services/DialogRegistry';
