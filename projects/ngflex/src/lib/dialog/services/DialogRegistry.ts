@@ -30,7 +30,7 @@ export class NgFlexDialogRegistry {
       const active = this.active();
       if (!active) return;
 
-      this.pushState();
+      history.forward();
 
       const config = active.config;
 
@@ -38,15 +38,6 @@ export class NgFlexDialogRegistry {
         active.send({ name: 'backButton.close' });
       }
     });
-  }
-
-  private pushState() {
-    const url = new URL(location.href);
-    
-    const count = this.count().toString();
-    url.searchParams.set('dlg', count);
-
-    history.pushState(null, '', url);
   }
 
   private readonly cloneList = () => Array.from(this.list());
@@ -70,7 +61,7 @@ export class NgFlexDialogRegistry {
 
     // ====================
 
-    this.pushState();
+    history.pushState(null, '', location.href);
   }
 
   readonly remove = (item: NgFlexDialogInstance) => {
