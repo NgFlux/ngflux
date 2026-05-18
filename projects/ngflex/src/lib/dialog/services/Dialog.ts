@@ -15,7 +15,9 @@ import {
   NgFlexDialogConfig,
   NgFlexDialogConfirmOptions,
   NgFlexDialogEvents,
+  NgFlexDialogPromptOptions,
 } from "../interfaces/Dialog";
+
 import { NgFlexDialogRegistry } from "../internal/DialogRegistry";
 
 @Injectable({ providedIn: 'root' })
@@ -81,9 +83,7 @@ export class NgFlexDialog {
     return this.alert(title, message, buttons);
   }
 
-  confirm(title: string, content: string) {
-    const data: NgFlexDialogConfirmOptions = { title, content };
-
+  confirm(data: NgFlexDialogConfirmOptions) {
     const dialog = this.open(NgFlexConfirmDialog, {
       closeOnBackBtn: false,
       backdropClose: false,
@@ -94,9 +94,7 @@ export class NgFlexDialog {
     return dialog.closed;
   }
 
-  prompt(title: string, content: string = '') {
-    const data: NgFlexDialogConfirmOptions = { title, content };
-
+  prompt(data: NgFlexDialogPromptOptions) {
     const dialog = this.open(NgFlexPromptDialog, {
       closeOnBackBtn: false,
       backdropClose: false,

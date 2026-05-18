@@ -8,11 +8,9 @@
 </ngf-dialog-body>
 
 <ngf-dialog-footer>
-  <ngf-button theme="dark" (click)="dialogRef.close()">
-    <span>Cancel</span>
-  </ngf-button>
-
-  <ngf-button theme="primary" (click)="dialogRef.close(value())" [disabled]="!value()">
-    <span>Submit</span>
-  </ngf-button>
+  @for (btn of buttons(); track $index) {
+    <ngf-button [theme]="btn.theme" (click)="onButtonClick($event, btn)" [disabled]="btn.disabled?.() ?? false">
+      <span>{{ btn.text }}</span>
+    </ngf-button>
+  }
 </ngf-dialog-footer>

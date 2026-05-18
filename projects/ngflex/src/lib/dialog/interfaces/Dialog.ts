@@ -2,7 +2,7 @@ import { InjectionToken, Injector, Signal, ViewContainerRef } from "@angular/cor
 import { Observable } from "rxjs";
 
 import type { NgFlexDialogRef } from "../services/DialogRef";
-import type { ButtonDirection, ButtonSize, ButtonTheme } from "../../button";
+import type { ButtonDirection, ButtonOptions, ButtonSize, ButtonTheme } from "../../button";
 
 export type NgFlexDialogRoot = {
   viewContainer: Signal<ViewContainerRef>;
@@ -29,13 +29,9 @@ export type NgFlexDialogEvents<T = any> = {
   readonly closed: Observable<T | null>;
 };
 
-export type NgFlexDialogButtonObj<T = any> = {
-  icon?: string;
-  text: string;
-  theme?: ButtonTheme;
-  direction?: ButtonDirection;
-  size?: ButtonSize;
+export type NgFlexDialogButtonObj<T = any> = ButtonOptions & {
   onClick?: (e: MouseEvent, btn: NgFlexDialogButton<T>, dialogRef: NgFlexDialogRef<T>) => void;
+  disabled?: () => boolean;
 };
 
 export type NgFlexDialogButton<T = any> = 'flex' | NgFlexDialogButtonObj<T>;
@@ -43,10 +39,19 @@ export type NgFlexDialogButton<T = any> = 'flex' | NgFlexDialogButtonObj<T>;
 export type NgFlexDialogAlertOptions = {
   title: string;
   content: string;
-  buttons?: NgFlexDialogButton<boolean>[]
+  buttons?: NgFlexDialogButton<boolean>[];
 };
 
 export type NgFlexDialogConfirmOptions = {
   title: string;
   content: string;
+  okayButton?: NgFlexDialogButtonObj;
+  cancelButton?: NgFlexDialogButtonObj;
+};
+
+export type NgFlexDialogPromptOptions = {
+  title: string;
+  content: string;
+  submitButton?: NgFlexDialogButtonObj;
+  cancelButton?: NgFlexDialogButtonObj;
 };

@@ -21,12 +21,20 @@ export class App {
 
   openConfirm(e: MouseEvent) {
     e.preventDefault();
-    this.dialog.confirm('Demo Confirm', 'Just testing');
+
+    this.dialog.confirm({
+      title: 'Demo Confirm',
+      content: 'Just testing',
+    });
   }
 
   openPrompt(e: MouseEvent) {
     e.preventDefault();
-    this.dialog.prompt('Demo Prompt', 'Just testing');
+
+    this.dialog.prompt({
+      title: 'Demo Prompt',
+      content: 'Just testing',
+    });
   }
 
 }
