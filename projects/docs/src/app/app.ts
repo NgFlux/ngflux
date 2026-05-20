@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgFlexDialog, NgFlexRootComponent } from 'ngflex';
+import { NgFlexDialog, NgFlexLoading, NgFlexRootComponent } from 'ngflex';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ import { NgFlexDialog, NgFlexRootComponent } from 'ngflex';
 export class App {
 
   private dialog = inject(NgFlexDialog);
+  private loading = inject(NgFlexLoading);
 
   protected readonly title = signal('docs');
 
@@ -35,6 +36,15 @@ export class App {
       title: 'Demo Prompt',
       content: 'Just testing',
     });
+  }
+
+  showLoading(e: MouseEvent) {
+    e.preventDefault();
+
+    const { loading } = this;
+
+    loading.start();
+    setTimeout(() => loading.stop(), 5000);
   }
 
 }

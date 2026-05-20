@@ -1,7 +1,6 @@
 :host {
   display: none;
   position: fixed;
-  visibility: hidden;
   z-index: var(--ngf-loading-z-index) !important;
   inset: 0px;
 
@@ -10,10 +9,13 @@
   }
 
   > .wrapper {
-    display: block;
-    visibility: visible !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: var(--ngf-loading-background) !important;
     height: 100% !important;
     width: 100% !important;
+
   }
 }

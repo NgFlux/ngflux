@@ -1,7 +1,6 @@
 import { Component, inject, Injector, viewChild, ViewContainerRef } from "@angular/core";
 
-import { NgFlexDialog } from "../../services/Dialog";
-import { DialogRootMap } from "../../internal/Mapper";
+import { NgFlexDialogInternal } from "../../internal/Dialog";
 
 @Component({
   selector: 'ngf-dialog-root',
@@ -11,14 +10,14 @@ import { DialogRootMap } from "../../internal/Mapper";
 })
 export class NgFlexDialogRootComponent {
 
-  private readonly service = inject(NgFlexDialog);
+  private readonly internal = inject(NgFlexDialogInternal);
 
   readonly injector = inject(Injector);
   readonly viewContainer = viewChild.required('container', { read: ViewContainerRef });
 
   constructor() {
-    const { service } = this;
-    DialogRootMap.attach(service, this);
+    const { internal } = this;
+    internal.root.set(this);
   }
 
 }

@@ -68,10 +68,11 @@ $device: (
   xl: 1200px,
 );
 
-$backdrop: rgba(0, 0, 0, .3) !default;
+$backdrop: rgba(0, 0, 0, .2) !default;
 
 // BEGIN: Loading Variables
 $loading-background: $backdrop !default;
+$loading-foreground: $primary !default;
 $loading-z-index: 2000 !default;
 // END: Loading Variables
 

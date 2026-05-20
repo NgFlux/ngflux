@@ -1,4 +1,4 @@
-import { Component, ComponentRef, computed, effect, inject, Injector, signal, viewChild, ViewContainerRef } from "@angular/core";
+import { Component, ComponentRef, computed, effect, HostBinding, inject, Injector, signal, viewChild, ViewContainerRef } from "@angular/core";
 import { NgFlexLoadingComponent } from "../loading/loading.component";
 import { NgFlexLoadingInternal } from "../../internal/Loading";
 import { NGF_CONFIG } from "../../../core";
@@ -15,7 +15,8 @@ export class NgFlexLoadingRootComponent {
   private readonly internal = inject(NgFlexLoadingInternal);
   private readonly injector = inject(Injector);
 
-  readonly isLoading = computed(() => this.internal.isLoading());
+  @HostBinding('class.show')
+  get isLoading() { return this.internal.isLoading() }
 
   readonly viewContainer = viewChild.required('container', { read: ViewContainerRef });
 

@@ -7,8 +7,7 @@ export class NgFlexLoading {
   private readonly internal = inject(NgFlexLoadingInternal);
 
   readonly data = computed(() => this.internal.entry());
-
-  get isLoading() { return this.internal.isLoading(); }
+  readonly isLoading = computed(() => this.internal.isLoading());
 
   start(text: string = '') {
     this.internal.start(text);

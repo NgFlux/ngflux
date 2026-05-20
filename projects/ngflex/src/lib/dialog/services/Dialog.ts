@@ -2,7 +2,6 @@ import { inject, Injectable } from "@angular/core";
 
 import { NgFlexComponent } from "../../core";
 import { NgFlexDialogInstance } from "./DialogInstance";
-import { DialogRootMap } from "../internal/Mapper";
 import { NgFlexAlertDialog } from "../boxes/alert/alert.dialog";
 import { NgFlexConfirmDialog } from "../boxes/confirm/confirm.dialog";
 import { NgFlexPromptDialog } from "../boxes/prompt/prompt.dialog";
@@ -18,13 +17,10 @@ import {
   NgFlexDialogPromptOptions,
 } from "../interfaces/Dialog";
 
-import { NgFlexDialogRegistry } from "../internal/DialogRegistry";
-
 @Injectable({ providedIn: 'root' })
 export class NgFlexDialog {
 
   private readonly internal = inject(NgFlexDialogInternal);
-  private readonly registry = inject(NgFlexDialogRegistry);
 
   open<T = any>(component: NgFlexComponent<any>, config?: NgFlexDialogConfig): NgFlexDialogEvents<T> {
     config ??= {};
@@ -33,7 +29,8 @@ export class NgFlexDialog {
     config.closeOnBackBtn ??= true;
     config.closeOnEsc ??= true;
 
-    const root = DialogRootMap.get(this);
+    const { internal } = this;
+    const root = internal.root();
 
     if (!root) throw new Error(
       '"ngf-dialog-root" component not found. ' +
@@ -42,7 +39,7 @@ export class NgFlexDialog {
     );
 
     const onClosed = (ins: NgFlexDialogInstance<T>) => {
-      this.registry.remove(ins);
+      internal.remove(ins);
     };
 
     const instance = new NgFlexDialogInstance<T>(
@@ -53,12 +50,12 @@ export class NgFlexDialog {
       config
     );
 
-    this.registry.add(instance);
+    internal.add(instance);
 
     return instance.events;
   }
 
-  readonly closeAll = () => this.registry.closeAll();
+  readonly closeAll = () => this.internal.closeAll();
 
   alert(title: string, content: string, buttons?: NgFlexDialogButton[]) {
     const data: NgFlexDialogAlertOptions = { title, content, buttons };
