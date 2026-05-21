@@ -1,12 +1,20 @@
 import { makeEnvironmentProviders } from "@angular/core";
 
-import { NGF_CONFIG, NgFlexConfig } from "./core";
 
-import { NgFlexDialog, } from "./dialog";
-import { NgFlexDialogInternal } from "./dialog/internal/Dialog";
+import {
+  NGF_CONFIG,
+  NgFlexConfig,
+} from "./interfaces";
 
-import { NgFlexLoading } from "./loading";
-import { NgFlexLoadingInternal } from "./loading/internal/Loading";
+import {
+  NgFlexDialog,
+  NgFlexLoading,
+} from "./services";
+
+import {
+  NgFlexDialogInternal,
+  NgFlexLoadingInternal,
+} from "./internal";
 
 export const provideNgFlex = (config?: NgFlexConfig) => {
   config ??= {};

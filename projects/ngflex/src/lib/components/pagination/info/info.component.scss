@@ -1,0 +1,34 @@
+@use '../../../../scss/system' as ngf;
+
+:host {
+  display: block;
+
+  .wrapper {
+    display: block;
+    text-align: center;
+
+    @include ngf.device(md) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+
+    > .left {
+      display: block;
+    }
+
+    > .middle {
+      display: block;
+
+      @include ngf.device(md) {
+        flex: 1 0 0;
+        width: 0px;
+      }
+    }
+
+    > .right {
+      display: block;
+    }
+  }
+}

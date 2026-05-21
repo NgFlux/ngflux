@@ -3,10 +3,8 @@
  */
 
 
-export * from './lib/root/root.component';
-
 export * from './lib/ngflex';
 
-export * from './lib/loading';
-export * from './lib/dialog';
-export * from './lib/button';
+export * from './lib/components';
+export * from './lib/interfaces';
+export * from './lib/services';
