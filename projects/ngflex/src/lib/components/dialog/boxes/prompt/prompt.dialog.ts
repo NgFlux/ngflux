@@ -37,7 +37,7 @@ export class NgFlexPromptDialog {
   readonly value = computed(() => this.text().trim());
 
   readonly buttons = computed(() => {
-    const config = this.config.dialogOptions?.prompt ?? {};
+    const config = this.config.dialog?.prompt ?? {};
     const value = this.value();
 
     return [

@@ -1,8 +1,8 @@
 export type Pagination<T = any> = {
-  current_page: number;
+  currentPage: number;
   from: number;
-  last_page: number;
-  per_page: number;
+  lastPage: number;
+  perPage: number;
   to: number;
   total: number;
   data: T[];
@@ -18,7 +18,7 @@ export type PaginationTransformer<T = any> = {
   getData: (data: any) => T[];
 };
 
-export type PaginationArgs = {
+export type PaginationInfo = {
   limit: number;
   page: number;
 };

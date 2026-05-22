@@ -1,6 +1,7 @@
+@use 'sass:map';
 @use './variables' as vars;
 
 @function color($key: default, $darken: 0) {
-  $value: map-get(vars.$color, $key);
+  $value: map.get(vars.$color, $key);
   @return darken($value, $darken);
 }

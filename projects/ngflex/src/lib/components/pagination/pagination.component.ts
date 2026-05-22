@@ -1,7 +1,7 @@
-import { Component, computed, effect, input, output, signal, untracked } from "@angular/core";
+import { Component, computed, effect, inject, input, model, output, signal, untracked } from "@angular/core";
 
 import { NgFlexPaginationInfo } from "./info/info.component";
-import { Pagination, PaginationArgs, PaginationTransformer } from "../../interfaces";
+import { NGF_CONFIG, Pagination, PaginationInfo, PaginationTransformer } from "../../interfaces";
 
 @Component({
   selector: 'ngf-pagination',
@@ -13,22 +13,29 @@ import { Pagination, PaginationArgs, PaginationTransformer } from "../../interfa
 })
 export class NgFlexPagination {
 
+  private readonly config = inject(NGF_CONFIG);
+
   readonly data = input.required<any>();
-  readonly preload = input<boolean>(true);
+  readonly preload = input<boolean>(this.config.pagination?.preload ?? true);
   readonly transform = input<PaginationTransformer>();
 
-  readonly callback = output<PaginationArgs>();
+  readonly limit = model<number>(this.config.pagination?.limit ?? 10);
+  readonly limitEntries = input<number[]>(this.config.pagination?.limitEntries ?? [5, 10, 20, 30, 40, 50]);
 
-  readonly value = computed<Pagination>(() => {
+  readonly callback = output<PaginationInfo>();
+
+  protected readonly value = computed<Pagination>(() => {
+    const { config } = this;
+
     const data = this.data();
-    const transform = this.transform();
+    const transform = this.transform() ?? config.pagination?.transform;
 
     if (!transform) return data as Pagination;
 
     return {
-      current_page: transform.getCurrentPage(data),
-      last_page: transform.getLastPage(data),
-      per_page: transform.getPerPage(data),
+      currentPage: transform.getCurrentPage(data),
+      lastPage: transform.getLastPage(data),
+      perPage: transform.getPerPage(data),
       from: transform.getFrom(data),
       to: transform.getTo(data),
       total: transform.getTotal(data),
@@ -36,15 +43,13 @@ export class NgFlexPagination {
     };
   });
 
-  readonly limit = signal<number>(10);
-
   constructor() {
     let init = false;
 
     effect(() => {
       const limit = this.limit();
       const preload = untracked(this.preload);
-      const { current_page: page } = untracked(this.value);
+      const { currentPage: page } = untracked(this.value);
 
       if (preload || init) {
         this.callback.emit({ limit, page });

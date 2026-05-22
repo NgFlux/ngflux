@@ -1,12 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgFlexDialog, NgFlexLoading, NgFlexRootComponent } from 'ngflex';
+import { NgFlexDialog, NgFlexLoading, NgFlexPagination, NgFlexRootComponent, PaginationTransformer } from 'ngflex';
 
 @Component({
   selector: 'app-root',
-  imports: [NgFlexRootComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  imports: [
+    NgFlexRootComponent,
+    NgFlexPagination,
+  ],
 })
 export class App {
 
@@ -14,6 +17,16 @@ export class App {
   private loading = inject(NgFlexLoading);
 
   protected readonly title = signal('docs');
+
+  protected readonly transform: PaginationTransformer = {
+    getCurrentPage: (data) => 1,
+    getFrom: (data) => 1,
+    getTo: (data) => 20,
+    getLastPage: data => 5,
+    getPerPage: data => 20,
+    getTotal: data => 95,
+    getData: data => [],
+  };
 
   openAlert(e: MouseEvent) {
     e.preventDefault();

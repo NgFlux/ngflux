@@ -1,6 +1,13 @@
 import { InjectionToken } from "@angular/core";
 import type { NgFlexComponent } from "./Component";
 import type { ButtonOptions } from "./Button";
+import type { PaginationTransformer } from "./Pagination";
+
+// BEGIN: Loading
+type LoadingOptions = {
+  component?: NgFlexComponent;
+};
+// END: Loading
 
 // BEGIN: Dialog Options
 type DialogAlertOptions = {
@@ -22,13 +29,21 @@ type DialogOptions = {
   confirm?: DialogConfirmOptions;
   prompt?: DialogPromptOptions;
 };
-
 // END: Dialog Options
 
-export type NgFlexConfig = {
-  loadingComponent?: NgFlexComponent;
+// BEGIN: Pagination
+type PaginationOptions = {
+  preload?: boolean;
+  transform?: PaginationTransformer;
+  limitEntries?: number[];
+  limit?: number;
+};
+// END: Pagination
 
-  dialogOptions?: DialogOptions;
+export type NgFlexConfig = {
+  loading?: LoadingOptions;
+  dialog?: DialogOptions;
+  pagination?: PaginationOptions;
 };
 
 export const NGF_CONFIG = new InjectionToken<NgFlexConfig>('ngf-config');

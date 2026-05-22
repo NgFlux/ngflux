@@ -2,33 +2,57 @@
 
 :host {
   display: block;
+  container: pagination / inline-size;
 
   .wrapper {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    align-items: end;
     text-align: center;
+    font-size: .8rem;
+    gap: 5px;
 
-    @include ngf.device(md) {
+    @container pagination (min-width: 400px) {
+      flex-direction: row;
+      justify-content: end;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .block {
       display: flex;
       flex-direction: row;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 5px;
     }
 
-    > .left {
-      display: block;
-    }
-
-    > .middle {
-      display: block;
-
-      @include ngf.device(md) {
-        flex: 1 0 0;
-        width: 0px;
+    .limit {
+      > select {
+        display: block;
+        padding: 2px 5px;
+        font-size: inherit;
+        outline: none !important;
+        width: 50px;
       }
     }
 
-    > .right {
-      display: block;
+    .nav {
+      > button {
+        display: block;
+        background-color: transparent;
+        box-shadow: none !important;
+        outline: none !important;
+        cursor: pointer;
+        border: none;
+        padding: 0px;
+
+        &:disabled {
+          cursor: default;
+          color: #AAA;
+        }
+      }
     }
   }
 }

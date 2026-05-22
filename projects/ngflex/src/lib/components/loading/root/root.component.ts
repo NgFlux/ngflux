@@ -27,7 +27,7 @@ export class NgFlexLoadingRootComponent {
 
     effect(() => {
       const viewContainer = this.viewContainer();
-      const component = config.loadingComponent ?? NgFlexLoadingComponent;
+      const component = config.loading?.component ?? NgFlexLoadingComponent;
 
       const newInjector = Injector.create({
         parent: injector,

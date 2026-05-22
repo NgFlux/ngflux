@@ -1,13 +1,24 @@
 <div class="wrapper">
-  <div class="left">
-    <!-- <span>Items per page</span> -->
+  <div class="block limit">
+    <div>Per page</div>
+    <select name="" id="" [(ngModel)]="limit">
+      @for (entry of limitEntries(); track $index) {
+        <option [value]="entry">{{ entry }}</option>
+      }
+    </select>
   </div>
 
-  <div class="middle">
-    <!--  -->
+  <div class="block info">
+    <div>{{ info() }}</div>
   </div>
 
-  <div class="right">
-    <!--  -->
+  <div class="block nav">
+    <button (click)="prev()" [disabled]="disablePrev()">
+      <i class="ngf-icon chevron-left"></i>
+    </button>
+
+    <button (click)="next()" [disabled]="disableNext()">
+      <i class="ngf-icon chevron-right"></i>
+    </button>
   </div>
 </div>

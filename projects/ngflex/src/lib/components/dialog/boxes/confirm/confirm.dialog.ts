@@ -32,7 +32,7 @@ export class NgFlexConfirmDialog {
   readonly options: NgFlexDialogConfirmOptions = inject(NGF_DIALOG_DATA);
 
   readonly buttons = computed(() => {
-    const config = this.config.dialogOptions?.prompt ?? {};
+    const config = this.config.dialog?.prompt ?? {};
 
     return [
       this.options.cancelButton ?? Object.assign({

@@ -26,7 +26,7 @@ export class NgFlexAlertDialog {
   readonly options: NgFlexDialogAlertOptions = inject(NGF_DIALOG_DATA);
 
   readonly buttons = computed<NgFlexDialogButton<boolean>[]>(() => {
-    const config = this.config.dialogOptions?.alert || {};
+    const config = this.config.dialog?.alert || {};
 
     return this.options.buttons ?? [
       Object.assign({

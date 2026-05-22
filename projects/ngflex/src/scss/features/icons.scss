@@ -21,4 +21,7 @@
   &.menu::before { content: "\e5d2"; }
   &.search::before { content: "\e8b6"; }
   &.close::before { content: "\e5cd"; }
+
+  &.chevron-left::before { content: "\e5cb"; }
+  &.chevron-right::before { content: "\e5cc"; }
 }

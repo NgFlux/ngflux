@@ -12,3 +12,6 @@ export * from './dialog/boxes/prompt/prompt.dialog';
 
 export * from './loading/root/root.component';
 export * from './loading/main/main.component';
+
+export * from './pagination/pagination.component';
+export * from './pagination/info/info.component';
