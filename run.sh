@@ -1,5 +1,5 @@
 set -e
 
-pnpm exec ng build ngflex
+pnpm exec ng build @ngflux/ngflux
 
 pnpm exec ng serve docs

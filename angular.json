@@ -6,20 +6,20 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ngflex": {
+    "@ngflux/ngflux": {
       "projectType": "library",
-      "root": "projects/ngflex",
-      "sourceRoot": "projects/ngflex/src",
+      "root": "projects/ngflux",
+      "sourceRoot": "projects/ngflux/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngflex/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngflux/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngflex/tsconfig.lib.json"
+              "tsConfig": "projects/ngflux/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ngflex/tsconfig.spec.json"
+            "tsConfig": "projects/ngflux/tsconfig.spec.json"
           }
         }
       }
@@ -57,7 +57,7 @@
             ],
             "styles": [
               "projects/docs/src/styles.scss",
-              "dist/ngflex/scss/_index.scss"
+              "dist/ngflux/scss/_index.scss"
             ]
           },
           "configurations": {

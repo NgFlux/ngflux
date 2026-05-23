@@ -1,5 +1,5 @@
 {
-  "name": "ngflex",
+  "name": "ngflux",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,6 +9,7 @@
     "test": "ng test"
   },
   "private": true,
+  "packageManager": "pnpm@11.2.2",
   "dependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",

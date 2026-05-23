@@ -1,20 +1,28 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgFlexDialog, NgFlexLoading, NgFlexPagination, NgFlexRootComponent, PaginationTransformer } from 'ngflex';
+
+import {
+  NgFluxDialog,
+  NgFluxLoading,
+  NgFluxPagination,
+  NgFluxRootComponent,
+  PaginationInfo,
+  PaginationTransformer,
+} from '@ngflux/ngflux';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
   imports: [
-    NgFlexRootComponent,
-    NgFlexPagination,
+    NgFluxRootComponent,
+    NgFluxPagination,
   ],
 })
 export class App {
 
-  private dialog = inject(NgFlexDialog);
-  private loading = inject(NgFlexLoading);
+  private dialog = inject(NgFluxDialog);
+  private loading = inject(NgFluxLoading);
 
   protected readonly title = signal('docs');
 

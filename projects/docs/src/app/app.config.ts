@@ -1,6 +1,6 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideNgFlex } from 'ngflex';
+import { provideNgFlux } from '@ngflux/ngflux';
 
 import { routes } from './app.routes';
 
@@ -8,7 +8,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideNgFlex({
+    provideNgFlux({
       pagination: {
         limit: 20,
         transform: {
