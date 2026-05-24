@@ -1,6 +1,19 @@
 {
   "name": "ngflux",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NgFlex/ngflux.git"
+  },
+  "homepage": "https://github.com/NgFlux/ngflux",
+  "keywords": [
+    "angular",
+    "ngflux",
+    "angular sdk",
+    "sdk",
+    "angular directives",
+    "angular components"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
