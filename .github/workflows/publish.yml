@@ -1,0 +1,57 @@
+name: Build and publish @ngflux/ngflux
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      TOKEN: ${{ secrets.NPM_TOKEN }}
+      ID_NAME: ${{ secrets.ID_NAME }}
+      ID_EMAIL: ${{ secrets.ID_EMAIL }}
+      LIB_VERSION: ${{ github.ref_name }}
+    strategy:
+      matrix:
+        node-version: [22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Enable corepack
+      run: corepack enable
+
+    - name: Install pnpm
+      run: corepack prepare pnpm@latest --activate
+
+    - name: Install Dependencies
+      run: pnpm install
+
+    - name: Build Packages
+      run: pnpm exec ng build @ngflux/ngflux
+
+    - name: Update Git config
+      run: |
+        git config --global user.name "$ID_NAME"
+        git config --global user.email "$ID_EMAIL"
+
+    - name: Publish Packages
+      run: |
+        pushd dist/ngflux
+
+        # pnpm config set //registry.npmjs.org/:_authToken $TOKEN
+
+        # pnpm version $LIB_VERSION
+
+        pnpm publish --access public
+
+        popd
