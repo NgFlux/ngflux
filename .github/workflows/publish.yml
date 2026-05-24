@@ -5,12 +5,16 @@ on:
     tags:
       - "*"
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: production
     env:
-      TOKEN: ${{ secrets.NPM_TOKEN }}
+      # TOKEN: ${{ secrets.NPM_TOKEN }}
       ID_NAME: ${{ secrets.ID_NAME }}
       ID_EMAIL: ${{ secrets.ID_EMAIL }}
       LIB_VERSION: ${{ github.ref_name }}
@@ -19,13 +23,13 @@ jobs:
         node-version: [22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        package-manager-cache: false
 
     # - name: Enable corepack
     #   run: corepack enable
@@ -34,7 +38,7 @@ jobs:
     #   run: corepack prepare pnpm@latest --activate
 
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
 
     - name: Build Packages
       run: npm exec ng build @ngflux/ngflux
@@ -48,7 +52,7 @@ jobs:
       run: |
         pushd dist/ngflux
 
-        npm set //registry.npmjs.org/:_authToken $TOKEN
+        # npm set //registry.npmjs.org/:_authToken $TOKEN
 
         npm version $LIB_VERSION
 
