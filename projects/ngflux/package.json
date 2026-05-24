@@ -1,6 +1,19 @@
 {
   "name": "@ngflux/ngflux",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NgFlux/ngflux.git"
+  },
+  "homepage": "https://github.com/NgFlux/ngflux",
+  "keywords": [
+    "angular",
+    "ngflux",
+    "angular sdk",
+    "sdk",
+    "angular directives",
+    "angular components"
+  ],
   "publishConfig": {
     "access": "public"
   },

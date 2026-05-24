@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NgFlex/ngflux.git"
+    "url": "git+https://github.com/NgFlux/ngflux.git"
   },
   "homepage": "https://github.com/NgFlux/ngflux",
   "keywords": [
