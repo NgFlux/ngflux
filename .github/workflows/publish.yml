@@ -27,17 +27,17 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name: Enable corepack
-      run: corepack enable
+    # - name: Enable corepack
+    #   run: corepack enable
 
-    - name: Install pnpm
-      run: corepack prepare pnpm@latest --activate
+    # - name: Install pnpm
+    #   run: corepack prepare pnpm@latest --activate
 
     - name: Install Dependencies
-      run: pnpm install
+      run: npm install
 
     - name: Build Packages
-      run: pnpm exec ng build @ngflux/ngflux
+      run: npm exec ng build @ngflux/ngflux
 
     - name: Update Git config
       run: |
@@ -48,10 +48,10 @@ jobs:
       run: |
         pushd dist/ngflux
 
-        # pnpm config set //registry.npmjs.org/:_authToken $TOKEN
+        npm set //registry.npmjs.org/:_authToken $TOKEN
 
-        # pnpm version $LIB_VERSION
+        npm version $LIB_VERSION
 
-        pnpm publish --access public
+        npm publish --access public
 
         popd
