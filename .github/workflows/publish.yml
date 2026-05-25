@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      # TOKEN: ${{ secrets.NPM_TOKEN }}
       ID_NAME: ${{ secrets.ID_NAME }}
       ID_EMAIL: ${{ secrets.ID_EMAIL }}
       LIB_VERSION: ${{ github.ref_name }}
@@ -31,17 +30,17 @@ jobs:
         node-version: ${{ matrix.node-version }}
         package-manager-cache: false
 
-    # - name: Enable corepack
-    #   run: corepack enable
-
-    # - name: Install pnpm
-    #   run: corepack prepare pnpm@latest --activate
-
     - name: Install Dependencies
       run: npm ci
 
     - name: Build Packages
       run: npm exec ng build @ngflux/ngflux
+
+    - name: Copy LICENSE
+      run: cp -f LICENSE dist/ngflux/
+
+    - name: Copy README.md
+      run: cp -f README.md dist/ngflux/
 
     - name: Update Git config
       run: |

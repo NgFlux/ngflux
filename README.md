@@ -6,10 +6,10 @@
 
 NgFlux provides powerful angular components, services, directives, pipes, guards and many more features for building awesome applications.
 
-## Resources
+<!-- ## Resources -->
 
-- [Wiki/Documentation][wiki-url]
-- [Blog][blog-url]
+<!-- - [Wiki/Documentation][wiki-url] -->
+<!-- - [Blog][blog-url] -->
 
 ## License
 
