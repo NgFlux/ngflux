@@ -4,9 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import {
   NgFluxDialog,
   NgFluxLoading,
-  NgFluxPagination,
   NgFluxRootComponent,
-  PaginationInfo,
   PaginationTransformer,
 } from '@ngflux/ngflux';
 
@@ -15,16 +13,14 @@ import {
   templateUrl: './app.html',
   styleUrl: './app.scss',
   imports: [
+    RouterOutlet,
     NgFluxRootComponent,
-    NgFluxPagination,
   ],
 })
 export class App {
 
   private dialog = inject(NgFluxDialog);
   private loading = inject(NgFluxLoading);
-
-  protected readonly title = signal('docs');
 
   protected readonly transform: PaginationTransformer = {
     getCurrentPage: (data) => 1,

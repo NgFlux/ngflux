@@ -5,6 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/NgFlux/ngflux.git"
   },
+  "license": "MIT",
   "homepage": "https://github.com/NgFlux/ngflux",
   "keywords": [
     "angular",

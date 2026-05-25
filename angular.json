@@ -58,7 +58,10 @@
             "styles": [
               "projects/docs/src/styles.scss",
               "dist/ngflux/scss/_index.scss"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["dist"]
+            }
           },
           "configurations": {
             "production": {

@@ -9,6 +9,6 @@
   },
   "assets": [
     { "input": "src/scss", "glob": "**/*.scss", "output": "scss" },
-    "./LICENSE"
+    { "input": "src", "glob": "**/*.scss", "output": "." }
   ]
 }
