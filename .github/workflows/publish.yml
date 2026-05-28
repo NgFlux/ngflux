@@ -42,13 +42,6 @@ jobs:
     - name: Copy README.md
       run: cp -f README.md dist/ngflux/
 
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v5
-      with:
-        name: "@ngflux/ngflux"
-        path: dist/
-        retention-days: 1
-
     - name: Update Git config
       run: |
         git config --global user.name "$ID_NAME"
