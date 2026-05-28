@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -33,7 +33,7 @@ jobs:
     - name: Install Dependencies
       run: npm ci
 
-    - name: Build Packages
+    - name: Build Library
       run: npm exec ng build @ngflux/ngflux
 
     - name: Copy LICENSE
@@ -41,6 +41,13 @@ jobs:
 
     - name: Copy README.md
       run: cp -f README.md dist/ngflux/
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v5
+      with:
+        name: "@ngflux/ngflux"
+        path: dist/
+        retention-days: 1
 
     - name: Update Git config
       run: |

@@ -1,0 +1,54 @@
+name: Build and publish documentation
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    strategy:
+      matrix:
+        node-version: [24.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ matrix.node-version }}
+        package-manager-cache: false
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Build Packages
+      run: npm exec ng build @ngflux/ngflux
+
+    - name: Build Packages
+      run: npm exec ng build docs
+
+    - name: Setup GitHub Pages
+      uses: actions/configure-pages@v5
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: 'dist/docs/browser'
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v5
