@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { DateTime } from "luxon";
 
 @Component({
   selector: 'root-theme',
@@ -11,6 +12,6 @@ import { RouterLink } from "@angular/router";
 })
 export class RootTheme {
 
-  protected readonly year = 2026;
+  protected readonly year = DateTime.now().year;
 
 }
