@@ -1,13 +1,17 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { provideNgFlux } from '@ngflux/ngflux';
 
 import { routes } from './app.routes';
+import { APP_BASE_HREF } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+
+    provideRouter(routes, withHashLocation()),
+    { provide: APP_BASE_HREF, useValue: '!' },
+
     provideNgFlux({
       pagination: {
         limit: 20,
