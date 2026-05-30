@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { RootTheme } from '../../themes/root/root.theme';
-import { HomePage } from './home.page';
+import { HomePage } from './home/home.page';
 
 export const routes: Routes = [
   {

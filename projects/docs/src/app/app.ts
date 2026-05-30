@@ -8,6 +8,8 @@ import {
   PaginationTransformer,
 } from '@ngflux/ngflux';
 
+import { RootTheme } from './themes/root/root.theme';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -15,6 +17,7 @@ import {
   imports: [
     RouterOutlet,
     NgFluxRootComponent,
+    RootTheme,
   ],
 })
 export class App {
