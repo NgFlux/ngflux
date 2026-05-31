@@ -10,16 +10,9 @@ permissions:
   id-token: write
   pages: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     strategy:
       matrix:
         node-version: [24.x]
@@ -40,15 +33,12 @@ jobs:
       run: npm exec ng build @ngflux/ngflux
 
     - name: Build Packages
-      run: npm exec ng build docs -- --base-href /ngflux/
+      run: npm exec ng build docs
 
-    - name: Setup GitHub Pages
-      uses: actions/configure-pages@v5
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-pages-artifact@v5
+    - name: Deploy to Cloudflare Pages
+      uses: cloudflare/wrangler-action@v3
       with:
-        path: 'dist/docs/browser'
-
-    - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v5
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        command: pages deploy dist/docs/browser --project-name=ngflux
+        githubToken: ${{ secrets.GITHUB_TOKEN }}

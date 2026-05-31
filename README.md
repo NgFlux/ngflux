@@ -27,7 +27,7 @@ Visit our [Documentation][wiki-url] for more info.
 NgFlux is freely distributable under the terms of the [MIT license][license-url].
 
 
-[wiki-url]: https://ngflux.github.io/ngflux
+[wiki-url]: https://ngflux.cybos.dev
 [blog-url]: https://www.cyberpull.com/blog/tag/ngflux
 
 [license-image]: https://img.shields.io/github/license/NgFlux/ngflux
