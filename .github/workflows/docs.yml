@@ -40,5 +40,5 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy dist/docs/browser --project-name=ngflux --env=production --commit-dirty=true
+        command: pages deploy dist/docs/browser --project-name=ngflux --branch=production --commit-dirty=true
         githubToken: ${{ secrets.GITHUB_TOKEN }}
