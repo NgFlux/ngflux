@@ -9,8 +9,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
 
-    provideRouter(routes, withHashLocation()),
-    { provide: APP_BASE_HREF, useValue: '!' },
+    provideRouter(routes),
 
     provideNgFlux({
       pagination: {
