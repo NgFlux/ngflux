@@ -6,26 +6,32 @@
 
     <div class="spacer"></div>
 
-    <ul class="menu">
-      <li>
-        <a routerLink="/guides">
-          <span>Guides</span>
-        </a>
-      </li>
+    <nav class="navbar" (click)="onNavbarClick($event)">
+      <div class="nav-btn" (click)="openMenu.update(v => !v)">
+        <i class="fa-solid fa-bars"></i>
+      </div>
 
-      <li>
-        <a routerLink="/components">
-          <span>Components</span>
-        </a>
-      </li>
+      <ul class="menu" [class.open]="openMenu()">
+        <li>
+          <a routerLink="/guides">
+            <span>Guides</span>
+          </a>
+        </li>
 
-      <li>
-        <a target="_blank" href="https://github.com/NgFlux/ngflux">
-          <i class="menu-icon fa-brands fa-github"></i>
-          <span>GitHub</span>
-        </a>
-      </li>
-    </ul>
+        <li>
+          <a routerLink="/features">
+            <span>Features</span>
+          </a>
+        </li>
+
+        <li>
+          <a target="_blank" href="https://github.com/NgFlux/ngflux">
+            <i class="menu-icon fa-brands fa-github"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
 

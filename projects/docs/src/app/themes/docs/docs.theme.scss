@@ -1,15 +1,78 @@
+@use 'ngflux' as ngf;
+
 :host {
   display: flex;
   flex-direction: row;
   min-height: 100%;
+  overflow: clip;
+
+  --left-width: 100%;
+  --left-margin: calc(-1 * var(--left-width));
+
+  --right-width: 100%;
+  --right-margin: calc(-1 * var(--right-width));
+
+  @include ngf.device(xs) {
+    --left-width: 250px;
+    --right-width: 200px;
+  }
+
+  @include ngf.device(md) {
+    --left-margin: 0px;
+    --right-margin: 0px;
+  }
+
+  > .overlay {
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .1);
+    cursor: pointer;
+    z-index: 18;
+    inset: 0px;
+
+    &.open {
+      display: block;
+
+      @include ngf.device(md) {
+        display: none;
+      }
+    }
+  }
 
   > .left {
     display: block;
     position: relative;
     background-color: #FFF;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, .5);
-    width: 250px;
+    margin-left: var(--left-margin) !important;
+    width: var(--left-width) !important;
+    transition: all .3s ease-in-out;
     z-index: 20;
+
+    &.open {
+      --left-margin: 0px;
+    }
+
+    .left-btn {
+      display: block;
+      position: absolute;
+      inset: 30px auto auto 100%;
+      background-color: inherit;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      box-shadow: 5px 0px 5px rgba(0, 0, 0, .5);
+      padding: 10px 2px;
+      font-size: .85rem;
+      cursor: pointer;
+
+      &:active {
+        box-shadow: 2px 0px 2px rgba(0, 0, 0, .5);
+      }
+
+      @include ngf.device(md) {
+        display: none;
+      }
+    }
   }
 
   > .main {
@@ -18,17 +81,40 @@
     flex: 1 0 0;
 
     > .header {
-      display: block;
+      display: flex;
+      flex-direction: row;
       position: relative;
       background-color: #EEE;
       border-bottom: 1px solid rgba(0, 0, 0, .2);
       height: 50px;
       z-index: 15;
+
+      > .title {
+        display: block;
+        flex: 1 0 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      > .right-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid rgba(0, 0, 0, .2);
+        cursor: pointer;
+        width: 30px;
+
+        @include ngf.device(md) {
+          display: none;
+        }
+      }
     }
 
     > .body {
       display: flex;
       flex-direction: row;
+      position: relative;
       flex: 1 0 auto;
 
       > .content {
@@ -41,7 +127,25 @@
 
       > .right {
         display: block;
-        width: 200px;
+        position: absolute;
+        background-color: inherit;
+        box-shadow: 0px -5px 5px rgba(0, 0, 0, .5);
+        margin-right: var(--right-margin) !important;
+        width: var(--right-width) !important;
+        inset: 0px 0px 0px auto;
+        transition: all .3s ease-in-out;
+        z-index: 17px;
+
+        @include ngf.device(md) {
+          position: relative;
+          box-shadow: none;
+          inset: auto;
+          z-index: auto;
+        }
+
+        &.open {
+          --right-margin: 0px;
+        }
       }
     }
   }

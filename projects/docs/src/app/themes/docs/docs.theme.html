@@ -1,10 +1,22 @@
-<div class="left">
+<div class="overlay" [class.open]="leftOpen()" (click)="leftOpen.set(false)"></div>
+
+<div class="left" [class.open]="leftOpen()" (click)="$event.stopPropagation()">
+  <div class="left-btn" (click)="leftOpen.update(v => !v)">
+    <i class="fa-solid" [ngClass]="leftBtn()"></i>
+  </div>
+
   <!--  -->
 </div>
 
 <div class="main">
   <div class="header">
-    <!--  -->
+    <div class="title">
+      <!--  -->
+    </div>
+
+    <div class="right-btn" (click)="rightOpen.update(v => !v)">
+      <i class="fa-solid" [ngClass]="rightBtn()"></i>
+    </div>
   </div>
 
   <div class="body">
@@ -12,7 +24,7 @@
       <ng-content></ng-content>
     </div>
 
-    <div class="right">
+    <div class="right" [class.open]="rightOpen()">
       <!--  -->
     </div>
   </div>
