@@ -29,10 +29,10 @@ jobs:
     - name: Install Dependencies
       run: npm ci
 
-    - name: Build Packages
+    - name: Build @ngflux/ngflux
       run: npm exec ng build @ngflux/ngflux
 
-    - name: Build Packages
+    - name: Build Docs
       run: npm exec ng build docs
 
     - name: Deploy to Cloudflare Pages
@@ -40,5 +40,5 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy dist/docs/browser --project-name=ngflux
+        command: pages deploy dist/docs/browser --project-name=ngflux --env=production --commit-dirty=true
         githubToken: ${{ secrets.GITHUB_TOKEN }}
