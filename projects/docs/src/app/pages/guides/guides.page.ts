@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { DocMenu } from "@docs/core";
 
 import { DocsTheme } from "../../themes/docs/docs.theme";
-import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-guides-page',
@@ -14,6 +15,8 @@ import { RouterOutlet } from "@angular/router";
 })
 export class GuidesPage {
 
-  //
+  protected menu: DocMenu[] = [
+    { text: 'Getting Started', href: './getting-started' },
+  ];
 
 }

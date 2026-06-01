@@ -8,7 +8,8 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "paths": {
-      "@ngflux/ngflux": ["./dist/ngflux"]
+      "@ngflux/ngflux": ["./dist/ngflux"],
+      "@docs/core": ["./projects/docs/src/app/core"]
     },
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,

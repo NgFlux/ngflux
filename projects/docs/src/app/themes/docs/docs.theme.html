@@ -5,14 +5,24 @@
     <i class="fa-solid" [ngClass]="leftBtn()"></i>
   </div>
 
-  <!--  -->
+  <div class="close-btn" (click)="leftOpen.set(false)">
+    <i class="fa-solid fa-times"></i>
+  </div>
+
+  @if (menuSearch().length) {
+    <ul class="menu">
+      @for (item of menuSearch(); track $index) {
+        <li routerLinkActive="active">
+          <doc-link [data]="item"></doc-link>
+        </li>
+      }
+    </ul>
+  }
 </div>
 
-<div class="main">
+<div class="main" [class.drawer]="leftOpen()">
   <div class="header">
-    <div class="title">
-      <!--  -->
-    </div>
+    <h1 class="title">{{ name() }}</h1>
 
     <div class="right-btn" (click)="rightOpen.update(v => !v)">
       <i class="fa-solid" [ngClass]="rightBtn()"></i>
@@ -21,6 +31,10 @@
 
   <div class="body">
     <div class="content">
+      <div class="subheader">
+        <h2 class="subtitle">{{ name() }}</h2>
+      </div>
+
       <ng-content></ng-content>
     </div>
 
