@@ -9,20 +9,24 @@
     <i class="fa-solid fa-times"></i>
   </div>
 
-  @if (menuSearch().length) {
-    <ul class="menu">
-      @for (item of menuSearch(); track $index) {
-        <li routerLinkActive="active">
-          <doc-link [data]="item"></doc-link>
-        </li>
-      }
-    </ul>
-  }
+  <h1 class="title">{{ name() }}</h1>
+
+  <div class="search">
+    <input type="text" [(ngModel)]="search" placeholder="Search Menu">
+
+    @if (search()) {
+      <div class="clear-btn" (click)="search.set('')">
+        <i class="fa-solid fa-times"></i>
+      </div>
+    }
+  </div>
+
+  <doc-menu [data]="menuSearch()" />
 </div>
 
 <div class="main" [class.drawer]="leftOpen()">
   <div class="header">
-    <h1 class="title">{{ name() }}</h1>
+    <h2 class="title">{{ title() }}</h2>
 
     <div class="right-btn" (click)="rightOpen.update(v => !v)">
       <i class="fa-solid" [ngClass]="rightBtn()"></i>
@@ -31,15 +35,23 @@
 
   <div class="body">
     <div class="content">
-      <div class="subheader">
-        <h2 class="subtitle">{{ name() }}</h2>
-      </div>
-
       <ng-content></ng-content>
     </div>
 
     <div class="right" [class.open]="rightOpen()">
-      <!--  -->
+      @let secs = sections();
+
+      <span>Sections: {{ secs.length }}</span>
+
+      @if (secs.length) {
+        <ul class="submenu">
+          @for (item of secs; track $index) {
+            <li>
+              <a href="">{{ item.name() }}</a>
+            </li>
+          }
+        </ul>
+      }
     </div>
   </div>
 

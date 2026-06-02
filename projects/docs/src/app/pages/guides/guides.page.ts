@@ -17,6 +17,7 @@ export class GuidesPage {
 
   protected menu: DocMenu[] = [
     { text: 'Getting Started', href: './getting-started' },
+    { text: 'Theming NgFlux', href: './theming' },
   ];
 
 }

@@ -4,6 +4,7 @@ import { provideNgFlux } from '@ngflux/ngflux';
 
 import { routes } from './app.routes';
 import { APP_BASE_HREF } from '@angular/common';
+import { DocThemeService } from './core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,5 +26,7 @@ export const appConfig: ApplicationConfig = {
         }
       },
     }),
+
+    DocThemeService,
   ],
 };

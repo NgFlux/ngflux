@@ -1,0 +1,19 @@
+@let menu = data();
+
+@if (menu.length) {
+  <ul class="menu">
+    @for (item of menu; track $index) {
+      <li routerLinkActive="active">
+        @if (item.external) {
+          <a [target]="target(item)" [href]="item.href">
+            <span>{{ item.text }}</span>
+          </a>
+        } @else {
+          <a [target]="target(item)" [routerLink]="item.href">
+            <span>{{ item.text }}</span>
+          </a>
+        }
+      </li>
+    }
+  </ul>
+}

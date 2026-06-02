@@ -18,10 +18,11 @@ html, body {
 }
 
 a {
-  color: var(--color) !important;
   text-decoration: none;
 
-  --color: #{ngf.$primary};
+  &, &:link {
+    color: #{ngf.$primary};
+  }
 
   &:hover {
     text-decoration: underline;

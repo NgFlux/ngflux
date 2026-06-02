@@ -15,6 +15,11 @@ import { DocsTheme } from "../../themes/docs/docs.theme";
 })
 export class FeaturesPage {
 
-  protected menu: DocMenu[] = [];
+  protected menu: DocMenu[] = [
+    { text: 'Button', href: './button' },
+    { text: 'Dialog', href: './dialog' },
+    { text: 'Loading', href: './loading' },
+    { text: 'Pagination', href: './pagination' },
+  ];
 
 }

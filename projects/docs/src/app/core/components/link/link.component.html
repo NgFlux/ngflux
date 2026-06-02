@@ -1,0 +1,11 @@
+@let obj = data();
+
+@if (obj.external) {
+  <a [target]="target()" [href]="obj.href">
+    <span>{{ obj.text }}</span>
+  </a>
+} @else {
+  <a [target]="target()" [routerLink]="obj.href">
+    <span>{{ obj.text }}</span>
+  </a>
+}
