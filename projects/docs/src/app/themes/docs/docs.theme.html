@@ -1,7 +1,7 @@
-<div class="overlay" [class.open]="leftOpen()" (click)="leftOpen.set(false)"></div>
+<div class="overlay" [class.open]="leftOpen()"></div>
 
-<div class="left" [class.open]="leftOpen()" (click)="$event.stopPropagation()">
-  <div class="left-btn" (click)="leftOpen.update(v => !v)">
+<div class="left" [class.open]="leftOpen()" (click)="onLeftClick($event)">
+  <div class="left-btn" (click)="$event.stopPropagation(); leftOpen.update(v => !v)">
     <i class="fa-solid" [ngClass]="leftBtn()"></i>
   </div>
 
@@ -28,7 +28,7 @@
   <div class="header">
     <h2 class="title">{{ title() }}</h2>
 
-    <div class="right-btn" (click)="rightOpen.update(v => !v)">
+    <div class="right-btn" (click)="$event.stopPropagation(); rightOpen.update(v => !v)">
       <i class="fa-solid" [ngClass]="rightBtn()"></i>
     </div>
   </div>
@@ -38,19 +38,21 @@
       <ng-content></ng-content>
     </div>
 
-    <div class="right" [class.open]="rightOpen()">
-      @let secs = sections();
+    <div class="right" [class.open]="rightOpen()" (click)="onRightClick($event)">
+      @let sections = service.sections();
 
-      <span>Sections: {{ secs.length }}</span>
+      @if (sections.length) {
+        <div class="wrapper">
+          <h3>Contents</h3>
 
-      @if (secs.length) {
-        <ul class="submenu">
-          @for (item of secs; track $index) {
-            <li>
-              <a href="">{{ item.name() }}</a>
-            </li>
-          }
-        </ul>
+          <ul class="submenu">
+            @for (item of sections; track $index) {
+              <li>
+                <a href="" (click)="navigate($event, item)">{{ item.name() }}</a>
+              </li>
+            }
+          </ul>
+        </div>
       }
     </div>
   </div>

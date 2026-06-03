@@ -1,9 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withHashLocation } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { provideNgFlux } from '@ngflux/ngflux';
 
 import { routes } from './app.routes';
-import { APP_BASE_HREF } from '@angular/common';
 import { DocThemeService } from './core';
 
 export const appConfig: ApplicationConfig = {

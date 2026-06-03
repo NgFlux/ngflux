@@ -1,22 +1,21 @@
 import { computed, Injectable, signal } from "@angular/core";
-
-import type { DocSectionComponent } from "../components/section/section.component";
+import { DocSection } from "../interfaces/Section";
 
 @Injectable({ providedIn: 'root' })
 export class DocThemeService {
 
-  private readonly map = signal(new Map<string, DocSectionComponent>());
+  private readonly map = signal(new Map<string, DocSection>());
   readonly sections = computed(() => Array.from(this.map().values()));
 
-  readonly attach = (section: DocSectionComponent) => this.map.update(v => {
+  readonly attach = (id: string, section: DocSection) => this.map.update(v => {
     const map = new Map(v);
-    map.set(section.id(), section);
+    map.set(id, section);
     return map;
   });
 
-  readonly detach = (section: DocSectionComponent) => this.map.update(v => {
+  readonly detach = (id: string) => this.map.update(v => {
     const map = new Map(v);
-    map.delete(section.id());
+    map.delete(id);
     return map;
   });
 

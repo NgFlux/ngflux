@@ -1,0 +1,11 @@
+<div class="wrapper">
+  @if (name()) {
+    <div class="header">
+      <div class="name">{{ name() }}</div>
+    </div>
+  }
+
+  <div class="body">
+    <ng-content></ng-content>
+  </div>
+</div>

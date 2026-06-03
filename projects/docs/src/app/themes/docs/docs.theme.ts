@@ -1,11 +1,11 @@
 import { NgClass } from "@angular/common";
-import { Component, computed, contentChildren, inject, input, signal } from "@angular/core";
+import { Component, computed, contentChildren, effect, inject, input, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { ActivationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 
-import { DocMenu, DocMenuComponent, DocSectionComponent } from "@docs/core";
+import { DocMenu, DocMenuComponent, DocSection, DocSectionComponent, DocThemeService } from "@docs/core";
 
 @Component({
   selector: 'docs-theme',
@@ -20,6 +20,8 @@ import { DocMenu, DocMenuComponent, DocSectionComponent } from "@docs/core";
 export class DocsTheme {
 
   private readonly router = inject(Router);
+
+  protected readonly service = inject(DocThemeService);
 
   readonly name = input.required<string>();
   readonly menu = input<DocMenu[]>([]);
@@ -56,9 +58,44 @@ export class DocsTheme {
     return snapshot.title ?? '';
   });
 
-  protected readonly allSections = contentChildren(DocSectionComponent, { descendants: true });
-  protected readonly sections = computed(() => this.allSections().filter(sec => {
-    return sec.name() && sec.id();
-  }));
+  constructor() {
+    effect((onCleanup) => {
+      document.addEventListener('click', this.onDocumentClick);
+
+      onCleanup(() => {
+        document.removeEventListener('click', this.onDocumentClick);
+      });
+    });
+  }
+
+  navigate(e: MouseEvent, section: DocSection) {
+    e.preventDefault();
+    section.scrollIntoView();
+  }
+
+  onLeftClick(e: MouseEvent) {
+    e.stopPropagation();
+
+    const target = e.target as HTMLElement;
+
+    if (target.closest('a')) {
+      this.leftOpen.set(false);
+    }
+  }
+
+  onRightClick(e: MouseEvent) {
+    e.stopPropagation();
+
+    const target = e.target as HTMLElement;
+
+    if (target.closest('a')) {
+      this.rightOpen.set(false);
+    }
+  }
+
+  readonly onDocumentClick = (e: PointerEvent) => {
+    this.leftOpen.set(false);
+    this.rightOpen.set(false);
+  }
 
 }

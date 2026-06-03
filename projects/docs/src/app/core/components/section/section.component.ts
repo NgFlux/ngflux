@@ -1,4 +1,7 @@
-import { Component, input } from "@angular/core";
+import { Component, effect, ElementRef, inject, input } from "@angular/core";
+
+import { DocSection } from "../../interfaces/Section";
+import { DocThemeService } from "../../services/DocThemeService";
 
 @Component({
   selector: 'doc-section',
@@ -6,11 +9,35 @@ import { Component, input } from "@angular/core";
   styleUrls: ['section.component.scss'],
   imports: [],
 })
-export class DocSectionComponent {
+export class DocSectionComponent implements DocSection {
+
+  private readonly service = inject(DocThemeService);
+  private readonly ref = inject<ElementRef<HTMLElement>>(ElementRef);
 
   readonly name = input('');
-  readonly showName = input(true);
 
-  readonly id = input('');
+  constructor() {
+    const { service } = this;
+
+    effect((onCleanup) => {
+      const name = this.name().toLowerCase();
+
+      if (name) {
+        service.attach(name, this);
+
+        onCleanup(() => {
+          service.detach(name);
+        });
+      }
+    });
+  }
+
+  scrollIntoView() {
+    const { ref: { nativeElement } } = this;
+
+    nativeElement.scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
 
 }
