@@ -1,7 +1,7 @@
-import { Component, input } from "@angular/core";
+import { Component, input } from '@angular/core';
 
-import { DocMenu } from "../../interfaces/Menu";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { DocMenu } from '../../interfaces/Menu';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'doc-menu',
@@ -16,6 +16,6 @@ export class DocMenuComponent {
 
   readonly data = input.required<DocMenu[]>();
 
-  protected readonly target = (item: DocMenu) => item.targetBlank ? '_blank' : '_self';
+  protected readonly target = (item: DocMenu) => (item.targetBlank ? '_blank' : '_self');
 
 }

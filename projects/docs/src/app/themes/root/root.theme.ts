@@ -1,6 +1,13 @@
-import { Component, effect, ElementRef, signal, viewChild } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { DateTime } from "luxon";
+import {
+  Component,
+  effect,
+  ElementRef,
+  signal,
+  viewChild,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'root-theme',

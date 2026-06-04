@@ -39,14 +39,14 @@
     </div>
 
     <div class="right" [class.open]="rightOpen()" (click)="onRightClick($event)">
-      @let sections = service.sections();
+      @let sectionList = sections();
 
-      @if (sections.length) {
+      @if (sectionList.length) {
         <div class="wrapper">
           <h3>Contents</h3>
 
           <ul class="submenu">
-            @for (item of sections; track $index) {
+            @for (item of sectionList; track $index) {
               <li>
                 <a href="" (click)="navigate($event, item)">{{ item.name() }}</a>
               </li>

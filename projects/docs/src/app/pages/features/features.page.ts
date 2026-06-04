@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { DocMenu } from "@docs/core";
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { DocMenu } from '@docs/core';
 
-import { DocsTheme } from "../../themes/docs/docs.theme";
+import { DocsTheme } from '../../themes/docs/docs.theme';
 
 @Component({
   selector: 'app-features-page',

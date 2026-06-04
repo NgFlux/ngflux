@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-features-pagination-page',
@@ -7,7 +7,5 @@ import { Component } from "@angular/core";
   imports: [],
 })
 export class FeaturesPaginationPage {
-
   //
-
 }

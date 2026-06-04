@@ -1,7 +1,8 @@
-import { Component, effect, ElementRef, inject, input } from "@angular/core";
+import { Component, effect, ElementRef, inject, input } from '@angular/core';
+import slugify from 'slugify';
 
-import { DocSection } from "../../interfaces/Section";
-import { DocThemeService } from "../../services/DocThemeService";
+import { DocSection } from '../../interfaces/Section';
+import { DocsTheme } from '../../../themes/docs/docs.theme';
 
 @Component({
   selector: 'doc-section',
@@ -11,22 +12,22 @@ import { DocThemeService } from "../../services/DocThemeService";
 })
 export class DocSectionComponent implements DocSection {
 
-  private readonly service = inject(DocThemeService);
+  private readonly theme = inject(DocsTheme, { optional: true });
   private readonly ref = inject<ElementRef<HTMLElement>>(ElementRef);
 
   readonly name = input('');
 
   constructor() {
-    const { service } = this;
+    const { theme } = this;
 
     effect((onCleanup) => {
-      const name = this.name().toLowerCase();
+      const name = slugify(this.name());
 
       if (name) {
-        service.attach(name, this);
+        theme?.attach(name, this);
 
         onCleanup(() => {
-          service.detach(name);
+          theme?.detach(name);
         });
       }
     });

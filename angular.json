@@ -57,7 +57,8 @@
             ],
             "styles": [
               "projects/docs/src/styles.scss",
-              "dist/ngflux/scss/_index.scss"
+              "dist/ngflux/scss/_index.scss",
+              "node_modules/highlight.js/styles/github.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["dist"]

@@ -3,7 +3,6 @@ import { provideRouter } from '@angular/router';
 import { provideNgFlux } from '@ngflux/ngflux';
 
 import { routes } from './app.routes';
-import { DocThemeService } from './core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +24,5 @@ export const appConfig: ApplicationConfig = {
         }
       },
     }),
-
-    DocThemeService,
   ],
 };

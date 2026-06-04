@@ -1,22 +1,36 @@
-import { Component, ComponentRef, computed, effect, HostBinding, inject, Injector, signal, viewChild, ViewContainerRef } from "@angular/core";
-import { NgFluxLoadingComponent } from "../main/main.component";
-import { NgFluxLoadingInternal } from "../../../internal";
-import { NGF_CONFIG } from "../../../interfaces";
+import {
+  Component,
+  ComponentRef,
+  computed,
+  effect,
+  HostBinding,
+  inject,
+  Injector,
+  signal,
+  viewChild,
+  ViewContainerRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { NgFluxLoadingComponent } from '../main/main.component';
+import { NgFluxLoadingInternal } from '../../../internal';
+import { NGF_CONFIG } from '../../../interfaces';
 
 @Component({
   selector: 'ngf-loading-root',
   templateUrl: 'root.component.html',
   styleUrls: ['root.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
 })
 export class NgFluxLoadingRootComponent {
-
   private readonly config = inject(NGF_CONFIG);
   private readonly internal = inject(NgFluxLoadingInternal);
   private readonly injector = inject(Injector);
 
   @HostBinding('class.show')
-  get isLoading() { return this.internal.isLoading() }
+  get isLoading() {
+    return this.internal.isLoading();
+  }
 
   readonly viewContainer = viewChild.required('container', { read: ViewContainerRef });
 
@@ -39,5 +53,4 @@ export class NgFluxLoadingRootComponent {
       });
     });
   }
-
 }

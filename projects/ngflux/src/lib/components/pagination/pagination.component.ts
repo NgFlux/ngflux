@@ -1,18 +1,27 @@
-import { Component, computed, effect, inject, input, model, output, signal, untracked } from "@angular/core";
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  model,
+  output,
+  signal,
+  untracked,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
-import { NgFluxPaginationInfo } from "./info/info.component";
-import { NGF_CONFIG, Pagination, PaginationInfo, PaginationTransformer } from "../../interfaces";
+import { NgFluxPaginationInfo } from './info/info.component';
+import { NGF_CONFIG, Pagination, PaginationInfo, PaginationTransformer } from '../../interfaces';
 
 @Component({
   selector: 'ngf-pagination',
   templateUrl: 'pagination.component.html',
   styleUrls: ['pagination.component.scss'],
-  imports: [
-    NgFluxPaginationInfo,
-  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [NgFluxPaginationInfo],
 })
 export class NgFluxPagination {
-
   private readonly config = inject(NGF_CONFIG);
 
   readonly data = input.required<any>();
@@ -20,7 +29,9 @@ export class NgFluxPagination {
   readonly transform = input<PaginationTransformer>();
 
   readonly limit = model<number>(this.config.pagination?.limit ?? 10);
-  readonly limitEntries = input<number[]>(this.config.pagination?.limitEntries ?? [5, 10, 20, 30, 40, 50]);
+  readonly limitEntries = input<number[]>(
+    this.config.pagination?.limitEntries ?? [5, 10, 20, 30, 40, 50],
+  );
 
   readonly callback = output<PaginationInfo>();
 
@@ -58,5 +69,4 @@ export class NgFluxPagination {
       init = true;
     });
   }
-
 }

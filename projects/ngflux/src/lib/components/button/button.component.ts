@@ -1,16 +1,24 @@
-import { Component, computed, ElementRef, HostBinding, inject, input } from "@angular/core";
-import { NgClass } from "@angular/common";
+import {
+  Component,
+  computed,
+  ElementRef,
+  HostBinding,
+  inject,
+  input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { NgClass } from '@angular/common';
 
-import { ButtonDirection, ButtonSize, ButtonTheme, ButtonType } from "../../interfaces";
+import { ButtonDirection, ButtonSize, ButtonTheme, ButtonType } from '../../interfaces';
 
 @Component({
   selector: 'ngf-button',
   templateUrl: 'button.component.html',
   styleUrls: ['button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass],
 })
 export class NgFluxButton {
-
   private readonly ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   readonly icon = input<string>();
@@ -31,23 +39,27 @@ export class NgFluxButton {
     return names;
   });
 
-  readonly classNames = computed(() => [
-    this.theme() ?? 'default',
-    this.size() ?? 'md',
-  ].join(' '));
+  readonly classNames = computed(() => [this.theme() ?? 'default', this.size() ?? 'md'].join(' '));
 
   @HostBinding('class')
-  get bindClass() { return this.classNames(); }
-
-  @HostBinding('class.block')
-  get isBlock() { return this.block(); }
-
-  @HostBinding('class.disabled')
-  get isDisabled() { return this.disabled(); }
-
-  constructor() {
-    const { ref: { nativeElement } } = this;
-    nativeElement.tabIndex = 1;
+  get bindClass() {
+    return this.classNames();
   }
 
+  @HostBinding('class.block')
+  get isBlock() {
+    return this.block();
+  }
+
+  @HostBinding('class.disabled')
+  get isDisabled() {
+    return this.disabled();
+  }
+
+  constructor() {
+    const {
+      ref: { nativeElement },
+    } = this;
+    nativeElement.tabIndex = 1;
+  }
 }

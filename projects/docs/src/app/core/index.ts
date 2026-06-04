@@ -7,4 +7,4 @@ export * from './components/section/section.component';
 export * from './components/code/code.component';
 export * from './components/code/group/group.component';
 
-export * from './services/DocThemeService';
+// export * from './services/DocThemeService';

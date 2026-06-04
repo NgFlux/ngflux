@@ -1,11 +1,16 @@
-import { NgClass } from "@angular/common";
-import { Component, computed, contentChildren, effect, inject, input, signal } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
-import { FormsModule } from "@angular/forms";
-import { ActivationEnd, Router } from "@angular/router";
-import { filter } from "rxjs";
+import { NgClass } from '@angular/common';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 
-import { DocMenu, DocMenuComponent, DocSection, DocSectionComponent, DocThemeService } from "@docs/core";
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
+import { ActivationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+
+import {
+  DocMenu,
+  DocMenuComponent,
+  DocSection,
+} from '@docs/core';
 
 @Component({
   selector: 'docs-theme',
@@ -15,13 +20,11 @@ import { DocMenu, DocMenuComponent, DocSection, DocSectionComponent, DocThemeSer
     NgClass,
     FormsModule,
     DocMenuComponent,
-],
+  ],
 })
 export class DocsTheme {
 
   private readonly router = inject(Router);
-
-  protected readonly service = inject(DocThemeService);
 
   readonly name = input.required<string>();
   readonly menu = input<DocMenu[]>([]);
@@ -33,22 +36,29 @@ export class DocsTheme {
     const search = this.search().toLowerCase();
     if (!search) return menu;
 
-    return menu.filter(m => {
+    return menu.filter((m) => {
       const text = m.text.toLowerCase();
       return text.includes(search);
     });
   });
 
   protected readonly leftOpen = signal(false);
-  protected readonly leftBtn = computed(() => this.leftOpen() ? 'fa-angles-left' : 'fa-angles-right');
+  protected readonly leftBtn = computed(() =>
+    this.leftOpen() ? 'fa-angles-left' : 'fa-angles-right',
+  );
 
   protected readonly rightOpen = signal(false);
-  protected readonly rightBtn = computed(() => this.rightOpen() ? 'fa-angles-right' : 'fa-angles-left');
+  protected readonly rightBtn = computed(() =>
+    this.rightOpen() ? 'fa-angles-right' : 'fa-angles-left',
+  );
 
-  private readonly nav = toSignal(this.router.events.pipe(
-    filter(e => e instanceof ActivationEnd),
-    filter(e => !e.snapshot.firstChild),
-  ), { initialValue: null });
+  private readonly nav = toSignal(
+    this.router.events.pipe(
+      filter((e) => e instanceof ActivationEnd),
+      filter((e) => !e.snapshot.firstChild),
+    ),
+    { initialValue: null },
+  );
 
   protected readonly title = computed(() => {
     const nav = this.nav();
@@ -56,6 +66,21 @@ export class DocsTheme {
 
     const { snapshot } = nav;
     return snapshot.title ?? '';
+  });
+
+  private readonly map = signal(new Map<string, DocSection>());
+  protected readonly sections = computed(() => Array.from(this.map().values()));
+
+  readonly attach = (id: string, section: DocSection) => this.map.update(v => {
+    const map = new Map(v);
+    map.set(id, section);
+    return map;
+  });
+
+  readonly detach = (id: string) => this.map.update(v => {
+    const map = new Map(v);
+    map.delete(id);
+    return map;
   });
 
   constructor() {
@@ -96,6 +121,6 @@ export class DocsTheme {
   readonly onDocumentClick = (e: PointerEvent) => {
     this.leftOpen.set(false);
     this.rightOpen.set(false);
-  }
+  };
 
 }

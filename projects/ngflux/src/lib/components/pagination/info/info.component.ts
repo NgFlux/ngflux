@@ -1,18 +1,24 @@
-import { Component, computed, inject, input, model, output } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  model,
+  output,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { Pagination, PaginationInfo } from "../../../interfaces";
+import { Pagination, PaginationInfo } from '../../../interfaces';
 
 @Component({
   selector: 'ngf-pagination-info',
   templateUrl: 'info.component.html',
   styleUrls: ['info.component.scss'],
-  imports: [
-    FormsModule,
-  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [FormsModule],
 })
 export class NgFluxPaginationInfo {
-
   readonly data = input.required<Pagination>();
   readonly callback = output<PaginationInfo>();
 
@@ -56,5 +62,4 @@ export class NgFluxPaginationInfo {
       limit: data.perPage,
     });
   }
-
 }

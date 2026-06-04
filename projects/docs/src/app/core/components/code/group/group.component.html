@@ -1,13 +1,23 @@
 <div class="wrapper">
   <div class="header">
-    <div class="name"></div>
+    <!--  -->
   </div>
+
+  @let entries = blocks();
+
+  @if (entries.length) {
+    <div class="tabs">
+      @for (item of entries; track $index) {
+        <div class="tabs-item" [class.active]="index() === $index" (click)="index.set($index)">
+          <div class="name">{{ item.name() }}</div>
+        </div>
+      }
+    </div>
+  }
 
   <div class="body">
-    <ng-container [ngTemplateOutlet]=""></ng-container>
+    <div class="content">
+      <ng-content select="doc-code"></ng-content>
+    </div>
   </div>
-
-  <ng-template>
-    <ng-content></ng-content>
-  </ng-template>
 </div>

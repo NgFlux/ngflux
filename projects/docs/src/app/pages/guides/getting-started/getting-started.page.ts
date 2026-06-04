@@ -1,5 +1,10 @@
-import { Component } from "@angular/core";
-import { DocSectionComponent } from "@docs/core";
+import { Component } from '@angular/core';
+
+import {
+  DocCodeComponent,
+  DocCodeGroupComponent,
+  DocSectionComponent,
+} from '@docs/core';
 
 @Component({
   selector: 'app-guides-getting-started-page',
@@ -7,10 +12,23 @@ import { DocSectionComponent } from "@docs/core";
   styleUrls: ['getting-started.page.scss'],
   imports: [
     DocSectionComponent,
+    DocCodeComponent,
+    DocCodeGroupComponent,
   ],
 })
 export class GuidesGettingStartedPage {
 
-  //
+  protected readonly provideCode = `
+import { ApplicationConfig } from '@angular/core';
+import { provideNgFlux } from '@ngflux/ngflux';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    ...
+    provideNgFlux(),
+    ...
+  ],
+};
+  `;
 
 }

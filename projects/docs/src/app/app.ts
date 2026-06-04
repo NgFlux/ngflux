@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import {
@@ -29,10 +29,10 @@ export class App {
     getCurrentPage: (data) => 1,
     getFrom: (data) => 1,
     getTo: (data) => 20,
-    getLastPage: data => 5,
-    getPerPage: data => 20,
-    getTotal: data => 95,
-    getData: data => [],
+    getLastPage: (data) => 5,
+    getPerPage: (data) => 20,
+    getTotal: (data) => 95,
+    getData: (data) => [],
   };
 
   openAlert(e: MouseEvent) {

@@ -1,8 +1,19 @@
-import { Component, ComponentRef, effect, ElementRef, HostListener, inject, Injector, viewChild, ViewContainerRef } from "@angular/core";
+import {
+  Component,
+  ComponentRef,
+  effect,
+  ElementRef,
+  HostListener,
+  inject,
+  Injector,
+  viewChild,
+  ViewContainerRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
-import { NGF_DIALOG_CLOSE_FN, NGF_DIALOG_CONFIG, NGF_DIALOG_CONTENT } from "../../../internal";
-import { NGF_DIALOG_DATA } from "../../../interfaces";
-import { NgFluxDialogInstance } from "../../../services";
+import { NGF_DIALOG_CLOSE_FN, NGF_DIALOG_CONFIG, NGF_DIALOG_CONTENT } from '../../../internal';
+import { NGF_DIALOG_DATA } from '../../../interfaces';
+import { NgFluxDialogInstance } from '../../../services';
 
 type CloseFn = () => void;
 
@@ -10,10 +21,10 @@ type CloseFn = () => void;
   selector: 'ngf-dialog',
   templateUrl: 'main.component.html',
   styleUrls: ['main.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
 })
 export class NgFluxDialogComponent {
-
   private readonly injector = inject(Injector);
   private readonly instance = inject(NgFluxDialogInstance);
   private readonly onClosed = inject(NGF_DIALOG_CLOSE_FN);
@@ -34,9 +45,7 @@ export class NgFluxDialogComponent {
 
       const newInjector = Injector.create({
         parent: injector,
-        providers: [
-          { provide: NGF_DIALOG_DATA, useValue: config?.data ?? null },
-        ]
+        providers: [{ provide: NGF_DIALOG_DATA, useValue: config?.data ?? null }],
       });
 
       this.componentRef = viewContainer.createComponent(content, {
@@ -71,17 +80,22 @@ export class NgFluxDialogComponent {
 
   private readonly onComponentClick = (e: MouseEvent) => {
     e.stopPropagation();
-  }
+  };
 
   private readonly onAnimationComplete = (e: AnimationEvent) => {
     switch (e.animationName) {
-      case 'ngfDialogOpen': {} break;
+      case 'ngfDialogOpen':
+        {
+        }
+        break;
 
-      case 'ngfDialogClose': {
-        this.onClosed(this.data);
-      } break;
+      case 'ngfDialogClose':
+        {
+          this.onClosed(this.data);
+        }
+        break;
     }
-  }
+  };
 
   focus() {
     const ref = this.componentRef.location as ElementRef<HTMLElement>;
@@ -94,5 +108,4 @@ export class NgFluxDialogComponent {
     const ref = this.componentRef.location as ElementRef<HTMLElement>;
     ref.nativeElement.classList.add('close');
   }
-
 }

@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { DocSectionComponent } from "@docs/core";
+import { Component } from '@angular/core';
+import { DocSectionComponent } from '@docs/core';
 
 @Component({
   selector: 'app-features-button-page',
@@ -10,7 +10,5 @@ import { DocSectionComponent } from "@docs/core";
   ],
 })
 export class FeaturesButtonPage {
-
   //
-
 }

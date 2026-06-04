@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  position: relative;
+  margin: 0px 0px 10px 0px;
+  z-index: 2;
+
+  > .wrapper {
+    display: block;
+    visibility: hidden;
+
+    > .header {
+      display: block;
+      visibility: visible;
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: row;
+
+      &-item {
+        display: block;
+        position: relative;
+        visibility: visible;
+        background-color: #EEE;
+        font-weight: 400;
+        padding: 5px 20px;
+        cursor: pointer;
+        z-index: -1;
+
+        &.active {
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+          background-color: #FFF;
+          cursor: default;
+          z-index: 3;
+        }
+      }
+    }
+
+    > .body {
+      display: block;
+      visibility: visible;
+      background-color: #FFF;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+      z-index: 2;
+
+      > .content {
+        display: block;
+        position: relative;
+        background-color: #FFF;
+        z-index: 5;
+      }
+    }
+  }
+}
