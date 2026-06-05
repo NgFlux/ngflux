@@ -1,7 +1,7 @@
 <doc-section>
   <p>NgFlux is a powerful, comprehensive toolkit for Angular developers. It provides a robust collection of pre-built UI components, utility services, reusable directives, custom pipes, and functional route guards designed to eliminate boilerplate and accelerate the development of awesome web applications.</p>
 
-  <p>This guide explains how to set up your Angular project to begin using NgFlux. It includes information on prerequisites, installing NgFlux, and optionally displaying a sample NgFlux component in your application to verify your setup.</p>
+  <p>This guide explains how to set up your Angular project to begin using NgFlux. It includes information on prerequisites, installing NgFlux, providing NgFlux services, and enabling the <a target="_blank" routerLink="/features/dialog">Dialog</a> and <a target="_blank" routerLink="/features/loading">Loading</a> Features.</p>
 </doc-section>
 
 <doc-section name="Install NgFlux">
@@ -15,25 +15,20 @@
 </doc-section>
 
 
-<doc-section name="Provide NgFlux Services">
-  <!--  -->
+<doc-section name="Add NgFlux Services">
+  <p>Go to your application's configuration. Inside the <code>providers</code> array, you can add the NgFlux to your application by adding a <code>provideNgFlux</code> function call with an optional <a target="_blank" routerLink="../configuration">NgFlux configuration</a>.</p>
 
-  <doc-code name="NPM" language="typescript" [code]="provideCode" />
+  <doc-code name="app.config.ts" language="typescript" [code]="provideCode" />
 </doc-section>
 
 
-<doc-section name="Add NgFlux Root Element">
-  <p>Contents Here</p>
-</doc-section>
+<doc-section name="Enable NgFlux Dialog and Loading Features">
+  <p>In your application's root component, add the NgFlux root component to enable the Dialog and Loading features.</p>
 
-
-<doc-section name="Display a Component">
-  <p>Contents Here</p>
-</doc-section>
-
-
-<doc-section name="Use Loading Service">
-  <p>Contents Here</p>
+  <doc-code-group>
+    <doc-code name="app.ts" language="typescript" [code]="rootCodeTS" />
+    <doc-code name="app.html" language="html" [code]="rootCodeHTML" />
+  </doc-code-group>
 </doc-section>
 
 <!--

@@ -136,6 +136,7 @@
     margin-right: var(--main-right-margin) !important;
     transition: all .3s ease-in-out;
     flex: 1 0 0;
+    width: 0px;
 
     &.drawer {
       --main-right-margin: calc(-1 * var(--left-width));
@@ -198,6 +199,7 @@
         box-shadow: 0px -5px 5px rgba(0, 0, 0, .5);
         padding: 20px;
         flex: 1 0 0;
+        width: 0px;
         z-index: 10;
       }
 
