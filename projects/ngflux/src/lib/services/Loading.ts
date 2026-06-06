@@ -6,15 +6,12 @@ export class NgFluxLoading {
 
   private readonly internal = inject(NgFluxLoadingInternal);
 
-  readonly data = computed(() => this.internal.entry());
-  readonly isLoading = computed(() => this.internal.isLoading());
+  private readonly root = this.internal.rootRef.instance;
 
-  start(text: string = '') {
-    this.internal.start(text);
-  }
+  readonly data = computed(() => this.root.entry());
+  readonly isLoading = computed(() => this.root.isLoading());
 
-  stop() {
-    this.internal.stop();
-  }
+  readonly start = (text: string = '') => this.root.start(text);
+  readonly stop = () => this.root.stop();
 
 }

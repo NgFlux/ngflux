@@ -30,13 +30,7 @@ export class NgFluxDialog {
     config.closeOnEsc ??= true;
 
     const { internal } = this;
-    const root = internal.root();
-
-    if (!root) throw new Error(
-      '"ngf-dialog-root" component not found. ' +
-      'Use "<ngf-root></ngf-root>" in your root component to enable all NgFlux features or ' +
-      'add "<ngf-dialog-root></ngf-dialog-root>" to your root component to enable the NgFluxDialog feature.'
-    );
+    const root = internal.rootRef.instance;
 
     const onClosed = (ins: NgFluxDialogInstance<T>) => {
       internal.remove(ins);

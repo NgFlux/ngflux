@@ -11,6 +11,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     provideNgFlux({
+      loading: {
+        showOnRouteNavigation: true,
+      },
+
       pagination: {
         limit: 20,
         transform: {

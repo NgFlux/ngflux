@@ -1,11 +1,32 @@
-# NgFlux Angular Library
+<h1 align="center">NgFlux - A Powerful Angular Toolkit</h1>
 
-[![NPM version][npm-version-image]][npm-url]
-[![NPM downloads][npm-downloads-image]][npm-downloads-url]
-[![MIT License][license-image]][license-url]
-[![PRs Welcome][contrib-image]][contrib-url]
+<p align="center">
+  <img src="projects/docs//public/assets/images/icon.png" alt="angular-logo" height="120px" />
+  <br>
+  <em>NgFlux is a powerful, comprehensive toolkit for Angular developers. It provides a robust collection of pre-built UI components, utility services, reusable directives, custom pipes, and functional route guards designed to eliminate boilerplate and accelerate the development of awesome web applications.</em>
+  <br>
+</p>
 
-**NgFlux** is a powerful, comprehensive toolkit for Angular developers. It provides a robust collection of pre-built UI components, utility services, reusable directives, custom pipes, and functional route guards designed to eliminate boilerplate and accelerate the development of awesome web applications.
+<p align="center">
+  <a href="https://ngflux.cybos.dev">ngflux.cybos.dev</a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@ngflux/ngflux" title="NPM version">
+    <img src="https://img.shields.io/npm/v/@ngflux/ngflux.svg?style=flat" alt="" />
+  </a>
+  <a href="https://npmcharts.com/compare/@ngflux/ngflux?minimal=true" title="NPM downloads">
+    <img src="https://img.shields.io/npm/dw/@ngflux/ngflux" alt="" />
+  </a>
+  <a href="LICENSE" title="MIT License">
+    <img src="https://img.shields.io/github/license/NgFlux/ngflux" alt="" />
+  </a>
+  <a href="https://github.com/NgFlux/ngflux/blob/main/CONTRIBUTING.md" title="PRs Welcome">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="" />
+  </a>
+</p>
+
+<hr>
 
 ## Features
 

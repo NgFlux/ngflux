@@ -1,4 +1,4 @@
-import { makeEnvironmentProviders } from "@angular/core";
+import { inject, makeEnvironmentProviders, provideAppInitializer } from "@angular/core";
 
 import {
   NGF_CONFIG,
@@ -26,5 +26,17 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
 
     NgFluxLoading,
     NgFluxLoadingInternal,
+
+    provideAppInitializer(() => {
+      const dialog = inject(NgFluxDialogInternal);
+      dialog.initialize();
+    }),
+
+    provideAppInitializer(() => {
+      const loading = inject(NgFluxLoadingInternal);
+
+      loading.initialize();
+      loading.showOnRouteNavigation();
+    }),
   ]);
 };

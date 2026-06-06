@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import {
   NgFluxDialog,
   NgFluxLoading,
-  NgFluxRootComponent,
   PaginationTransformer,
 } from '@ngflux/ngflux';
 
@@ -16,7 +15,6 @@ import { RootTheme } from './themes/root/root.theme';
   styleUrl: './app.scss',
   imports: [
     RouterOutlet,
-    NgFluxRootComponent,
     RootTheme,
   ],
 })

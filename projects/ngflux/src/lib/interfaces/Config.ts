@@ -5,6 +5,7 @@ import type { PaginationTransformer } from "./Pagination";
 
 // BEGIN: Loading
 type LoadingOptions = {
+  showOnRouteNavigation?: boolean;
   component?: NgFluxComponent;
 };
 // END: Loading

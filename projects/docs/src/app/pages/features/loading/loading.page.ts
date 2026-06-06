@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NgFluxLoading } from '@ngflux/ngflux';
 
 @Component({
   selector: 'app-features-loading-page',
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
   imports: [],
 })
 export class FeaturesLoadingPage {
-  //
+
+  private readonly loading = inject(NgFluxLoading);
+
+  showLoading() {
+    const { loading } = this;
+
+    loading.start();
+
+    setTimeout(() => loading.stop(), 5000);
+  }
+
 }

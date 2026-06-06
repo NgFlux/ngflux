@@ -6,5 +6,6 @@ export const routes: Routes = [
   {
     path: '',
     component: HomePage,
+    title: 'NgFlux - A Powerful Angular Toolkit',
   }
 ];

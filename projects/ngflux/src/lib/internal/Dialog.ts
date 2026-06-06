@@ -1,9 +1,11 @@
-import { computed, effect, Injectable, signal } from "@angular/core";
-import type { NgFluxDialogRootComponent } from "../components/dialog/root/root.component";
+import { ApplicationRef, ComponentRef, computed, createComponent, effect, inject, Injectable, signal } from "@angular/core";
+import { NgFluxDialogRootComponent } from "../components/dialog/root/root.component";
 import { NgFluxDialogInstance } from "../services/DialogInstance";
 
 @Injectable({ providedIn: 'root' })
 export class NgFluxDialogInternal {
+
+  private readonly appRef = inject(ApplicationRef);
 
   private readonly list = signal<NgFluxDialogInstance[]>([]);
 
@@ -18,9 +20,15 @@ export class NgFluxDialogInternal {
     return entries[lastIndex];
   });
 
-  readonly root = signal<NgFluxDialogRootComponent | null>(null);
+  readonly rootRef: ComponentRef<NgFluxDialogRootComponent>;
 
   constructor() {
+    const { appRef } = this;
+
+    this.rootRef = createComponent(NgFluxDialogRootComponent, {
+      environmentInjector: appRef.injector,
+    });
+
     const body = document.querySelector('body');
 
     effect(() => {
@@ -41,6 +49,16 @@ export class NgFluxDialogInternal {
       }
     });
   }
+
+  initialize() {
+    const { appRef, rootRef } = this;
+    appRef.attachView(rootRef.hostView);
+
+    const elem = rootRef.location.nativeElement as HTMLElement;
+    document.body.appendChild(elem);
+  }
+
+  // ==========================
 
   private readonly cloneList = () => Array.from(this.list());
 

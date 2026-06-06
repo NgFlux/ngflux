@@ -9,28 +9,29 @@ import {
   signal,
   viewChild,
   ViewContainerRef,
-  ChangeDetectionStrategy,
 } from '@angular/core';
+
 import { NgFluxLoadingComponent } from '../main/main.component';
-import { NgFluxLoadingInternal } from '../../../internal';
-import { NGF_CONFIG } from '../../../interfaces';
+import { NGF_CONFIG, NgFluxLoadingEntry } from '../../../interfaces';
 
 @Component({
   selector: 'ngf-loading-root',
   templateUrl: 'root.component.html',
   styleUrls: ['root.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
 })
 export class NgFluxLoadingRootComponent {
+
   private readonly config = inject(NGF_CONFIG);
-  private readonly internal = inject(NgFluxLoadingInternal);
   private readonly injector = inject(Injector);
 
+  private readonly entries = signal<NgFluxLoadingEntry[]>([]);
+
+  readonly count = computed(() => this.entries().length);
+  readonly isLoading = computed(() => this.count() > 0);
+
   @HostBinding('class.show')
-  get isLoading() {
-    return this.internal.isLoading();
-  }
+  get showLoading() { return this.isLoading(); }
 
   readonly viewContainer = viewChild.required('container', { read: ViewContainerRef });
 
@@ -53,4 +54,22 @@ export class NgFluxLoadingRootComponent {
       });
     });
   }
+
+  readonly entry = computed(() => {
+    const entries = this.entries();
+    return entries.at(entries.length - 1);
+  });
+
+  readonly start = (text: string = '') => this.entries.update(v => {
+    const entries = Array.from(v);
+    entries.push({ text });
+    return entries;
+  });
+
+  readonly stop = () => this.entries.update(v => {
+    const entries = Array.from(v);
+    entries.pop();
+    return entries;
+  });
+
 }

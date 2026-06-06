@@ -89,7 +89,7 @@
     }
   }
 
-  > .intro {
+  .intro {
     > .content {
       text-align: center;
       width: 90%;
@@ -103,7 +103,47 @@
     }
   }
 
-  // > .features {
+  // .features {
   //   background-color: #FFF;
   // }
+
+  .guides {
+    display: block;
+
+    .entries {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      @include ngf.device(sm) {
+        flex-direction: row;
+      }
+
+      &-item {
+        display: block;
+        background-color: #FFF;
+        color: #333 !important;
+        text-decoration: none !important;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, .5);
+        text-align: center;
+        transition: all .3s ease-in-out;
+        padding: 20px;
+
+        @include ngf.device(sm) {
+          flex: 1 0 0;
+          width: 0px;
+        }
+
+        &:hover {
+          background-color: #d8ebff;
+        }
+
+        > h4 {
+          margin: 0px 0px 10px 0px;
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
 }
