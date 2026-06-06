@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, effect, ElementRef, HostBinding, inject, input, signal, viewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, effect, ElementRef, HostBinding, inject, input, signal, viewChild } from '@angular/core';
 import hljs from 'highlight.js';
 import { DocCodeGroupComponent } from './group/group.component';
 

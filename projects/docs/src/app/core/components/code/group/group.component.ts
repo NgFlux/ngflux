@@ -1,5 +1,5 @@
 import { NgComponentOutlet } from '@angular/common';
-import { Component, computed, contentChildren, effect, inject, signal, ViewContainerRef } from '@angular/core';
+import { Component, computed, contentChildren, effect, inject, signal, viewChild, ViewContainerRef } from '@angular/core';
 
 import { DocCodeComponent } from '../code.component';
 
@@ -13,7 +13,7 @@ export class DocCodeGroupComponent {
 
   protected readonly blocks = contentChildren(DocCodeComponent);
 
-  protected readonly view = inject(ViewContainerRef);
+  protected readonly view = viewChild.required('container', { read: ViewContainerRef });
 
   protected readonly index = signal(0);
 
@@ -24,14 +24,16 @@ export class DocCodeGroupComponent {
   });
 
   constructor() {
-    effect(() => {
-      const index = this.index();
+    effect((onCleanup) => {
+      const active = this.active();
 
-      const blocks = this.blocks();
-      blocks.forEach(v => v.show.set(false));
+      if (active) {
+        active.show.set(true);
 
-      const block = blocks.at(index);
-      if (block) block.show.set(true);
+        onCleanup(() => {
+          active.show.set(false);
+        });
+      }
     });
   }
 
