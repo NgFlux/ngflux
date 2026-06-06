@@ -12,18 +12,10 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@ngflux/ngflux" title="NPM version">
-    <img src="https://img.shields.io/npm/v/@ngflux/ngflux.svg?style=flat" alt="" />
-  </a>
-  <a href="https://npmcharts.com/compare/@ngflux/ngflux?minimal=true" title="NPM downloads">
-    <img src="https://img.shields.io/npm/dw/@ngflux/ngflux" alt="" />
-  </a>
-  <a href="LICENSE" title="MIT License">
-    <img src="https://img.shields.io/github/license/NgFlux/ngflux" alt="" />
-  </a>
-  <a href="https://github.com/NgFlux/ngflux/blob/main/CONTRIBUTING.md" title="PRs Welcome">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="" />
-  </a>
+  <a href="https://www.npmjs.com/package/@ngflux/ngflux" title="NPM version"><img src="https://img.shields.io/npm/v/@ngflux/ngflux.svg?style=flat" alt="" /></a>
+  <a href="https://npmcharts.com/compare/@ngflux/ngflux?minimal=true" title="NPM downloads"><img src="https://img.shields.io/npm/dw/@ngflux/ngflux" alt="" /></a>
+  <a href="LICENSE" title="MIT License"><img src="https://img.shields.io/github/license/NgFlux/ngflux" alt="" /></a>
+  <a href="https://github.com/NgFlux/ngflux/blob/main/CONTRIBUTING.md" title="PRs Welcome"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="" /></a>
 </p>
 
 <hr>
