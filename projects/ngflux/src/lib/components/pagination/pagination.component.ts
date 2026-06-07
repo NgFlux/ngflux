@@ -29,8 +29,8 @@ export class NgFluxPagination {
   readonly transform = input<PaginationTransformer>();
 
   readonly limit = model<number>(this.config.pagination?.limit ?? 10);
-  readonly limitEntries = input<number[]>(
-    this.config.pagination?.limitEntries ?? [5, 10, 20, 30, 40, 50],
+  readonly limitOptions = input<number[]>(
+    this.config.pagination?.limitOptions ?? [5, 10, 20, 30, 40, 50],
   );
 
   readonly callback = output<PaginationInfo>();

@@ -31,7 +31,7 @@ export class DocCodeComponent {
   @HostBinding('class.hidden')
   get hidden() { return this.group && !this.show();  }
 
-  @HostBinding('class.shadow')
-  get shadow() { return !this.group;  }
+  @HostBinding('class.standalone')
+  get standalone() { return !this.group;  }
 
 }

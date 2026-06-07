@@ -23,7 +23,7 @@ export class NgFluxPaginationInfo {
   readonly callback = output<PaginationInfo>();
 
   readonly limit = model.required<number>();
-  readonly limitEntries = input.required<number[]>();
+  readonly limitOptions = input.required<number[]>();
 
   protected readonly info = computed(() => {
     const data = this.data();

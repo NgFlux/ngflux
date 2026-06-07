@@ -1,0 +1,99 @@
+<doc-section name="NgFluxConfig">
+  <p>The <code>NgFluxConfig</code> object allows you to configure global settings, default behaviors, and security baselines across all NgFlux components, services, pipes, and guards.</p>
+  <p>By defining this configuration at the root of your application, you ensure a uniform user experience and eliminate repetitive component-level properties.</p>
+</doc-section>
+
+
+<doc-section name="Providing the Configuration">
+  <p>To configure NgFlux globally, pass the <code>NgFluxConfig</code> object into the <code>provideNgFlux</code> provider function during your application's bootstrap phase.</p>
+
+  <doc-code name="NgFluxConfig Examples" language="typescript" [code]="configCode" />
+</doc-section>
+
+
+<doc-section name="API Reference">
+  <p>Below is the complete breakdown of properties available within the <code>NgFluxConfig</code> interface.</p>
+
+  <table class="doc-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><code>loading</code></td>
+        <td><code>LoadingOptions</code></td>
+        <td>No</td>
+        <td><code></code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>dialog</code></td>
+        <td><code>DialogOptions</code></td>
+        <td>No</td>
+        <td><code></code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>pagination</code></td>
+        <td><code>PaginationOptions</code></td>
+        <td>No</td>
+        <td><code></code></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</doc-section>
+
+<!--
+  <doc-section name="Loading Options" subtitle="loading?: LoadingOptions">
+    <ul class="doc-list">
+      <li><code>showOnRouteNavigation?: boolean</code></li>
+      <li><code>component?: NgFluxComponent</code></li>
+    </ul>
+  </doc-section>
+
+  <doc-section name="Dialog Options" subtitle="dialog?: DialogOptions">
+    <ul class="doc-list">
+      <li><code>alert?: DialogAlertOptions</code></li>
+      <li><code>confirm?: DialogConfirmOptions</code></li>
+      <li><code>prompt?: DialogPromptOptions</code></li>
+    </ul>
+
+    <doc-section name="Alert Dialog Options" subtitle="alert?: DialogAlertOptions">
+      <ul class="doc-list">
+        <li><code>okayButton?: ButtonOptions</code></li>
+      </ul>
+    </doc-section>
+
+    <doc-section name="Confirm Dialog Options" subtitle="confirm?: DialogConfirmOptions">
+      <ul class="doc-list">
+        <li><code>okayButton?: ButtonOptions</code></li>
+        <li><code>cancelButton?: ButtonOptions</code></li>
+      </ul>
+    </doc-section>
+
+    <doc-section name="Prompt Dialog Options" subtitle="prompt?: DialogPromptOptions">
+      <ul class="doc-list">
+        <li><code>submitButton?: ButtonOptions</code></li>
+        <li><code>cancelButton?: ButtonOptions</code></li>
+      </ul>
+    </doc-section>
+  </doc-section>
+
+
+  <doc-section name="Pagination Options" subtitle="pagination?: PaginationOptions">
+    <ul class="doc-list">
+      <li><code>preload?: boolean</code></li>
+      <li><code>transform?: PaginationTransformer</code></li>
+      <li><code>limitOptions?: number[]</code></li>
+      <li><code>limit?: number</code></li>
+    </ul>
+  </doc-section>
+-->

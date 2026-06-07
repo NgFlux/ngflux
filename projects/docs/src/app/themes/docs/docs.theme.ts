@@ -10,6 +10,7 @@ import {
   DocMenu,
   DocMenuComponent,
   DocSection,
+  DocSubmenuComponent,
 } from '@docs/core';
 
 @Component({
@@ -20,6 +21,7 @@ import {
     NgClass,
     FormsModule,
     DocMenuComponent,
+    DocSubmenuComponent,
   ],
 })
 export class DocsTheme {
@@ -68,18 +70,18 @@ export class DocsTheme {
     return snapshot.title ?? '';
   });
 
-  private readonly map = signal(new Map<string, DocSection>());
-  protected readonly sections = computed(() => Array.from(this.map().values()));
+  private readonly map = signal(new Map<DocSection, string>());
+  protected readonly sections = computed(() => Array.from(this.map().keys()));
 
-  readonly attach = (id: string, section: DocSection) => this.map.update(v => {
+  readonly attach = (section: DocSection) => this.map.update(v => {
     const map = new Map(v);
-    map.set(id, section);
+    map.set(section, section.name());
     return map;
   });
 
-  readonly detach = (id: string) => this.map.update(v => {
+  readonly detach = (section: DocSection) => this.map.update(v => {
     const map = new Map(v);
-    map.delete(id);
+    map.delete(section);
     return map;
   });
 

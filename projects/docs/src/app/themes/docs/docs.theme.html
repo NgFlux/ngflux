@@ -44,14 +44,7 @@
       @if (sectionList.length) {
         <div class="wrapper">
           <h3>Contents</h3>
-
-          <ul class="submenu">
-            @for (item of sectionList; track $index) {
-              <li>
-                <a href="" (click)="navigate($event, item)">{{ item.name() }}</a>
-              </li>
-            }
-          </ul>
+          <doc-submenu [data]="sectionList" />
         </div>
       }
     </div>

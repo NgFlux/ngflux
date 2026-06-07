@@ -41,3 +41,47 @@ p {
   max-width: 1100px;
   margin: 0px auto;
 }
+
+code:not([doc-code]) {
+  color: var(--ngf-primary);
+  background-color: rgba(var(--ngf-primary-rgb), .1);
+  border: 1px solid rgba(0, 0, 0, .1);
+  padding: 2px 5px;
+  font-size: .85em;
+  font-weight: 400;
+
+  a {
+    color: inherit !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.doc-responsive {
+  display: block;
+  width: 100%;
+  overflow: auto hidden;
+}
+
+.doc-table {
+  width: 100%;
+  border-top: 1px solid #CCC;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #CCC;
+  }
+
+  > thead {
+    border-bottom: 2px solid #CCC;
+
+    th, td {
+      text-align: left;
+      font-weight: 500;
+    }
+  }
+}

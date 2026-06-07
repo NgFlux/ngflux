@@ -36,7 +36,7 @@ type DialogOptions = {
 type PaginationOptions = {
   preload?: boolean;
   transform?: PaginationTransformer;
-  limitEntries?: number[];
+  limitOptions?: number[];
   limit?: number;
 };
 // END: Pagination

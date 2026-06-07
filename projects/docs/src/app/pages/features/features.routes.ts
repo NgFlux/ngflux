@@ -5,6 +5,7 @@ import { FeaturesButtonPage } from './button/button.page';
 import { FeaturesDialogPage } from './dialog/dialog.page';
 import { FeaturesLoadingPage } from './loading/loading.page';
 import { FeaturesPaginationPage } from './pagination/pagination.page';
+import { FeaturesOverviewPage } from './overview/overview.page';
 
 export const routes: Routes = [
   {
@@ -13,8 +14,14 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'button',
+        redirectTo: 'overview',
         pathMatch: 'full'
+      },
+
+      {
+        path: 'overview',
+        component: FeaturesOverviewPage,
+        title: 'Overview',
       },
 
       {

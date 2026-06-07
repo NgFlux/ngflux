@@ -18,9 +18,9 @@ export const appConfig: ApplicationConfig = {
       pagination: {
         limit: 20,
         transform: {
-          getCurrentPage: (data) => 1,
-          getFrom: (data) => 1,
-          getTo: (data) => 20,
+          getCurrentPage: data => 1,
+          getFrom: data => 1,
+          getTo: data => 20,
           getLastPage: data => 5,
           getPerPage: data => 20,
           getTotal: data => 95,

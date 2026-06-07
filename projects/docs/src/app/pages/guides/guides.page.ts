@@ -19,6 +19,7 @@ export class GuidesPage {
     { text: 'Getting Started', href: './getting-started' },
     { text: 'Configuration', href: './configuration' },
     { text: 'Theming NgFlux', href: './theming' },
+    // { text: 'API Reference', href: './api' },
   ];
 
 }

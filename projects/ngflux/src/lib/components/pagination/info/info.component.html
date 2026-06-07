@@ -2,7 +2,7 @@
   <div class="block limit">
     <div>Per page</div>
     <select name="" id="" [(ngModel)]="limit">
-      @for (entry of limitEntries(); track $index) {
+      @for (entry of limitOptions(); track $index) {
         <option [value]="entry">{{ entry }}</option>
       }
     </select>

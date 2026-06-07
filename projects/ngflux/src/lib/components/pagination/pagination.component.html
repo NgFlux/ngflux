@@ -1,7 +1,7 @@
 <ngf-pagination-info
   [data]="value()"
   [(limit)]="limit"
-  [limitEntries]="limitEntries()"
+  [limitOptions]="limitOptions()"
   (callback)="callback.emit($event)"
 ></ngf-pagination-info>
 
@@ -12,6 +12,6 @@
 <ngf-pagination-info
   [data]="value()"
   [(limit)]="limit"
-  [limitEntries]="limitEntries()"
+  [limitOptions]="limitOptions()"
   (callback)="callback.emit($event)"
 ></ngf-pagination-info>

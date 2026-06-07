@@ -1,0 +1,11 @@
+<ul class="submenu">
+  @for (item of data(); track $index) {
+    <li>
+      <a href="" (click)="navigate($event, item)">{{ item.name() }}</a>
+
+      @if (item.children().length) {
+        <doc-submenu [data]="item.children()" [child]="true" />
+      }
+    </li>
+  }
+</ul>

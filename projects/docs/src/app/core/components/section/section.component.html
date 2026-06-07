@@ -1,6 +1,10 @@
 <div class="wrapper">
   @if (name()) {
-    <h2>{{ name() }}</h2>
+    @if (parent) {
+      <h3>{{ name() }} @if (subtitle()) { <small>{{ subtitle() }}</small> }</h3>
+    } @else {
+      <h2>{{ name() }} @if (subtitle()) { <small>{{ subtitle() }}</small> }</h2>
+    }
   }
 
   <div class="content">

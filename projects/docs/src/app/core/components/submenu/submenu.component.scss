@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  padding: var(--padding) !important;
+  position: relative;
+
+  --padding: 0px 10px 10px 10px;
+  --font-size: .85rem;
+
+  &.child {
+    --padding: 0px 0px 0px 15px;
+    --font-size: .8rem;
+  }
+
+  > .submenu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    gap: 2px;
+
+    > li {
+      display: block;
+      padding: 0px;
+      margin: 0px;
+
+      > a {
+        display: inline-block;
+        font-size: var(--font-size) !important;
+      }
+    }
+  }
+}
