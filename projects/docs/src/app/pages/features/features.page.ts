@@ -15,12 +15,12 @@ import { DocsTheme } from '../../themes/docs/docs.theme';
 })
 export class FeaturesPage {
 
-  protected menu: DocMenu[] = [
-    { text: 'Overview', href: './overview' },
-    { text: 'Button', href: './button' },
-    { text: 'Dialog', href: './dialog' },
-    { text: 'Loading', href: './loading' },
-    { text: 'Pagination', href: './pagination' },
+  readonly menu: DocMenu[] = [
+    { text: 'Overview', href: './overview', description: '' },
+    { text: 'Button', href: './button', description: '' },
+    { text: 'Dialog', href: './dialog', description: '' },
+    { text: 'Loading', href: './loading', description: '' },
+    { text: 'Pagination', href: './pagination', description: '' },
   ];
 
 }

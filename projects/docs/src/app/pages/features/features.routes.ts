@@ -1,11 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { FeaturesPage } from './features.page';
-import { FeaturesButtonPage } from './button/button.page';
-import { FeaturesDialogPage } from './dialog/dialog.page';
-import { FeaturesLoadingPage } from './loading/loading.page';
-import { FeaturesPaginationPage } from './pagination/pagination.page';
-import { FeaturesOverviewPage } from './overview/overview.page';
 
 export const routes: Routes = [
   {
@@ -20,31 +15,31 @@ export const routes: Routes = [
 
       {
         path: 'overview',
-        component: FeaturesOverviewPage,
+        loadComponent: () => import('./overview/overview.page').then(m => m.FeaturesOverviewPage),
         title: 'Overview',
       },
 
       {
         path: 'button',
-        component: FeaturesButtonPage,
+        loadComponent: () => import('./button/button.page').then(m => m.FeaturesButtonPage),
         title: 'Button',
       },
 
       {
         path: 'dialog',
-        component: FeaturesDialogPage,
+        loadComponent: () => import('./dialog/dialog.page').then(m => m.FeaturesDialogPage),
         title: 'Dialog',
       },
 
       {
         path: 'loading',
-        component: FeaturesLoadingPage,
+        loadComponent: () => import('./loading/loading.page').then(m => m.FeaturesLoadingPage),
         title: 'Loading',
       },
 
       {
         path: 'pagination',
-        component: FeaturesPaginationPage,
+        loadComponent: () => import('./pagination/pagination.page').then(m => m.FeaturesPaginationPage),
         title: 'Pagination',
       },
     ],

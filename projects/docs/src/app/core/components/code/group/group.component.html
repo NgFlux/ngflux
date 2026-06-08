@@ -6,12 +6,14 @@
   @let entries = blocks();
 
   @if (entries.length) {
-    <div class="tabs">
-      @for (item of entries; track $index) {
-        <div class="tabs-item" [class.active]="index() === $index" (click)="index.set($index)">
-          <div class="name">{{ item.name() }}</div>
-        </div>
-      }
+    <div class="tabs-wrapper">
+      <div class="tabs">
+        @for (item of entries; track $index) {
+          <div class="tabs-item" [class.active]="index() === $index" (click)="index.set($index)">
+            <div class="name">{{ item.name() }}</div>
+          </div>
+        }
+      </div>
     </div>
   }
 

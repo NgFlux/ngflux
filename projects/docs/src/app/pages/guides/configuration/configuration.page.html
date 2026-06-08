@@ -7,93 +7,194 @@
 <doc-section name="Providing the Configuration">
   <p>To configure NgFlux globally, pass the <code>NgFluxConfig</code> object into the <code>provideNgFlux</code> provider function during your application's bootstrap phase.</p>
 
-  <doc-code name="NgFluxConfig Examples" language="typescript" [code]="configCode" />
+  <doc-code-group>
+    <doc-code name="app.config.ts" language="typescript" [code]="configCode" />
+  </doc-code-group>
 </doc-section>
 
 
 <doc-section name="API Reference">
   <p>Below is the complete breakdown of properties available within the <code>NgFluxConfig</code> interface.</p>
 
-  <table class="doc-table">
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
+  <div class="doc-responsive">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>loading</code></td>
+          <td><code>LoadingOptions</code></td>
+          <td>No</td>
+          <td><code>undefined</code></td>
+          <td>Sets the initial global options for the loading feature.</td>
+        </tr>
+        <tr>
+          <td><code>dialog</code></td>
+          <td><code>DialogOptions</code></td>
+          <td>No</td>
+          <td><code>undefined</code></td>
+          <td>Sets the initial global options for dialog boxes.</td>
+        </tr>
+        <tr>
+          <td><code>pagination</code></td>
+          <td><code>PaginationOptions</code></td>
+          <td>No</td>
+          <td><code>undefined</code></td>
+          <td>Sets the initial global options for pagination component.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <tbody>
-      <tr>
-        <td><code>loading</code></td>
-        <td><code>LoadingOptions</code></td>
-        <td>No</td>
-        <td><code></code></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><code>dialog</code></td>
-        <td><code>DialogOptions</code></td>
-        <td>No</td>
-        <td><code></code></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><code>pagination</code></td>
-        <td><code>PaginationOptions</code></td>
-        <td>No</td>
-        <td><code></code></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <doc-section name="LoadingOptions">
+    <p>Global options for the loading feature.</p>
+
+    <doc-code-group>
+      <doc-code name="app.config.ts" language="typescript" [code]="loadingOptions.config" />
+      <doc-code name="component.ts" language="typescript" [code]="loadingOptions.component" />
+      <doc-code name="component.html" language="html" [code]="loadingOptions.html" />
+      <doc-code name="component.scss" language="scss" [code]="loadingOptions.scss" />
+    </doc-code-group>
+
+    <p>The above example uses the <code>MyCustomLoadingComponent</code> as the default loading component. By setting the <code>showOnRouteNavigation</code> to <code>true</code> the loading overlay now displays when users navigate pages of your application.</p>
+    <p>Below is the complete breakdown of properties available within the <code>LoadingOptions</code> interface.</p>
+
+    <div class="doc-responsive">
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>showOnRouteNavigation</code></td>
+            <td><code>boolean</code></td>
+            <td>No</td>
+            <td><code>false</code></td>
+            <td>Shows loading animation when a user navigates application's routes.</td>
+          </tr>
+          <tr>
+            <td><code>component</code></td>
+            <td><code>NgFluxComponent</code></td>
+            <td>No</td>
+            <td><code>undefined</code></td>
+            <td>Component to be used instead of the NgFlux's default loading component.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </doc-section>
+
+  <doc-section name="DialogOptions">
+    <p>Global options for the dialog boxes.</p>
+
+    <doc-code-group>
+      <doc-code name="app.config.ts" language="typescript" [code]="dialogOptions" />
+    </doc-code-group>
+
+    <p>Below is the complete breakdown of properties available within the <code>DialogOptions</code> interface.</p>
+
+    <div class="doc-responsive">
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>alert</code></td>
+            <td><code>DialogAlertOptions</code></td>
+            <td>No</td>
+            <td><code>undefined</code></td>
+            <td>Default options for the NgFlux alert dialog box.</td>
+          </tr>
+          <tr>
+            <td><code>confirm</code></td>
+            <td><code>DialogConfirmOptions</code></td>
+            <td>No</td>
+            <td><code>undefined</code></td>
+            <td>Default options for the NgFlux confirmation dialog box.</td>
+          </tr>
+          <tr>
+            <td><code>prompt</code></td>
+            <td><code>DialogPromptOptions</code></td>
+            <td>No</td>
+            <td><code>undefined</code></td>
+            <td>Default options for the NgFlux prompt dialog box.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </doc-section>
+
+  <doc-section name="PaginationOptions">
+    <p>Global options for the pagination component.</p>
+
+    <doc-code-group>
+      <doc-code name="app.config.ts" language="typescript" [code]="paginationOptions" />
+    </doc-code-group>
+
+    <p>Below is the complete breakdown of properties available within the <code>PaginationOptions</code> interface.</p>
+
+    <div class="doc-responsive">
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>preload</code></td>
+            <td><code>boolean</code></td>
+            <td>No</td>
+            <td><code>false</code></td>
+            <td>When set to <code>true</code> the <code>(callback)</code> output signal of the pagination component is executed immediately the component is loaded.</td>
+          </tr>
+          <tr>
+            <td><code>transform</code></td>
+            <td><a routerLink="/api/PaginationTransformer"><code>PaginationTransformer</code></a></td>
+            <td>No</td>
+            <td><code>undefined</code></td>
+            <td>Provides functions for transforming custom data from the server to NgFlux <code>Pagination</code> object.</td>
+          </tr>
+          <tr>
+            <td><code>limitOptions</code></td>
+            <td><code>number[]</code></td>
+            <td>No</td>
+            <td><code>[5, 10, 20, 30, 40, 50]</code></td>
+            <td>Options for the dropdown menu of limits for the pagination component</td>
+          </tr>
+          <tr>
+            <td><code>limit</code></td>
+            <td><code>number</code></td>
+            <td>No</td>
+            <td><code>10</code></td>
+            <td>Default limit for the pagination component</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </doc-section>
 </doc-section>
-
-<!--
-  <doc-section name="Loading Options" subtitle="loading?: LoadingOptions">
-    <ul class="doc-list">
-      <li><code>showOnRouteNavigation?: boolean</code></li>
-      <li><code>component?: NgFluxComponent</code></li>
-    </ul>
-  </doc-section>
-
-  <doc-section name="Dialog Options" subtitle="dialog?: DialogOptions">
-    <ul class="doc-list">
-      <li><code>alert?: DialogAlertOptions</code></li>
-      <li><code>confirm?: DialogConfirmOptions</code></li>
-      <li><code>prompt?: DialogPromptOptions</code></li>
-    </ul>
-
-    <doc-section name="Alert Dialog Options" subtitle="alert?: DialogAlertOptions">
-      <ul class="doc-list">
-        <li><code>okayButton?: ButtonOptions</code></li>
-      </ul>
-    </doc-section>
-
-    <doc-section name="Confirm Dialog Options" subtitle="confirm?: DialogConfirmOptions">
-      <ul class="doc-list">
-        <li><code>okayButton?: ButtonOptions</code></li>
-        <li><code>cancelButton?: ButtonOptions</code></li>
-      </ul>
-    </doc-section>
-
-    <doc-section name="Prompt Dialog Options" subtitle="prompt?: DialogPromptOptions">
-      <ul class="doc-list">
-        <li><code>submitButton?: ButtonOptions</code></li>
-        <li><code>cancelButton?: ButtonOptions</code></li>
-      </ul>
-    </doc-section>
-  </doc-section>
-
-
-  <doc-section name="Pagination Options" subtitle="pagination?: PaginationOptions">
-    <ul class="doc-list">
-      <li><code>preload?: boolean</code></li>
-      <li><code>transform?: PaginationTransformer</code></li>
-      <li><code>limitOptions?: number[]</code></li>
-      <li><code>limit?: number</code></li>
-    </ul>
-  </doc-section>
--->

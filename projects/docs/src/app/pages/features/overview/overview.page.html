@@ -1,0 +1,11 @@
+@if (menu.length) {
+  <doc-section>
+    <div class="links">
+      @for (item of menu; track $index) {
+        <a [routerLink]="[item.href]" [relativeTo]="route.parent" class="links-item">
+          <h4>{{ item.text }}</h4>
+        </a>
+      }
+    </div>
+  </doc-section>
+}

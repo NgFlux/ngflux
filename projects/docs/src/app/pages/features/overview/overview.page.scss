@@ -1,0 +1,25 @@
+:host {
+  display: block;
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+
+    &-item {
+      display: block;
+      text-decoration: none !important;
+      border: 1px solid #CCC;
+      border-radius: 2px;
+      text-align: center;
+      padding: 20px;
+
+      > h4 {
+        display: block;
+        margin: 0px 0px 10px 0px;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+    }
+  }
+}

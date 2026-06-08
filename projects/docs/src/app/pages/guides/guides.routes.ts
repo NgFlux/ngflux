@@ -1,9 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { GuidesPage } from './guides.page';
-import { GuidesGettingStartedPage } from './getting-started/getting-started.page';
-import { GuidesConfigurationPage } from './configuration/configuration.page';
-import { GuidesThemingPage } from './theming/theming.page';
 
 export const routes: Routes = [
   {
@@ -18,19 +15,19 @@ export const routes: Routes = [
 
       {
         path: 'getting-started',
-        component: GuidesGettingStartedPage,
+        loadComponent: () => import('./getting-started/getting-started.page').then(m => m.GuidesGettingStartedPage),
         title: 'Getting Started',
       },
 
       {
         path: 'configuration',
-        component: GuidesConfigurationPage,
+        loadComponent: () => import('./configuration/configuration.page').then(m => m.GuidesConfigurationPage),
         title: 'NgFlux Configuration',
       },
 
       {
         path: 'theming',
-        component: GuidesThemingPage,
+        loadComponent: () => import('./theming/theming.page').then(m => m.GuidesThemingPage),
         title: 'Theming NgFlux',
       },
     ],
