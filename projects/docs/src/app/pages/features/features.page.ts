@@ -17,9 +17,9 @@ export class FeaturesPage {
 
   readonly menu: DocMenu[] = [
     { text: 'Overview', href: './overview' },
-    { text: 'Button', href: './button', description: 'A button designed with built-in support for icons and customizable themes' },
+    { text: 'Button', href: './button', description: 'A button designed with built-in support for icons and customizable themes.' },
     { text: 'Dialog', href: './dialog', description: '' },
-    { text: 'Loading', href: './loading', description: '' },
+    { text: 'Loading', href: './loading', description: 'A service that provides a global, configurable loading overlay for your application.' },
     { text: 'Pagination', href: './pagination', description: '' },
   ];
 

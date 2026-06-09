@@ -1,1 +1,67 @@
-<p>Coming soon...</p>
+<doc-section>
+  <p>The <code>NgFluxLoading</code> service provides a global, configurable loading overlay for your application. It seamlessly manages blocking UI states during asynchronous operations, such as API requests, and can be configured to automatically trigger during Angular route transitions.</p>
+</doc-section>
+
+
+<doc-section name="Global Configuration">
+  <p>You can customize the loading behavior globally inside your <code>NgFluxConfig</code> object during the application bootstrap phase.</p>
+
+  <doc-code-group>
+    <doc-code name="app.config.ts" language="typescript" [code]="options.config" />
+    <doc-code name="component.ts" language="typescript" [code]="options.component" />
+    <doc-code name="component.html" language="html" [code]="options.html" />
+    <doc-code name="component.scss" language="scss" [code]="options.scss" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Configuration Options">
+  <div class="doc-responsive">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>showOnRouteNavigation</code></td>
+          <td><code>boolean</code></td>
+          <td>No</td>
+          <td><code>false</code></td>
+          <td>When <code>true</code>, automatically displays the overlay during Angular router navigation (<code>NavigationStart</code> to <code>NavigationEnd</code>/<code>NavigationCancel</code>/<code>NavigationError</code>).</td>
+        </tr>
+        <tr>
+          <td><code>component</code></td>
+          <td><code>NgFluxComponent</code></td>
+          <td>No</td>
+          <td><code>NgFluxLoadingComponent</code> (internal)</td>
+          <td>A reference to a standalone component to render inside the overlay instead of the default spinner.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</doc-section>
+
+
+<doc-section name="Manual Usage" subtitle="(API Calls & Background Tasks)">
+  <p>Inject the <code>NgFluxLoading</code> service into your components or services to control the overlay state manually during async processes.</p>
+
+  <doc-code-group>
+    <doc-code name="component.ts" language="typescript" [code]="usageExample" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Automated Route Navigation">
+  <p>When <code>showOnRouteNavigation: true</code> is enabled in your global configuration, you do not need to write any manual code in your components. The service automatically hooks into Angular's Router events to provide visual feedback during lazy-loading component chunks or resolving route data:</p>
+
+  <ul class="doc-list">
+    <li><strong>Triggers (<code>start()</code>):</strong> On <code>NavigationStart</code>.</li>
+    <li><strong>Dismisses (<code>stop()</code>):</strong> On <code>NavigationEnd</code>, <code>NavigationCancel</code>, or <code>NavigationError</code>.</li>
+  </ul>
+</doc-section>
