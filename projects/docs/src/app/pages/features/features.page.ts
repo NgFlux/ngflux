@@ -16,8 +16,8 @@ import { DocsTheme } from '../../themes/docs/docs.theme';
 export class FeaturesPage {
 
   readonly menu: DocMenu[] = [
-    { text: 'Overview', href: './overview', description: '' },
-    { text: 'Button', href: './button', description: '' },
+    { text: 'Overview', href: './overview' },
+    { text: 'Button', href: './button', description: 'A button designed with built-in support for icons and customizable themes' },
     { text: 'Dialog', href: './dialog', description: '' },
     { text: 'Loading', href: './loading', description: '' },
     { text: 'Pagination', href: './pagination', description: '' },

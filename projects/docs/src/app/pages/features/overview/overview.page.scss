@@ -16,9 +16,16 @@
 
       > h4 {
         display: block;
-        margin: 0px 0px 10px 0px;
+        margin: 0px;
         font-size: 1.2rem;
         font-weight: 400;
+      }
+
+      > p {
+        display: block;
+        margin: 5px 0px 0px 0px;
+        font-size: .8rem;
+        color: #333;
       }
     }
   }

@@ -4,6 +4,10 @@
       @for (item of menu; track $index) {
         <a [routerLink]="[item.href]" [relativeTo]="route.parent" class="links-item">
           <h4>{{ item.text }}</h4>
+
+          @if (item.description) {
+            <p>{{ item.description }}</p>
+          }
         </a>
       }
     </div>

@@ -87,3 +87,78 @@ code:not([doc-code]) {
     }
   }
 }
+
+.doc-example {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #CCC;
+  background-color: #DDD;
+  gap: 1px;
+
+  @include ngf.device(sm) {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  > * {
+    background-color: #FFF;
+    padding: 20px;
+
+    @include ngf.device(sm) {
+      flex: 1 0 0;
+      width: 0px;
+    }
+  }
+
+  &-result {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    flex: 1 0 0;
+    height: 0px;
+  }
+
+  h4 {
+    margin: -20px -20px 20px -20px;
+    border-bottom: 1px solid #CCC;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+.doc-field {
+  display: block;
+  margin: 0px 0px 10px 0px;
+
+  label {
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0px;
+
+    small {
+      font-size: .7em;
+      color: #555;
+    }
+  }
+
+  input, textarea, select {
+    display: block;
+    padding: 10px 20px;
+    border: 1px solid #DDD;
+    background-color: #EEE;
+    font-size: 1rem;
+    width: 100%;
+
+    &:focus {
+      outline: 1px solid #DDD;
+    }
+  }
+}

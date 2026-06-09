@@ -56,12 +56,13 @@
 
     .left-btn {
       display: block;
-      position: absolute;
-      inset: 30px auto auto 100%;
-      background-color: inherit;
+      position: sticky;
+      inset: 30px auto auto auto;
+      background-color: #FFF;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       box-shadow: 5px 0px 5px rgba(0, 0, 0, .5);
+      visibility: visible;
       padding: 10px 2px;
       font-size: .85rem;
       cursor: pointer;
@@ -72,6 +73,13 @@
 
       @include ngf.device(md) {
         display: none;
+      }
+
+      &-pane {
+        display: block;
+        position: absolute;
+        inset: 0px auto 0px 100%;
+        visibility: hidden;
       }
     }
 
@@ -87,6 +95,12 @@
       @include ngf.device(xs) {
         display: none;
       }
+    }
+
+    .sticky {
+      display: block;
+      position: sticky;
+      inset: 0px auto;
     }
 
     .title {

@@ -1,3 +1,116 @@
 <doc-section>
-  <!--  -->
+  The <code>NgFluxButton</code> is a versatile, high-performance UI component designed to handle everything from simple actions to complex form submissions with built-in support for icons and customizable themes.
+</doc-section>
+
+<doc-section name="Basic Usage">
+  <p>Import the button into your component to get started.</p>
+
+  <doc-code-group>
+    <doc-code name="component.ts" language="typescript" [code]="usage" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Properties">
+  <p>Import the button into your component to get started.</p>
+
+  <table class="doc-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>icon</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td><code></code></td>
+        <td>Sets an icon using your preferred icon font library like Google Icon Fonts, FontAwesome... </td>
+      </tr>
+      <tr>
+        <td><code>theme</code></td>
+        <td><code>ButtonTheme</code> = <code>default | primary | secondary | error | danger | success | warning | info | light | dark</code></td>
+        <td>No</td>
+        <td><code>default</code></td>
+        <td>Sets a theme for your button</td>
+      </tr>
+      <tr>
+        <td><code>type</code></td>
+        <td><code>ButtonType</code> = <code>submit | button | reset | menu</code></td>
+        <td>No</td>
+        <td><code>button</code></td>
+        <td>Button type</td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td><code>ButtonSize</code> = <code>xs | sm | md | lg | xl</code></td>
+        <td>No</td>
+        <td><code>md</code></td>
+        <td>Button size</td>
+      </tr>
+      <tr>
+        <td><code>direction</code></td>
+        <td><code>ButtonDirection</code> = <code>normal | reversed</code></td>
+        <td>No</td>
+        <td><code>md</code></td>
+        <td>Button direction</td>
+      </tr>
+    </tbody>
+  </table>
+</doc-section>
+
+
+<doc-section name="Examples">
+  <div class="doc-example">
+    <div class="doc-example-input">
+      <h4>Properties</h4>
+
+      <div class="doc-field">
+        <label for="">Theme</label>
+        <select id="" [(ngModel)]="theme">
+          @for (item of themes; track $index) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="doc-field">
+        <label for="">Size</label>
+        <select id="" [(ngModel)]="size">
+          @for (item of sizes; track $index) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="doc-field">
+        <label for="">Icon <small>FontAwesome 7.2.0 (Free)</small></label>
+        <input type="text" [(ngModel)]="icon">
+      </div>
+
+      <div class="doc-field">
+        <label for="">Direction</label>
+        <select id="" [(ngModel)]="direction">
+          @for (item of directions; track $index) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="doc-example-result">
+      <h4>Result</h4>
+
+      <div class="doc-example-preview">
+        <ngf-button [theme]="theme()" [size]="size()" [icon]="icon()" [direction]="direction()">
+          <span>My Button</span>
+        </ngf-button>
+      </div>
+    </div>
+  </div>
 </doc-section>

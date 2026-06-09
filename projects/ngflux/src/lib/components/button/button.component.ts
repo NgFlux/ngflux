@@ -1,12 +1,4 @@
-import {
-  Component,
-  computed,
-  ElementRef,
-  HostBinding,
-  inject,
-  input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, computed, effect, ElementRef, HostBinding, inject, input, output } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 import { ButtonDirection, ButtonSize, ButtonTheme, ButtonType } from '../../interfaces';
@@ -15,7 +7,6 @@ import { ButtonDirection, ButtonSize, ButtonTheme, ButtonType } from '../../inte
   selector: 'ngf-button',
   templateUrl: 'button.component.html',
   styleUrls: ['button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass],
 })
 export class NgFluxButton {
@@ -42,24 +33,15 @@ export class NgFluxButton {
   readonly classNames = computed(() => [this.theme() ?? 'default', this.size() ?? 'md'].join(' '));
 
   @HostBinding('class')
-  get bindClass() {
-    return this.classNames();
-  }
+  get bindClass() { return this.classNames(); }
 
   @HostBinding('class.block')
-  get isBlock() {
-    return this.block();
-  }
+  get isBlock() { return this.block(); }
 
   @HostBinding('class.disabled')
-  get isDisabled() {
-    return this.disabled();
-  }
+  get isDisabled() { return this.disabled(); }
 
-  constructor() {
-    const {
-      ref: { nativeElement },
-    } = this;
-    nativeElement.tabIndex = 1;
-  }
+  @HostBinding('tabIndex')
+  get tabIndex() { return 1; }
+
 }
