@@ -64,12 +64,6 @@ code:not([doc-code]) {
   }
 }
 
-.doc-responsive {
-  display: block;
-  width: 100%;
-  overflow: auto hidden;
-}
-
 .doc-table {
   width: 100%;
   border-top: 1px solid #CCC;
@@ -89,6 +83,17 @@ code:not([doc-code]) {
       text-align: left;
       font-weight: 500;
     }
+  }
+}
+
+.doc-responsive {
+  display: block;
+  width: 100%;
+  overflow: auto hidden;
+  margin: 10px 0px 30px 0px;
+
+  > .doc-table {
+    margin: 0px;
   }
 }
 

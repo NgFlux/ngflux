@@ -1,6 +1,8 @@
-<ngf-dialog-header>
-  <h1 ngf-dialog-title>{{ options.title }}</h1>
-</ngf-dialog-header>
+@if (options.title) {
+  <ngf-dialog-header>
+    <h1 ngf-dialog-title>{{ options.title }}</h1>
+  </ngf-dialog-header>
+}
 
 <ngf-dialog-body>
   <div [innerHTML]="options.content"></div>

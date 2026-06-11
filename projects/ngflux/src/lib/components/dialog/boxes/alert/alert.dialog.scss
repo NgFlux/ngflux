@@ -3,4 +3,12 @@
   width: 90%;
   max-width: 500px;
   background-color: #FFF;
+
+  .success {
+    color: var(--ngf-success);
+  }
+
+  .error {
+    color: var(--ngf-error);
+  }
 }

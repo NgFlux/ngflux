@@ -33,7 +33,7 @@ export class NgFluxPromptDialog {
   readonly dialogRef = inject<NgFluxDialogRef<string>>(NgFluxDialogRef);
   readonly options: NgFluxDialogPromptOptions = inject(NGF_DIALOG_DATA);
 
-  readonly text = signal('');
+  readonly text = signal(this.options.defaultValue ?? '');
   readonly value = computed(() => this.text().trim());
 
   readonly buttons = computed(() => {

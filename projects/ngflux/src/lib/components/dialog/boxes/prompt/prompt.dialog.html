@@ -4,7 +4,7 @@
 
 <ngf-dialog-body>
   <div class="content" [innerHTML]="options.content"></div>
-  <input type="text" name="text" [(ngModel)]="text">
+  <input type="text" name="text" [placeholder]="options.placeholder" [(ngModel)]="text">
 </ngf-dialog-body>
 
 <ngf-dialog-footer>

@@ -1,1 +1,106 @@
-<p>Coming soon...</p>
+<doc-section>
+  <p>The <code>NgFluxDialog</code> service provides a modern, fully accessible alternative to native browser dialogs. It features asynchronous, non-blocking replacements for <code>alert()</code>, <code>confirm()</code>, and <code>prompt()</code>, while offering a robust mechanism to inject fully custom standalone components as dynamic dialog templates.</p>
+</doc-section>
+
+
+<doc-section name="Alert Dialog">
+  <p>Display a simple warning or informational message to the user with an "OK" confirmation.</p>
+
+  <doc-code-group>
+    <doc-code name="component.ts" language="typescript" [code]="alertCode" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Confirm Dialog">
+  <p>Ask the user a yes/no question. The method emits a <code>boolean</code> state indicating the user's choice.</p>
+
+  <doc-code-group>
+    <doc-code name="component.ts" language="typescript" [code]="confirmCode" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Prompt Dialog">
+  <p>Collect string inputs from the user inline. Emits the string value if confirmed, or <code>null</code> if the action is canceled.</p>
+
+  <doc-code-group>
+    <doc-code name="component.ts" language="typescript" [code]="promptCode" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Advanced Usage" subtitle="Custom Component Dialogs">
+  <p>For complex interfaces (like profile settings, payment gateways, or data filters), you can pass a custom Angular standalone component directly into the <code>.open()</code> configuration method.</p>
+
+  <doc-section name="1. Create Your Custom Dialog Component">
+    <p>Inject the special <code>NGF_DIALOG_DATA</code> token to receive incoming configurations, and use the <code>NgFluxDialogRef</code> handler to pass data back out when shutting the instance.</p>
+
+    <doc-code-group>
+      <doc-code name="custom-dialog.ts" language="typescript" [code]="custom.component" />
+      <doc-code name="custom-dialog.html" language="html" [code]="custom.html" />
+    </doc-code-group>
+  </doc-section>
+
+  <doc-section name="2. Open Your Custom Dialog">
+    <p>Pass the component reference along with optional parameter data.</p>
+
+    <doc-code-group>
+      <doc-code name="dashboard.component.ts" language="typescript" [code]="openCode" />
+    </doc-code-group>
+  </doc-section>
+</doc-section>
+
+
+<doc-section name="API Reference" subtitle="NgFluxDialogConfig">
+  <div class="doc-responsive">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>closeOnEsc</code></td>
+          <td><code>boolean</code></td>
+          <td>No</td>
+          <td><code>true</code></td>
+          <td>Prevents closing by pressing the 'Esc' key</td>
+        </tr>
+        <tr>
+          <td><code>closeOnBackBtn</code></td>
+          <td><code>boolean</code></td>
+          <td>No</td>
+          <td><code>true</code></td>
+          <td>Prevents closing by pressing the back button</td>
+        </tr>
+        <tr>
+          <td><code>backdropClose</code></td>
+          <td><code>boolean</code></td>
+          <td>No</td>
+          <td><code>true</code></td>
+          <td>Prevents closing by clicking the backdrop overlay</td>
+        </tr>
+        <tr>
+          <td><code>closeBtn</code></td>
+          <td><code>boolean</code></td>
+          <td>No</td>
+          <td><code>true</code></td>
+          <td>Adds close icon to the dialog header component</td>
+        </tr>
+        <tr>
+          <td><code>data</code></td>
+          <td><code>any</code></td>
+          <td>No</td>
+          <td><code>undefined</code></td>
+          <td>Data to be passed to the dialog</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</doc-section>

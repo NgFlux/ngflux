@@ -51,9 +51,7 @@ export class NgFluxDialog {
 
   readonly closeAll = () => this.internal.closeAll();
 
-  alert(title: string, content: string, buttons?: NgFluxDialogButton[]) {
-    const data: NgFluxDialogAlertOptions = { title, content, buttons };
-
+  alert(data: NgFluxDialogAlertOptions) {
     const dialog = this.open<boolean>(NgFluxAlertDialog, {
       closeOnBackBtn: false,
       backdropClose: false,
@@ -64,14 +62,14 @@ export class NgFluxDialog {
     return dialog.closed;
   }
 
-  success(title: string, message: string, buttons?: NgFluxDialogButton[]) {
-    message = `<div class="mbi-success">${message}</div>`;
-    return this.alert(title, message, buttons);
+  success(data: NgFluxDialogAlertOptions) {
+    data.content = `<div class="success">${data.content}</div>`;
+    return this.alert(data);
   }
 
-  error(title: string, message: string, buttons?: NgFluxDialogButton[]) {
-    message = `<div class="mbi-error">${message}</div>`;
-    return this.alert(title, message, buttons);
+  error(data: NgFluxDialogAlertOptions) {
+    data.content = `<div class="error">${data.content}</div>`;
+    return this.alert(data);
   }
 
   confirm(data: NgFluxDialogConfirmOptions) {

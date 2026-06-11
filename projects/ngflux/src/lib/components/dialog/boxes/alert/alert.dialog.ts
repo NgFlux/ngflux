@@ -1,6 +1,5 @@
-import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 
-import { NgFluxDialogRef } from '../../../../services';
 import {
   NGF_CONFIG,
   NGF_DIALOG_DATA,
@@ -8,6 +7,8 @@ import {
   NgFluxDialogButton,
   NgFluxDialogButtonObj,
 } from '../../../../interfaces';
+
+import { NgFluxDialogRef } from '../../../../services';
 
 import { NgFluxDialogHeaderComponent } from '../../header/header.component';
 import { NgFluxDialogBodyComponent } from '../../body/body.component';
@@ -18,7 +19,6 @@ import { NgFluxButton } from '../../../button/button.component';
   selector: 'ngf-dialog-box-alert',
   templateUrl: 'alert.dialog.html',
   styleUrls: ['alert.dialog.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     NgFluxButton,
     NgFluxDialogHeaderComponent,
@@ -27,6 +27,7 @@ import { NgFluxButton } from '../../../button/button.component';
   ],
 })
 export class NgFluxAlertDialog {
+
   readonly config = inject(NGF_CONFIG);
   readonly dialogRef = inject<NgFluxDialogRef<boolean>>(NgFluxDialogRef);
   readonly options: NgFluxDialogAlertOptions = inject(NGF_DIALOG_DATA);
@@ -57,4 +58,5 @@ export class NgFluxAlertDialog {
       dialogRef.close();
     }
   }
+
 }

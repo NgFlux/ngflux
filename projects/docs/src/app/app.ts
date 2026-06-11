@@ -35,7 +35,11 @@ export class App {
 
   openAlert(e: MouseEvent) {
     e.preventDefault();
-    this.dialog.alert('Demo Alert', 'Just testing');
+
+    this.dialog.alert({
+      title: 'Demo Alert',
+      content: 'Just testing',
+    });
   }
 
   openConfirm(e: MouseEvent) {

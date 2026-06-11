@@ -37,13 +37,13 @@ export type NgFluxDialogButtonObj<T = any> = ButtonOptions & {
 export type NgFluxDialogButton<T = any> = 'flex' | NgFluxDialogButtonObj<T>;
 
 export type NgFluxDialogAlertOptions = {
-  title: string;
+  title?: string;
   content: string;
   buttons?: NgFluxDialogButton<boolean>[];
 };
 
 export type NgFluxDialogConfirmOptions = {
-  title: string;
+  title?: string;
   content: string;
   okayButton?: NgFluxDialogButtonObj;
   cancelButton?: NgFluxDialogButtonObj;
@@ -52,6 +52,8 @@ export type NgFluxDialogConfirmOptions = {
 export type NgFluxDialogPromptOptions = {
   title: string;
   content: string;
+  placeholder?: string,
+  defaultValue?: string,
   submitButton?: NgFluxDialogButtonObj;
   cancelButton?: NgFluxDialogButtonObj;
 };
