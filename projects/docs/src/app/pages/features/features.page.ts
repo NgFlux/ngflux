@@ -20,7 +20,7 @@ export class FeaturesPage {
     { text: 'Button', href: './button', description: 'A button designed with built-in support for icons and customizable themes.' },
     { text: 'Dialog', href: './dialog', description: 'A service that provides a modern, fully accessible alternative to native browser dialogs.' },
     { text: 'Loading', href: './loading', description: 'A service that provides a global, configurable loading overlay for your application.' },
-    { text: 'Pagination', href: './pagination', description: '' },
+    { text: 'Pagination', href: './pagination', description: 'Provides a robust pagination control interface that handles server-side data tracking...' },
   ];
 
 }

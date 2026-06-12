@@ -1,1 +1,101 @@
-<p>Coming soon...</p>
+<doc-section>
+  <p>The <code>NgFluxPagination</code> provides a robust, fully accessible pagination control interface. It handles server-side data tracking, custom payload transformation and reactive limit shifting via dropdown menus.</p>
+</doc-section>
+
+
+<doc-section name="Usage Example">
+  <p>Below is a standard integration scenario showcasing data fetching tied directly to the pagination output stream.</p>
+
+  <doc-code-group>
+    <doc-code name="component.ts" language="typescript" [code]="usageCode" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Global Configuration">
+  <p>You can define application-wide defaults for your pagination components inside your <code>NgFluxConfig</code> object during the application bootstrap phase.</p>
+
+  <doc-code-group>
+    <doc-code name="app.config.ts" language="typescript" [code]="configCode" />
+  </doc-code-group>
+</doc-section>
+
+
+<doc-section name="Input Properties">
+  <div class="doc-responsive">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>data</code></td>
+          <td><code>input&lt;any&gt;</code></td>
+          <td>Yes</td>
+          <td>-</td>
+          <td>The raw response payload received from your backend server.</td>
+        </tr>
+        <tr>
+          <td><code>preload</code></td>
+          <td><code>input&lt;boolean&gt;</code></td>
+          <td>No</td>
+          <td><code>false</code></td>
+          <td>When true, automatically fires the callback output signal immediately when the component initializes (mounted).</td>
+        </tr>
+        <tr>
+          <td><code>transform</code></td>
+          <td><code>input&lt;PaginationTransformer&gt;</code></td>
+          <td>No</td>
+          <td>Config Default</td>
+          <td>An object containing mapping methods to convert your unique backend JSON structure into a standard <code>Pagination</code> object.</td>
+        </tr>
+        <tr>
+          <td><code>limit</code></td>
+          <td><code>input&lt;number&gt;</code></td>
+          <td>No</td>
+          <td><code>10</code></td>
+          <td>The number of rows or items displayed per page.</td>
+        </tr>
+        <tr>
+          <td><code>limitOptions</code></td>
+          <td><code>input&lt;number[]&gt;</code></td>
+          <td>No</td>
+          <td><code>[5, 10, 20, 30, 40, 50]</code></td>
+          <td>An array of integers populated into a dropdown menu allowing users to change page limits dynamically.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</doc-section>
+
+
+<doc-section name="Output Properties">
+  <div class="doc-responsive">
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Type</th>
+          <th>Required</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>callback</code></td>
+          <td><code>input&lt;PaginationInfo&gt;</code></td>
+          <td>No</td>
+          <td>-</td>
+          <td>Output Signal. Emits the latest tracking criteria (page, limit) whenever a user navigates or adjusts row limits.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</doc-section>
