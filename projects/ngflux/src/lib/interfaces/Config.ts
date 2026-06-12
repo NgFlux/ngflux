@@ -3,6 +3,25 @@ import type { NgFluxComponent } from "./Component";
 import type { ButtonOptions } from "./Button";
 import type { PaginationTransformer } from "./Pagination";
 
+export type NgFluxConfig = {
+  loading?: LoadingOptions;
+  dialog?: DialogOptions;
+  pagination?: PaginationOptions;
+  title?: RouterTitleOptions;
+};
+
+export const NGF_CONFIG = new InjectionToken<NgFluxConfig>('ngf-config');
+
+// BEGIN: Router
+type RouterTitleOptions = {
+  defaultValue?: string;
+  separator?: string;
+  prefix?: string;
+  suffix?: string;
+};
+// END: Router
+
+
 // BEGIN: Loading
 type LoadingOptions = {
   showOnRouteNavigation?: boolean;
@@ -40,11 +59,3 @@ type PaginationOptions = {
   limit?: number;
 };
 // END: Pagination
-
-export type NgFluxConfig = {
-  loading?: LoadingOptions;
-  dialog?: DialogOptions;
-  pagination?: PaginationOptions;
-};
-
-export const NGF_CONFIG = new InjectionToken<NgFluxConfig>('ngf-config');

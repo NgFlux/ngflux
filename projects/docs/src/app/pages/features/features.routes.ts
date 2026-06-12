@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
+import { NgFluxRoutes } from '@ngflux/ngflux';
 
 import { FeaturesPage } from './features.page';
 
-export const routes: Routes = [
+export const routes: NgFluxRoutes = [
   {
     path: '',
     component: FeaturesPage,
+    title: 'Features',
     children: [
       {
         path: '',
@@ -16,30 +18,35 @@ export const routes: Routes = [
       {
         path: 'overview',
         loadComponent: () => import('./overview/overview.page').then(m => m.FeaturesOverviewPage),
+        addParentTitle: true,
         title: 'Overview',
       },
 
       {
         path: 'button',
         loadComponent: () => import('./button/button.page').then(m => m.FeaturesButtonPage),
+        addParentTitle: true,
         title: 'Button',
       },
 
       {
         path: 'dialog',
         loadComponent: () => import('./dialog/dialog.page').then(m => m.FeaturesDialogPage),
+        addParentTitle: true,
         title: 'Dialog',
       },
 
       {
         path: 'loading',
         loadComponent: () => import('./loading/loading.page').then(m => m.FeaturesLoadingPage),
+        addParentTitle: true,
         title: 'Loading',
       },
 
       {
         path: 'pagination',
         loadComponent: () => import('./pagination/pagination.page').then(m => m.FeaturesPaginationPage),
+        addParentTitle: true,
         title: 'Pagination',
       },
     ],

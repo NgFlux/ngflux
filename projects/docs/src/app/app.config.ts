@@ -11,6 +11,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     provideNgFlux({
+      title: { suffix: 'NgFlux' },
+
       loading: {
         showOnRouteNavigation: true,
       },

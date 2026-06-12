@@ -2,7 +2,7 @@ import { InjectionToken, Injector, Signal, ViewContainerRef } from "@angular/cor
 import { Observable } from "rxjs";
 
 import type { NgFluxDialogRef } from "../services/DialogRef";
-import type { ButtonDirection, ButtonOptions, ButtonSize, ButtonTheme } from "./Button";
+import type { ButtonOptions } from "./Button";
 
 export type NgFluxDialogRoot = {
   viewContainer: Signal<ViewContainerRef>;

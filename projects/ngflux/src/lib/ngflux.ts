@@ -1,4 +1,5 @@
 import { inject, makeEnvironmentProviders, provideAppInitializer } from "@angular/core";
+import { TitleStrategy } from "@angular/router";
 
 import {
   NGF_CONFIG,
@@ -13,6 +14,7 @@ import {
 import {
   NgFluxDialogInternal,
   NgFluxLoadingInternal,
+  RouteTitleStrategy,
 } from "./internal";
 
 export const provideNgFlux = (config?: NgFluxConfig) => {
@@ -20,6 +22,7 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
 
   return makeEnvironmentProviders([
     { provide: NGF_CONFIG, useValue: config },
+    { provide: TitleStrategy, useClass: RouteTitleStrategy },
 
     NgFluxDialog,
     NgFluxDialogInternal,

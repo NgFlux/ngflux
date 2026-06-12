@@ -4,3 +4,4 @@ export * from './Config';
 export * from './Dialog';
 export * from './Loading';
 export * from './Pagination';
+export * from './Route';
