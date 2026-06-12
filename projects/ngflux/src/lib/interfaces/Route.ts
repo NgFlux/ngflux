@@ -11,7 +11,7 @@ export type NgFluxRoute = Route & {
 
   getTitle?: (data: Data) => string;
   getDescription?: (data: Data) => string;
-  getKeywords?: (data: Data) => string;
+  getKeywords?: (data: Data) => string | string[];
 
   children?: NgFluxRoutes;
 };

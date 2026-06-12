@@ -14,7 +14,6 @@ export const NGF_CONFIG = new InjectionToken<NgFluxConfig>('ngf-config');
 
 // BEGIN: Router
 type RouterTitleOptions = {
-  defaultValue?: string;
   separator?: string;
   prefix?: string;
   suffix?: string;

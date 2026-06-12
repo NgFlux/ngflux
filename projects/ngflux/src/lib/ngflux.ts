@@ -12,6 +12,7 @@ import {
 } from "./services";
 
 import {
+  MetaInternal,
   NgFluxDialogInternal,
   NgFluxLoadingInternal,
   RouteTitleStrategy,
@@ -29,6 +30,13 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
 
     NgFluxLoading,
     NgFluxLoadingInternal,
+
+    MetaInternal,
+
+    provideAppInitializer(() => {
+      const meta = inject(MetaInternal);
+      meta.initialize();
+    }),
 
     provideAppInitializer(() => {
       const dialog = inject(NgFluxDialogInternal);
