@@ -24,4 +24,7 @@
 
   &.chevron-left::before { content: "\e5cb"; }
   &.chevron-right::before { content: "\e5cc"; }
+
+  &.arrow-drop-down::before { content: "\e5c5"; }
+  &.arrow-drop-up::before { content: "\e5c7"; }
 }

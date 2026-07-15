@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="header" [class.single]="!multi()" (click)="toggleOpen()">
+    <div class="text">{{ headerText() }}</div>
+    @if (!multi()) {
+      @let icons = ['ngf-icon', (open() ? 'arrow-drop-up' : 'arrow-drop-down')];
+      <i [className]="icons.join(' ')"></i>
+    }
+  </div>
+
+  <div class="body" [class.single]="!multi()" [class.show]="open()">
+    <div class="searchbox">
+      <input type="text" placeholder="Search Items" [(ngModel)]="searchbox">
+    </div>
+
+    <ngf-select-items [data]="search()" [options]="options" [transform]="transform()" (select)="toggle($event)" />
+  </div>
+
+  @if (multi()) {
+    <div class="footer">
+      @if (!vmap().size) {
+        <div class="none">No item selected</div>
+      } @else {
+        <div class="entries">
+          @for (item of vmap() | keyvalue; track $index) {
+            <div class="entries-item">
+              <div class="text">{{ getLabel(item.value) }}</div>
+              <div class="btn" (click)="toggle(item.value)">
+                <i class="ngf-icon close"></i>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

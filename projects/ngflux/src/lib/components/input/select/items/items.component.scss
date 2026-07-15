@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  max-height: 200px;
+  overflow: hidden auto;
+
+  > .wrapper {
+    display: block;
+    list-style: none;
+    font-size: .9rem;
+    padding: 0px;
+    margin: 0px;
+
+    > li {
+      display: block;
+      cursor: pointer;
+
+      &.disabled {
+        color: #666;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
+      &.active {
+        color: var(--ngf-primary);
+      }
+    }
+  }
+}

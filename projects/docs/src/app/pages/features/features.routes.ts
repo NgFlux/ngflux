@@ -49,6 +49,13 @@ export const routes: NgFluxRoutes = [
         addParentTitle: true,
         title: 'Pagination',
       },
+
+      {
+        path: 'select',
+        loadComponent: () => import('./select/select.page').then(m => m.FeaturesSelectPage),
+        addParentTitle: true,
+        title: 'Select',
+      },
     ],
   }
 ];

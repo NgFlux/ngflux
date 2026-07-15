@@ -1,0 +1,9 @@
+<ul class="wrapper">
+  @for (entry of data(); track $index) {
+    @let item = getItem(entry);
+
+    <li [class.disabled]="item.disabled" [class.active]="options().getSelected(entry)" (click)="select.emit(entry)">
+      <span>{{ item.label }}</span>
+    </li>
+  }
+</ul>
