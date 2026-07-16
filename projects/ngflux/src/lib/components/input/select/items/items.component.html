@@ -2,8 +2,12 @@
   @for (entry of data(); track $index) {
     @let item = getItem(entry);
 
-    <li [class.disabled]="item.disabled" [class.active]="options().getSelected(entry)" (click)="select.emit(entry)">
-      <span>{{ item.label }}</span>
+    <li [class.disabled]="item.disabled" [class.has-parent]="!!parent" [class.active]="options().getSelected(entry)" (click)="onSelect(entry, $event)">
+      <div class="text">{{ item.label }}</div>
+
+      @if (item.children?.length) {
+        <ngf-select-items [data]="item.children" [options]="options()" [transform]="transform()" (select)="onSelect($event)" />
+      }
     </li>
   }
 </ul>

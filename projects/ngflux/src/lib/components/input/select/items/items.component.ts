@@ -1,4 +1,4 @@
-import { Component, input, output } from "@angular/core";
+import { Component, inject, input, output } from "@angular/core";
 
 import { SelectItem, SelectTransformer } from "../../../../interfaces";
 
@@ -11,18 +11,25 @@ export type SelectItemOptions = {
   templateUrl: 'items.component.html',
   styleUrls: ['items.component.scss'],
   imports: [],
+  host: {
+    '[class.has-parent]': '!!parent',
+  },
 })
 export class NgFluxSelectItems {
 
+  protected readonly parent = inject(NgFluxSelectItems, {
+    optional: true,
+    skipSelf: true,
+  });
+
   readonly data = input.required<any[]>();
   readonly options = input.required<SelectItemOptions>();
-  readonly transform = input<SelectTransformer>();
+  readonly transform = input.required<SelectTransformer>();
 
   readonly select = output<any>();
 
   protected getItem(item: any): SelectItem {
     const transform = this.transform();
-    if (!transform) return item as SelectItem;
 
     return {
       label: transform.getLabel(item),
@@ -32,9 +39,11 @@ export class NgFluxSelectItems {
     };
   }
 
-  protected onSelect(item: any) {
+  protected onSelect(item: any, e?: PointerEvent) {
     const info = this.getItem(item);
     if (info.disabled) return;
+
+    e?.stopPropagation();
 
     this.select.emit(item);
   }

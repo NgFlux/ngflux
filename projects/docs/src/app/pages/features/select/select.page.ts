@@ -6,6 +6,7 @@ import { DocCodeComponent, DocCodeGroupComponent, DocSectionComponent } from '@d
 type Entry = {
   name: string;
   key: string;
+  children?: Entry[];
 };
 
 @Component({
@@ -26,7 +27,16 @@ export class FeaturesSelectPage {
     { name: 'Abia', key: 'abia' },
     { name: 'Adamawa', key: 'adamawa' },
     { name: 'Akwa-ibom', key: 'akwa-ibom' },
-    { name: 'Anambra', key: 'anambra' },
+
+    {
+      name: 'Anambra',
+      key: 'anambra',
+      children: [
+        { name: 'Nnewi South', key: 'nnewi-south' },
+        { name: 'Nnewi North', key: 'nnewi-north' },
+      ],
+    },
+
     { name: 'Bauchi', key: 'bauchi' },
     { name: 'Benue', key: 'benue' },
     { name: 'Borno', key: 'borno' },
@@ -36,6 +46,8 @@ export class FeaturesSelectPage {
   protected readonly transform: SelectTransformer<Entry> = {
     getLabel: item => item.name,
     getValue: item => item.key,
+    getChildren: item => item.children ?? [],
+    setChildren: (item, children) => item.children = children,
   };
 
   protected readonly usage = `

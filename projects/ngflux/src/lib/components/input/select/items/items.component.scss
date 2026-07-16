@@ -1,7 +1,21 @@
 :host {
   display: block;
+  position: relative;
   max-height: 200px;
   overflow: hidden auto;
+
+  &.has-parent {
+    padding: 0px 0px 0px 10px;
+
+    &::before {
+      display: block;
+      position: absolute;
+      inset: 0px auto 0px 5px;
+      background-color: rgba(0, 0, 0, .2);
+      content: "";
+      width: 1px;
+    }
+  }
 
   > .wrapper {
     display: block;
@@ -14,14 +28,45 @@
       display: block;
       cursor: pointer;
 
+      --background-color: transparent;
+      --color: inherit;
+
+      > .text {
+        padding: 5px;
+        background-color: var(--background-color) !important;
+        color: var(--color) !important;
+
+        &:hover {
+          --background-color: rgba(var(--ngf-primary-rgb), .1);
+        }
+      }
+
       &.disabled {
-        color: #666;
         pointer-events: none;
         cursor: not-allowed;
+
+        --color: #666;
       }
 
       &.active {
-        color: var(--ngf-primary);
+        > .text {
+          --background-color: var(--ngf-primary);
+          --color: #FFF;
+        }
+      }
+
+      &.has-parent {
+        position: relative;
+
+        &::before {
+          display: block;
+          position: absolute;
+          inset: 50% 100% auto -4px;
+          transform: translateY(-50%);
+          background-color: rgba(0, 0, 0, .2);
+          content: "";
+          height: 1px;
+        }
       }
     }
   }

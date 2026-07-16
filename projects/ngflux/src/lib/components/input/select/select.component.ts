@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, input, InputSignal, InputSignalWithTransform, model, ModelSignal, OutputRef, signal } from "@angular/core";
+import { booleanAttribute, Component, computed, ElementRef, inject, input, InputSignal, InputSignalWithTransform, model, ModelSignal, OutputRef, signal } from "@angular/core";
 import { DisabledReason, FormValueControl, ValidationError, WithOptionalFieldTree } from "@angular/forms/signals";
 import { FormsModule } from "@angular/forms";
 import { KeyValuePipe } from "@angular/common";
@@ -18,17 +18,24 @@ type Item<V = any> = Partial<SelectItem<any, V>>;
     KeyValuePipe,
   ],
   host: {
-    '(click)': '$event.stopPropagation()',
     '(document:click)': 'onDocumentClick($event)',
   },
 })
 export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
 
+  private readonly ref: ElementRef<HTMLElement> = inject(ElementRef);
+
   readonly data = input.required<any[]>();
-  readonly transform = input<SelectTransformer<any, V>>();
   readonly block = input(false, { transform: booleanAttribute });
   readonly multi = input(false, { transform: booleanAttribute });
   readonly placeholder = input<string>();
+
+  readonly transform = input<SelectTransformer<any, V>>({
+    getLabel: item => (item as Item<V>).label ?? '',
+    getValue: item => (item as SelectItem<any, V>).value as V,
+    getChildren: item => (item as Item<V>).children ?? [],
+    setChildren: (item, children) => (item as Item<V>).children = children,
+  });
 
   protected readonly mapper = computed(() => {
     const data = this.data();
@@ -37,7 +44,7 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     const value = new Map<V, any>();
 
     for (let item of data) {
-      const key = transform?.getValue(item) ?? (item as Item<V>).value;
+      const key = transform.getValue(item);
       if (!key) continue;
 
       value.set(key, item);
@@ -87,7 +94,7 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     const transform = this.transform();
     const first = items.splice(0, 1).at(0);
 
-    let text = transform?.getLabel(first) ?? (first as Item).label ?? '';
+    let text = transform.getLabel(first);
     if (items.length) text += ` + ${items.length.toLocaleString()} more`;
 
     return text;
@@ -95,20 +102,25 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
 
   private doSearch(text: string, data: any[]) {
     const transform = this.transform();
+    const result: any[] = [];
 
-    return data.filter(item => {
-      let children = transform?.getChildren?.(item) ?? (data as Item).children ?? [];
+    for (let entry of data) {
+      const item = Object.assign({}, entry);
 
+      let children = transform.getChildren?.(item) ?? (item as Item).children ?? [];
       children = this.doSearch(text, children);
-      if (children.length) return true;
 
-      const label = this.getLabel(item);
-      return label.includes(text);
-    });
-  }
+      if (children.length) {
+        transform.setChildren(item, children);
+        result.push(item);
+        continue;
+      }
 
-  protected getLabel(item: any) {
-    return this.transform()?.getLabel(item) ?? (item as Item).label ?? '';
+      const label = transform.getLabel(item).toLowerCase();
+      if (label.includes(text)) result.push(item);
+    }
+
+    return result;
   }
 
   protected toggleOpen() {
@@ -155,6 +167,12 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
 
   protected onDocumentClick(e: PointerEvent) {
     if (this.multi()) return;
+
+    const { ref: { nativeElement: elem } } = this;
+    const target = e.target as HTMLElement;
+
+    if (elem.contains(target)) return;
+
     this.open.set(false);
   }
 
