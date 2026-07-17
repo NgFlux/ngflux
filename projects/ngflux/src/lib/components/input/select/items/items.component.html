@@ -1,0 +1,15 @@
+<ul class="wrapper">
+  @for (entry of data(); track $index) {
+    @let item = getItem(entry);
+
+    <li [class.disabled]="item.disabled" [class.has-parent]="!!parent" [class.active]="options().getSelected(entry)">
+      <div class="text" (click)="onSelect(entry)">
+        <span>{{ item.label }}</span>
+      </div>
+
+      @if (item.children?.length) {
+        <ngf-select-items [data]="item.children" [options]="options()" [transform]="transform()" (select)="onSelect($event)" />
+      }
+    </li>
+  }
+</ul>
