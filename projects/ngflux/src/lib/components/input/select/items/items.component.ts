@@ -39,11 +39,9 @@ export class NgFluxSelectItems {
     };
   }
 
-  protected onSelect(item: any, e?: PointerEvent) {
+  protected onSelect(item: any) {
     const info = this.getItem(item);
     if (info.disabled) return;
-
-    e?.stopPropagation();
 
     this.select.emit(item);
   }

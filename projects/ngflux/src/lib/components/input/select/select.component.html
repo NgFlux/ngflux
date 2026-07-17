@@ -10,6 +10,12 @@
   <div class="body" [class.single]="!multi()" [class.show]="open()">
     <div class="searchbox">
       <input type="text" placeholder="Search Items" [(ngModel)]="searchbox">
+
+      @if (searchbox().length) {
+        <div class="clear" (click)="searchbox.set('')">
+          <i class="ngf-icon close"></i>
+        </div>
+      }
     </div>
 
     <ngf-select-items [data]="search()" [options]="options" [transform]="transform()" (select)="toggle($event)" />

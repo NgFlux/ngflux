@@ -61,6 +61,7 @@
 
       > .searchbox {
         display: block;
+        position: relative;
         border-bottom: var(--border) !important;
         padding: 7px;
 
@@ -75,6 +76,18 @@
           &:focus {
             box-shadow: none !important;
             outline: none !important;
+          }
+        }
+
+        > .clear {
+          display: block;
+          position: absolute;
+          inset: 50% 15px auto auto;
+          transform: translateY(-50%);
+          cursor: pointer;
+
+          .ngf-icon {
+            font-size: 1em;
           }
         }
       }
@@ -118,7 +131,7 @@
       }
     }
 
-    .clear-btn {
+    > .clear-btn {
       display: block;
       border-top: var(--border) !important;
       font-size: .8em;

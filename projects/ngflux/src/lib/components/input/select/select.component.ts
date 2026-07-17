@@ -39,16 +39,9 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
 
   protected readonly mapper = computed(() => {
     const data = this.data();
-    const transform = this.transform();
 
     const value = new Map<V, any>();
-
-    for (let item of data) {
-      const key = transform.getValue(item);
-      if (!key) continue;
-
-      value.set(key, item);
-    }
+    this.doFlatMap(value, data);
 
     return value;
   });
@@ -100,6 +93,18 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     return text;
   });
 
+  private doFlatMap(map: Map<V, any>, data: any[]) {
+    const transform = this.transform();
+
+    for (let item of data) {
+      const key = transform.getValue(item);
+      map.set(key, item);
+
+      const children = transform.getChildren?.(item) ?? [];
+      this.doFlatMap(map, children);
+    }
+  }
+
   private doSearch(text: string, data: any[]) {
     const transform = this.transform();
     const result: any[] = [];
@@ -107,11 +112,11 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     for (let entry of data) {
       const item = Object.assign({}, entry);
 
-      let children = transform.getChildren?.(item) ?? (item as Item).children ?? [];
+      let children = transform.getChildren?.(item) ?? [];
       children = this.doSearch(text, children);
+      transform.setChildren?.(item, children);
 
       if (children.length) {
-        transform.setChildren(item, children);
         result.push(item);
         continue;
       }
@@ -133,7 +138,7 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     const transform = this.transform();
     const vmap = new Map(this.vmap());
 
-    const key = transform?.getValue(item) ?? (item as Item<V>).value;
+    const key = transform.getValue(item);
     if (!key) return;
 
     if (!vmap.has(key)) {
@@ -158,7 +163,7 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     getSelected: item => {
       const transform = this.transform();
 
-      const key = transform?.getValue(item) ?? (item as Item<V>).value;
+      const key = transform.getValue(item);
       if (!key) return false;
 
       return this.vmap().has(key);
