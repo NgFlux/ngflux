@@ -18,6 +18,7 @@ type Item<V = any> = Partial<SelectItem<any, V>>;
     KeyValuePipe,
   ],
   host: {
+    '[class.block]': 'block()',
     '(document:click)': 'onDocumentClick($event)',
   },
 })

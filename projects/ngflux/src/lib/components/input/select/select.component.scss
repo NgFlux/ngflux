@@ -1,13 +1,17 @@
 :host {
-  // display: block;
   display: inline-block;
   border: var(--border) !important;
   border-radius: 3px;
-  min-width: 200px;
+  width: 200px;
   font-size: .8rem;
 
   --border: 1px solid rgba(0, 0, 0, .2);
   --height: 40px;
+
+  &.block {
+    display: block;
+    width: 100%;
+  }
 
   > .wrapper {
     display: block;

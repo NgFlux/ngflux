@@ -1,0 +1,38 @@
+:host {
+  display: inline-block;
+  width: 200px;
+
+  --padding-y: 10px;
+  --border: 1px solid rgba(0, 0, 0, .2);
+  --background-color: #FFF;
+  --color: inherit;
+  --gap: 5px;
+
+  &.block {
+    display: block;
+    width: 100%;
+  }
+
+  > .wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap) !important;
+
+    > input {
+      display: block;
+      flex: 1 0 0;
+      width: 0px;
+      text-align: center;
+      font-size: 1em;
+      color: var(--color) !important;
+      padding: var(--padding-y) 0px var(--padding-y) 0px !important;
+      background-color: var(--background-color) !important;
+      border: var(--border) !important;
+
+      &:focus {
+        outline: var(--border);
+        box-shadow: none;
+      }
+    }
+  }
+}

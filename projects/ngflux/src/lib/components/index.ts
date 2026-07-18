@@ -10,3 +10,4 @@ export * from './loading/root/root.component';
 export * from './pagination/pagination.component';
 
 export * from './input/select/select.component';
+export * from './input/pin/pin.component';

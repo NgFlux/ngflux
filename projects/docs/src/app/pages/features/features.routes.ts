@@ -56,6 +56,13 @@ export const routes: NgFluxRoutes = [
         addParentTitle: true,
         title: 'Select',
       },
+
+      {
+        path: 'pin',
+        loadComponent: () => import('./pin/pin.page').then(m => m.FeaturesPinPage),
+        addParentTitle: true,
+        title: 'Pin Input',
+      },
     ],
   }
 ];

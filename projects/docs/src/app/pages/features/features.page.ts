@@ -21,7 +21,8 @@ export class FeaturesPage {
     { text: 'Dialog', href: './dialog', description: 'A service that provides a modern, fully accessible alternative to native browser dialogs.' },
     { text: 'Loading', href: './loading', description: 'A service that provides a global, configurable loading overlay for your application.' },
     { text: 'Pagination', href: './pagination', description: 'Provides a robust pagination control interface that handles server-side data tracking...' },
-    { text: 'Select', href: './select', description: '' },
+    // { text: 'Select', href: './select', description: '' },
+    // { text: 'Pin', href: './pin', description: '' },
   ];
 
 }
