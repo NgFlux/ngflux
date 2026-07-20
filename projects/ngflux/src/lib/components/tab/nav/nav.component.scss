@@ -1,3 +1,36 @@
 :host {
   display: block;
+  cursor: pointer;
+
+  --color: #333;
+  --background-color: #FFF;
+
+  &:hover {
+    --background-color: rgba(var(--ngf-primary-rgb), .1);
+  }
+
+  &.active {
+    position: relative;
+
+    &::before {
+      display: block;
+      position: absolute;
+      inset: auto 0px -1px 0px;
+      background-color: var(--ngf-primary);
+      height: 2px;
+      content: "";
+    }
+  }
+
+  > .wrapper {
+    display: block;
+    color: var(--color) !important;
+    background-color: var(--background-color) !important;
+    padding: 10px 20px;
+    font-weight: 400;
+
+    &, &:link, &:hover {
+      text-decoration: none !important;
+    }
+  }
 }

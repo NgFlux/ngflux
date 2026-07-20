@@ -63,6 +63,13 @@ export const routes: NgFluxRoutes = [
         addParentTitle: true,
         title: 'Pin Input',
       },
+
+      {
+        path: 'tab',
+        loadComponent: () => import('./tab/tab.page').then(m => m.FeaturesTabPage),
+        addParentTitle: true,
+        title: 'Tab',
+      },
     ],
   }
 ];
