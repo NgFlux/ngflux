@@ -3,4 +3,4 @@ export * from './Dialog';
 export * from './DialogTokens';
 export * from './RouteTitleStrategy';
 export * from './Meta';
-export * from './Tab';
+export * from './TabController';

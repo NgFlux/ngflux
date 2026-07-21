@@ -1,4 +1,5 @@
-import { Component, computed, effect, inject, input, signal } from "@angular/core";
+import { Component, computed, effect, inject, input } from "@angular/core";
+import { RouterLink } from "@angular/router";
 
 import { TabNavController } from "../../../internal";
 
@@ -6,7 +7,7 @@ import { TabNavController } from "../../../internal";
   selector: 'ngf-tab-nav',
   templateUrl: 'nav.component.html',
   styleUrls: ['nav.component.scss'],
-  imports: [],
+  imports: [RouterLink],
   host: {
     '[class.active]': 'active()',
     '(click)': 'activate($event)',
@@ -18,6 +19,8 @@ export class NgFluxTabNav {
 
   readonly icon = input<string>();
   readonly link = input<string | string[]>();
+
+  readonly href = computed(() => this.link());
 
   protected readonly active = computed(() => this.ctrl.active() === this);
 

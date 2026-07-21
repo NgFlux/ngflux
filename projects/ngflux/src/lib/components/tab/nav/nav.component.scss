@@ -17,8 +17,9 @@
       position: absolute;
       inset: auto 0px -1px 0px;
       background-color: var(--ngf-primary);
-      height: 2px;
+      height: 3px;
       content: "";
+      z-index: 2;
     }
   }
 
@@ -26,7 +27,7 @@
     display: block;
     color: var(--color) !important;
     background-color: var(--background-color) !important;
-    padding: 10px 20px;
+    padding: 10px 30px;
     font-weight: 400;
 
     &, &:link, &:hover {

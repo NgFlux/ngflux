@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, output, signal } from "@angular/core";
+import { Component, inject, output } from "@angular/core";
 import { TabNavController } from "../../../internal";
 
 @Component({
