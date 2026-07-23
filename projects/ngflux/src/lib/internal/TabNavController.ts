@@ -1,16 +1,16 @@
-import { Injectable, linkedSignal, signal } from "@angular/core";
+import { computed, effect, Injectable, linkedSignal, signal, untracked } from "@angular/core";
 
-import type { NgFluxTabNav } from "../components";
+import type { NgFluxTabContentDirective, NgFluxTabNavDirective } from "../directives";
 
 @Injectable()
 export class TabNavController {
 
-  private readonly navs = signal(new Map<NgFluxTabNav, string | string[] | undefined>());
+  private readonly navs = signal(new Map<NgFluxTabNavDirective, any>());
 
   private readonly selected = linkedSignal({
     source: this.navs,
-    computation: (src, prev): NgFluxTabNav | null => {
-      const value: NgFluxTabNav | null = prev?.value ?? null;
+    computation: (src, prev): NgFluxTabNavDirective | null => {
+      const value: NgFluxTabNavDirective | null = prev?.value ?? null;
       if (value && src.has(value)) return value;
 
       const navs = Array.from(src.keys());
@@ -19,23 +19,25 @@ export class TabNavController {
   });
 
   readonly active = this.selected.asReadonly();
+  readonly activeContent = computed(() => this.active()?.navContent());
 
-  activate(nav: NgFluxTabNav) {
+  activate(nav: NgFluxTabNavDirective) {
     const navs = this.navs();
     if (!navs.has(nav)) return;
 
     this.selected.set(nav);
   }
 
-  add(nav: NgFluxTabNav) {
+  add(nav: NgFluxTabNavDirective) {
     this.navs.update(v => {
       const map = new Map(v);
-      map.set(nav, nav.href());
+      map.set(nav, true);
+
       return map;
     });
   }
 
-  remove(nav: NgFluxTabNav) {
+  remove(nav: NgFluxTabNavDirective) {
     this.navs.update(v => {
       if (!v.has(nav)) return v;
 

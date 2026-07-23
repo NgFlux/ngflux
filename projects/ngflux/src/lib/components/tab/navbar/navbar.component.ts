@@ -1,5 +1,9 @@
-import { Component, inject, output } from "@angular/core";
+import { Component, effect, inject, input, output } from "@angular/core";
+
+import { NgFluxTabPanel } from "../panel/panel.component";
+
 import { TabNavController } from "../../../internal";
+import { NgFluxTabContentDirective } from "../../../directives";
 
 @Component({
   selector: 'ngf-tab-navbar',
@@ -12,6 +16,17 @@ export class NgFluxTabNavbar {
 
   private readonly ctrl = inject(TabNavController);
 
-  readonly select = output<number>();
+  readonly panel = input<NgFluxTabPanel>();
+  readonly selectedIndex = input<number>();
+
+  constructor() {
+    const { ctrl } = this;
+
+    effect(() => {
+      const panel = this.panel();
+      const content = ctrl.activeContent();
+      panel?.setContent(content?.templateRef);
+    });
+  }
 
 }

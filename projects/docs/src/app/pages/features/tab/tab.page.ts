@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgFluxPinInput, NgFluxSelect, NgFluxTabNav, NgFluxTabNavbar, SelectTransformer } from '@ngflux/ngflux';
+
+import { NgFluxTabNavbar, NgFluxTabNavDirective } from '@ngflux/ngflux';
 import { DocCodeComponent, DocCodeGroupComponent, DocSectionComponent } from '@docs/core';
 
 @Component({
@@ -13,8 +14,8 @@ import { DocCodeComponent, DocCodeGroupComponent, DocSectionComponent } from '@d
     DocCodeGroupComponent,
     DocSectionComponent,
     NgFluxTabNavbar,
-    NgFluxTabNav,
-  ],
+    NgFluxTabNavDirective,
+],
 })
 export class FeaturesTabPage {
 

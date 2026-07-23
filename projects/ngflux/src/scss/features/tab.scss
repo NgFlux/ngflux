@@ -1,5 +1,9 @@
-:host {
+.ngf-tab-nav {
   display: block;
+  padding: 10px 30px;
+  background-color: var(--background-color) !important;
+  color: var(--color) !important;
+  text-decoration: none !important;
   cursor: pointer;
 
   --color: #333;
@@ -12,6 +16,8 @@
   &.active {
     position: relative;
 
+    --color: var(--ngf-primary);
+
     &::before {
       display: block;
       position: absolute;
@@ -20,18 +26,6 @@
       height: 3px;
       content: "";
       z-index: 2;
-    }
-  }
-
-  > .wrapper {
-    display: block;
-    color: var(--color) !important;
-    background-color: var(--background-color) !important;
-    padding: 10px 30px;
-    font-weight: 400;
-
-    &, &:link, &:hover {
-      text-decoration: none !important;
     }
   }
 }

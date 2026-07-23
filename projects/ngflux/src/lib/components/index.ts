@@ -14,6 +14,6 @@ export * from './input/pin/pin.component';
 
 export * from './tab/tab.component';
 export * from './tab/group/group.component';
-export * from './tab/nav/nav.component';
+
 export * from './tab/navbar/navbar.component';
 export * from './tab/panel/panel.component';
