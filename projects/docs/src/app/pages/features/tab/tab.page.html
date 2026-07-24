@@ -1,4 +1,5 @@
 <div style="margin-bottom: 50px;">
+  <h2>Tab Navbar example</h2>
 
   <ngf-tab-navbar>
     <div ngfTabNav>
@@ -20,17 +21,23 @@
 </div>
 
 <div style="margin-bottom: 50px;">
-  <ngf-tab-navbar>
-    <div ngfTabNav>
-      <span>Tab 1</span>
-    </div>
+  <h2>Tab Group example</h2>
 
-    <div ngfTabNav>
-      <span>Tab 2</span>
-    </div>
+  <ngf-tab-group [selectedIndex]="2">
+    <ngf-tab label="Tab 1">
+      <div>Tab 1 Contents</div>
+    </ngf-tab>
 
-    <a ngfTabNav link="/features/tab">
-      <span>Tab 3</span>
-    </a>
-  </ngf-tab-navbar>
+    <ngf-tab label="Tab 2">
+      <div>Tab 2 Contents</div>
+    </ngf-tab>
+
+    <ngf-tab label="Tab 3">
+      <div>Tab 3 Contents</div>
+    </ngf-tab>
+
+    <ngf-tab label="Tab 4">
+      <div>Tab 4 Contents</div>
+    </ngf-tab>
+  </ngf-tab-group>
 </div>

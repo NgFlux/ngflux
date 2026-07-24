@@ -1,0 +1,13 @@
+<ngf-tab-navbar [panel]="panel" [selectedIndex]="selectedIndex()">
+  @for (tab of ctrl.tabs(); track $index) {
+    <div ngfTabNav [content]="tab.content()">
+      <span>{{ tab.navLabel() }}</span>
+    </div>
+  }
+</ngf-tab-navbar>
+
+<ngf-tab-panel #panel></ngf-tab-panel>
+
+@if (showTabs) {
+  <ng-content select="ngf-tab"></ng-content>
+}

@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from "@angular/common";
-import { Component, input, TemplateRef } from "@angular/core";
+import { Component, input, signal, TemplateRef } from "@angular/core";
 
 @Component({
   selector: 'ngf-tab-panel',
@@ -11,8 +11,10 @@ export class NgFluxTabPanel {
 
   readonly label = input<string>();
 
-  setContent(tpl?: TemplateRef<any> | null) {
-    // 
+  protected readonly content = signal<TemplateRef<any> | null>(null);
+
+  setContent(tpl?: TemplateRef<any>) {
+    this.content.set(tpl ?? null);
   }
 
 }

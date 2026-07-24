@@ -17,10 +17,15 @@ export class NgFluxTabNavbar {
   private readonly ctrl = inject(TabNavController);
 
   readonly panel = input<NgFluxTabPanel>();
-  readonly selectedIndex = input<number>();
+  readonly selectedIndex = input(0);
 
   constructor() {
     const { ctrl } = this;
+
+    effect(() => {
+      const index = this.selectedIndex();
+      ctrl.selectedIndex.set(index);
+    });
 
     effect(() => {
       const panel = this.panel();
