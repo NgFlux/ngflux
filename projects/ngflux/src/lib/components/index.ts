@@ -1,3 +1,4 @@
+export * from './actions/actions.component';
 export * from './button/button.component';
 
 export * from './dialog/body/body.component';
