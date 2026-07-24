@@ -1,5 +1,5 @@
 <div class="wrapper">
   @for (val of values(); track $index) {
-    <input type="text" pin-input [value]="val" (keydown)="onKeyDown($event, $index)" (paste)="onPaste($event, $index)">
+    <input type="text" pinInput [value]="val" (keydown)="onKeyDown($event, $index)" (paste)="onPaste($event, $index)">
   }
 </div>
