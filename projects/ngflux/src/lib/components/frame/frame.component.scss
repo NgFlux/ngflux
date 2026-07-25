@@ -1,3 +1,28 @@
 :host {
   display: block;
+  border: 1px solid #CCC;
+  font-size: 1rem;
+  color: #333;
+
+  .frame {
+    display: block;
+    position: relative;
+
+    &-header {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid #CCC;
+      align-items: center;
+      height: 40px;
+
+      > h1 {
+        display: block;
+        padding: 0px 20px;
+        font-size: 1.1em;
+        font-weight: 600;
+        color: inherit;
+        margin: 0px;
+      }
+    }
+  }
 }

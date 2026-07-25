@@ -1,0 +1,25 @@
+<div class="frame">
+  <!-- BEGIN: Frame Header -->
+  <div class="frame-header">
+    @if (title()) {<h1>{{ title() }}</h1>}
+  </div>
+  <!-- END: Frame Header -->
+
+  <div class="frame-body">
+    <!-- BEGIN: Left Sidebar -->
+    <div class="frame-body-left"></div>
+    <!-- END: Left Sidebar -->
+
+    <!-- BEGIN: Right Sidebar -->
+    <div class="frame-body-right">
+      <div class="frame-toolbar">
+        <!--  -->
+      </div>
+
+      <div class="frame-content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <!-- END: Right Sidebar -->
+  </div>
+</div>

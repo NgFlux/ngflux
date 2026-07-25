@@ -18,3 +18,5 @@ export * from './tab/group/group.component';
 
 export * from './tab/navbar/navbar.component';
 export * from './tab/panel/panel.component';
+
+export * from './frame/frame.component';

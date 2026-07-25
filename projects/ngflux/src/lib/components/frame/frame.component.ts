@@ -1,6 +1,6 @@
-import { Component, input } from "@angular/core";
+import { booleanAttribute, Component, computed, inject, input } from "@angular/core";
 
-import { Menu } from "../../interfaces";
+import { FrameOptions, FrameSize } from "../../interfaces";
 
 @Component({
   selector: 'ngf-frame',
@@ -8,12 +8,18 @@ import { Menu } from "../../interfaces";
   styleUrls: ['frame.component.scss'],
   imports: [],
   host: {
-    '[attr.title]': 'null',
+    '[class.viewport]': 'viewport()',
   },
 })
 export class NgFluxFrame {
 
-  readonly title = input('');
-  readonly menu = input<Menu[]>([]);
+  readonly viewport = input(false, { transform: booleanAttribute });
+
+  readonly options = input<FrameOptions>({});
+
+  protected readonly title = computed(() => this.options().title ?? '');
+  protected readonly icon = computed(() => this.options().icon ?? '');
+  protected readonly menu = computed(() => this.options().menu ?? []);
+  protected readonly toolbarItems = computed(() => this.options().toolbarItems ?? []);
 
 }

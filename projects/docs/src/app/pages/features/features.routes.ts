@@ -70,6 +70,13 @@ export const routes: NgFluxRoutes = [
         addParentTitle: true,
         title: 'Tab',
       },
+
+      {
+        path: 'frame',
+        loadComponent: () => import('./frame/frame.page').then(m => m.FeaturesFramePage),
+        addParentTitle: true,
+        title: 'Frame',
+      },
     ],
   }
 ];
