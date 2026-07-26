@@ -7,6 +7,8 @@ export type FrameToolbarItem = {};
 export type FrameOptions = {
   title?: string;
   icon?: string;
+  image?: string;
   toolbarItems?: FrameToolbarItem[];
-  menu?: Menu[];
+  mainMenu?: Menu[];
+  sideMenu?: Menu[];
 };

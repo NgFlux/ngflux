@@ -1,19 +1,36 @@
+@use 'sass:map';
+@use 'system' as ngf;
+
 :host {
   display: block;
-  border: 1px solid #CCC;
+  border: var(--border) !important;
   font-size: 1rem;
   color: #333;
+
+  $xs: map.get(ngf.$device, xs);
+  $sm: map.get(ngf.$device, sm);
+  $md: map.get(ngf.$device, md);
+  $lg: map.get(ngf.$device, lg);
+
+  --border: 1px solid #CCC;
+  --left-width: 100%;
 
   .frame {
     display: block;
     position: relative;
+    container: frame / inline-size;
+    overflow: hidden;
 
     &-header {
       display: flex;
       flex-direction: row;
-      border-bottom: 1px solid #CCC;
+      // border-bottom: var(--border) !important;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+      background-color: #FFF;
       align-items: center;
+      position: relative;
       height: 40px;
+      z-index: 20;
 
       > h1 {
         display: block;
@@ -23,6 +40,156 @@
         color: inherit;
         margin: 0px;
       }
+
+      > ngf-frame-main-menu {
+        flex: 1 0 0;
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: row;
+      min-height: 100px;
+
+      @container frame (min-width: #{$xs}) {
+        --left-width: 200px;
+      }
+
+      @container frame (min-width: #{$lg}) {
+        --left-width: 250px;
+      }
+
+      &-left {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: var(--left-width) !important;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+        margin-left: calc(var(--left-width) * -1);
+        transition: all .3s ease-in-out;
+        background-color: #FFF;
+        z-index: 15;
+
+        &.drawer {
+          margin-left: 0px;
+        }
+
+        @container frame (min-width: #{$md}) {
+          margin-left: 0px;
+        }
+
+        .btn-row {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: end;
+          border-bottom: var(--border) !important;
+          padding: 2px;
+
+          @container frame (min-width: #{$xs}) {
+            display: none;
+          }
+
+          .close-btn {
+            display: block;
+            cursor: pointer;
+            padding: 0px 3px;
+          }
+        }
+
+        .search-form {
+          display: block;
+          position: relative;
+          border-bottom: var(--border) !important;
+          padding: 10px;
+
+          > input {
+            display: block;
+            background-color: #FFF;
+            border: var(--border) !important;
+            border-radius: 3px;
+            padding: 10px;
+            width: 100%;
+
+            &:focus {
+              outline: var(--border) !important;
+              box-shadow: none;
+            }
+          }
+
+          > .clear {
+            display: block;
+            position: absolute;
+            inset: 50% 20px auto auto;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 5;
+          }
+        }
+
+        .menu-pane {
+          display: block;
+          flex: 1 0 0;
+          height: 0px;
+          overflow: hidden auto;
+        }
+      }
+
+      &-right {
+        display: block;
+        background-color: #EEE;
+        margin-right: calc(var(--left-width) * -1);
+        transition: all .3s ease-in-out;
+        flex: 1 0 0;
+        width: 0px;
+
+        &.drawer {
+          margin-left: 0px;
+        }
+
+        @container frame (min-width: #{$md}) {
+          margin-left: 0px;
+        }
+      }
+    }
+
+    &-toolbar {
+      display: flex;
+      flex-direction: row;
+      border-bottom: var(--border) !important;
+      background-color: #FFF;
+      height: 30px;
+
+      > .spacer {
+        display: block;
+        flex: 1 0 0;
+        width: 0px;
+      }
+
+      > .drawer-btn {
+        display: block;
+        position: relative;
+        border-right: var(--border) !important;
+        cursor: pointer;
+        width: 30px;
+
+        @container frame (min-width: #{$md}) {
+          display: none;
+        }
+
+        > .ngf-icon {
+          position: absolute;
+          inset: 50% auto auto 50%;
+          transform: translate(-50%, -50%);
+          font-size: 1em;
+        }
+      }
+    }
+
+    &-content {
+      display: block;
+      flex: 1 0 0;
+      overflow: hidden auto;
     }
   }
 }

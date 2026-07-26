@@ -2,18 +2,50 @@
   <!-- BEGIN: Frame Header -->
   <div class="frame-header">
     @if (title()) {<h1>{{ title() }}</h1>}
+
+    <ngf-frame-main-menu [menu]="mainMenu()" />
   </div>
   <!-- END: Frame Header -->
 
   <div class="frame-body">
     <!-- BEGIN: Left Sidebar -->
-    <div class="frame-body-left"></div>
+    <div #left class="frame-body-left" [class.drawer]="drawer()">
+      <div class="btn-row">
+        <div class="close-btn" (click)="closeDrawer($event)">
+          <i class="ngf-icon close"></i>
+        </div>
+      </div>
+
+      <div class="search-form">
+        <input type="text" placeholder="Search menu" [(ngModel)]="search">
+
+        @if (search()) {
+          <div class="clear" (click)="search.set('')">
+            <i class="ngf-icon close"></i>
+          </div>
+        }
+      </div>
+
+      <div class="menu-pane">
+        <ngf-frame-side-menu [menu]="sideMenu()" />
+      </div>
+    </div>
     <!-- END: Left Sidebar -->
 
     <!-- BEGIN: Right Sidebar -->
-    <div class="frame-body-right">
+    <div class="frame-body-right" [class.drawer]="drawer()">
       <div class="frame-toolbar">
-        <!--  -->
+        <div class="drawer-btn" (click)="toggleDrawer($event)">
+          <i class="ngf-icon menu"></i>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!--
+          <div class="drawer-btn" (click)="toggleDrawer($event)">
+            <i class="ngf-icon close"></i>
+          </div>
+        -->
       </div>
 
       <div class="frame-content">
