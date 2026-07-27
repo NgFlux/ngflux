@@ -2,8 +2,8 @@ import { booleanAttribute, Component, computed, debounced, ElementRef, inject, i
 import { FormsModule } from "@angular/forms";
 
 import { FrameOptions, Menu } from "../../interfaces";
-import { NgFluxFrameMainMenu } from "./main-menu/main-menu.component";
 import { NgFluxFrameSideMenu } from "./side-menu/side-menu.component";
+import { NgFluxFrameHeaderMenu } from "./header-menu/header-menu.component";
 
 @Component({
   selector: 'ngf-frame',
@@ -11,7 +11,7 @@ import { NgFluxFrameSideMenu } from "./side-menu/side-menu.component";
   styleUrls: ['frame.component.scss'],
   imports: [
     FormsModule,
-    NgFluxFrameMainMenu,
+    NgFluxFrameHeaderMenu,
     NgFluxFrameSideMenu,
   ],
   host: {
@@ -27,11 +27,11 @@ export class NgFluxFrame {
 
   readonly options = input<FrameOptions>({});
 
-  protected readonly title = computed(() => this.options().title ?? '');
-  protected readonly icon = computed(() => this.options().icon ?? '');
-  protected readonly image = computed(() => this.options().image ?? '');
-  protected readonly toolbarItems = computed(() => this.options().toolbarItems ?? []);
-  protected readonly mainMenu = computed(() => this.options().mainMenu ?? []);
+  protected readonly title = computed(() => this.options().title?.() ?? '');
+  protected readonly icon = computed(() => this.options().icon?.() ?? '');
+  protected readonly image = computed(() => this.options().image?.() ?? '');
+  protected readonly toolbarItems = computed(() => this.options().toolbarItems?.() ?? []);
+  protected readonly headerMenu = computed(() => this.options().headerMenu?.() ?? []);
 
   protected readonly drawer = signal(false);
 
@@ -39,7 +39,7 @@ export class NgFluxFrame {
   protected readonly searchText = debounced(this.search, 300);
 
   protected readonly sideMenu = computed(() => {
-    const menu = this.options().sideMenu ?? [];
+    const menu = this.options().sideMenu?.() ?? [];
 
     const text = (this.searchText.value() ?? '').trim().toLowerCase();
     if (!text) return menu;

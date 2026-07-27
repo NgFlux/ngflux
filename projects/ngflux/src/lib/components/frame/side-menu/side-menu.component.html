@@ -1,0 +1,43 @@
+@if (menu().length) {
+  <ul class="wrapper">
+    @for (item of menu(); track $index) {
+      <li routerLinkActive="active">
+        @if(item.isExternal) {
+          <a [href]="item.href ?? null" [attr.target]="target(item)" (click)="item.onClick?.($event, item)">
+            <div class="icon">
+              @if (item.icon) {<i [className]="item.icon"></i>}
+            </div>
+
+            <div class="text" [attr.title]="item.text">{{ item.text }}</div>
+
+            @if (item.children?.length) {
+              @let icons = ['ngf-icon', isExpanded(item) ? 'unfold-less' : 'unfold-more'];
+              <div class="toggle" (click)="toggle($event, item)">
+                <i [className]="icons.join(' ')"></i>
+              </div>
+            }
+          </a>
+        } @else {
+          <a [routerLink]="item.href" [attr.target]="target(item)" (click)="item.onClick?.($event, item)">
+            <div class="icon">
+              @if (item.icon) {<i [className]="item.icon"></i>}
+            </div>
+
+            <div class="text" [attr.title]="item.text">{{ item.text }}</div>
+
+            @if (item.children?.length) {
+              @let icons = ['ngf-icon', isExpanded(item) ? 'unfold-less' : 'unfold-more'];
+              <div class="toggle" (click)="toggle($event, item)">
+                <i [className]="icons.join(' ')"></i>
+              </div>
+            }
+          </a>
+        }
+
+        @if (item.children?.length && (isActive(item) || isExpanded(item))) {
+          <ngf-frame-side-menu [menu]="item.children" />
+        }
+      </li>
+    }
+  </ul>
+}

@@ -1,0 +1,83 @@
+:host {
+  display: block;
+  font-size: var(--font-size) !important;
+
+  --color: #333;
+  --bg-color: transparent;
+  --font-size: .8rem;
+
+  --active-color: var(--ngf-primary);
+  --active-bg-color: rgba(var(--ngf-primary-rgb), .1);
+
+  --hover-color: var(--ngf-primary);
+  --hover-bg-color: rgba(var(--ngf-primary-rgb), .1);
+
+  &.has-parent {
+    padding: 0px 0px 0px 20px;
+  }
+
+  .wrapper {
+    display: block;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+
+    > li {
+      display: block;
+      background-color: var(--bg-color) !important;
+      padding: 0px;
+      margin: 0px;
+
+      &:hover {
+        --bg-color: var(--hover-bg-color);
+      }
+
+      &.active {
+        --color: var(--active-color);
+        --bg-color: var(--active-bg-color);
+      }
+
+      > a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px;
+        text-decoration: none !important;
+        cursor: pointer;
+        width: 100%;
+        gap: 5px;
+
+        &, &:link {
+          color: var(--color) !important;
+        }
+
+        > .icon {
+          display: block;
+          width: 13px;
+
+          .ngf-icon {
+            font-size: 1em;
+          }
+        }
+
+        > .text {
+          display: block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          flex: 1 0 0;
+          width: 0px;
+        }
+
+        > .toggle {
+          display: block;
+          cursor: pointer;
+
+          .ngf-icon {
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+}

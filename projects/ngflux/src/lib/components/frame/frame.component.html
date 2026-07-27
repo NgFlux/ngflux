@@ -3,7 +3,7 @@
   <div class="frame-header">
     @if (title()) {<h1>{{ title() }}</h1>}
 
-    <ngf-frame-main-menu [menu]="mainMenu()" />
+    <ngf-frame-header-menu [menu]="headerMenu()" />
   </div>
   <!-- END: Frame Header -->
 
@@ -31,6 +31,8 @@
       </div>
     </div>
     <!-- END: Left Sidebar -->
+
+    <div class="frame-body-overlay" [class.drawer]="drawer()"></div>
 
     <!-- BEGIN: Right Sidebar -->
     <div class="frame-body-right" [class.drawer]="drawer()">

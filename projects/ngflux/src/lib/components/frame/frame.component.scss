@@ -24,7 +24,6 @@
     &-header {
       display: flex;
       flex-direction: row;
-      // border-bottom: var(--border) !important;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
       background-color: #FFF;
       align-items: center;
@@ -41,7 +40,7 @@
         margin: 0px;
       }
 
-      > ngf-frame-main-menu {
+      > ngf-frame-header-menu {
         flex: 1 0 0;
       }
     }
@@ -49,6 +48,7 @@
     &-body {
       display: flex;
       flex-direction: row;
+      position: relative;
       min-height: 100px;
 
       @container frame (min-width: #{$xs}) {
@@ -129,14 +129,30 @@
 
         .menu-pane {
           display: block;
-          flex: 1 0 0;
-          height: 0px;
+          flex: 1 1 auto;
           overflow: hidden auto;
         }
       }
 
+      &-overlay {
+        display: none;
+        position: absolute;
+        inset: 0px;
+        background-color: rgba(0, 0, 0, .2);
+        z-index: 10;
+
+        &.drawer {
+          display: block;
+        }
+
+        @container frame (min-width: #{$md}) {
+          display: none;
+        }
+      }
+
       &-right {
-        display: block;
+        display: flex;
+        flex-direction: column;
         background-color: #EEE;
         margin-right: calc(var(--left-width) * -1);
         transition: all .3s ease-in-out;
@@ -188,7 +204,7 @@
 
     &-content {
       display: block;
-      flex: 1 0 0;
+      flex: 1 1 auto;
       overflow: hidden auto;
     }
   }

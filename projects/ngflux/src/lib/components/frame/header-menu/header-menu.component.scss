@@ -1,0 +1,103 @@
+@use 'sass:map';
+@use 'system' as ngf;
+
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  container: main / inline-size scroll-state !important;
+  padding: 0px 20px 0px 0px;
+  align-self: stretch;
+
+  $xs: map.get(ngf.$device, xs);
+  $sm: map.get(ngf.$device, sm);
+  $md: map.get(ngf.$device, md);
+  $lg: map.get(ngf.$device, lg);
+
+  --border: 1px solid #DDD;
+
+  .toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-left: var(--border) !important;
+    border-right: var(--border) !important;
+    padding: 0px 10px;
+    cursor: pointer;
+
+    @container main (min-width: #{$sm}) {
+      display: none;
+    }
+  }
+
+  .wrapper {
+    display: none;
+    position: relative;
+
+    &.open {
+      display: block;
+    }
+
+    @container main (min-width: #{$sm}) {
+      display: block;
+    }
+
+    > .menu {
+      display: block;
+      position: absolute;
+      inset: 100% 0px auto auto;
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, .5);
+      background-color: #FFF;
+      list-style: none;
+      height: auto;
+      padding: 0px;
+      margin: 0px;
+
+      @container main (min-width: #{$sm}) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: end;
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
+        height: 100%;
+        inset: auto;
+        gap: 15px;
+      }
+
+      > li {
+        display: block;
+        padding: 0px;
+        margin: 0px;
+
+        > a {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          text-decoration: none !important;
+          padding: 7px 20px;
+          gap: 5px;
+
+          @container main (min-width: #{$sm}) {
+            padding: 0px;
+          }
+
+          > .icon {
+            display: block;
+
+            > * {
+              font-size: 1.2em;
+            }
+          }
+
+          > .text {
+            display: block;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

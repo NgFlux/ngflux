@@ -1,0 +1,36 @@
+<div class="toggle" (click)="toggle($event)">
+  @let icons = ['ngf-icon', open() ? 'close' : 'menu'];
+  <i [className]="icons.join(' ')"></i>
+</div>
+
+<div class="wrapper" [class.open]="open()">
+  @if (menu().length) {
+    <ul class="menu">
+      @for (item of menu(); track $index) {
+        <li>
+          @if (item.isExternal) {
+            <a [href]="item.href" [attr.target]="target(item)">
+              @if (item.icon) {
+                <div class="icon">
+                  <i [className]="item.icon"></i>
+                </div>
+              }
+
+              <div class="text">{{ item.text }}</div>
+            </a>
+          } @else {
+            <a [routerLink]="item.href" [attr.target]="target(item)">
+              @if (item.icon) {
+                <div class="icon">
+                  <i [className]="item.icon"></i>
+                </div>
+              }
+
+              <div class="text">{{ item.text }}</div>
+            </a>
+          }
+        </li>
+      }
+    </ul>
+  }
+</div>

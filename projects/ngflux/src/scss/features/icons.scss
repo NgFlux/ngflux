@@ -22,9 +22,40 @@
   &.search::before { content: "\e8b6"; }
   &.close::before { content: "\e5cd"; }
 
+  &.arrow-drop-down::before { content: "\e5c5"; }
+  &.arrow-drop-up::before { content: "\e5c7"; }
+
+  &.unfold-more::before { content: "\e5d7"; }
+  &.unfold-less::before { content: "\e5d6"; }
+
   &.chevron-left::before { content: "\e5cb"; }
   &.chevron-right::before { content: "\e5cc"; }
 
-  &.arrow-drop-down::before { content: "\e5c5"; }
-  &.arrow-drop-up::before { content: "\e5c7"; }
+  &.add::before { content: "\e145"; }
+  &.edit::before { content: "\e3c9"; }
+  &.eye::before { content: "\e8f4"; }
+  &.trash::before { content: "\e872"; }
+  &.refresh::before { content: "\e5d5"; }
+  &.close::before { content: "\e5cd"; }
+  &.filter::before { content: "\ef4f"; }
+  &.upgrade::before { content: "\f0fb"; }
+  &.download::before { content: "\f090"; }
+  &.upload::before { content: "\f09b"; }
+
+  &.heart::before { content: "\e87d"; }
+  &.heart-plus::before { content: "\f884"; }
+  &.heart-minus::before { content: "\f883"; }
+  &.heart-check::before { content: "\f60a"; }
+
+  &.cart::before { content: "\e8cc"; }
+  &.cart-plus::before { content: "\e854"; }
+  &.cart-minus::before { content: "\e928"; }
+  &.cart-checkout::before { content: "\eb88"; }
+  &.cart-off::before { content: "\f4f7"; }
+
+  &.arrow-up::before { content: "\e986"; }
+  &.arrow-down::before { content: "\e984"; }
+
+  &.arrow-left::before { content: "\ef7d"; }
+  &.arrow-right::before { content: "\e941"; }
 }
