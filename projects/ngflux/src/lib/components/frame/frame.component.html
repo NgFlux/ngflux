@@ -1,6 +1,14 @@
 <div class="frame">
   <!-- BEGIN: Frame Header -->
   <div class="frame-header">
+    @if (image()) {
+      <img [src]="image()" alt="" class="image">
+    } @else if (icon()) {
+      <div class="icon">
+        <i [className]="icon()"></i>
+      </div>
+    }
+
     @if (title()) {<h1>{{ title() }}</h1>}
 
     <ngf-frame-header-menu [menu]="headerMenu()" />

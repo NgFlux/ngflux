@@ -6,7 +6,6 @@
   flex-direction: row;
   justify-content: end;
   container: main / inline-size scroll-state !important;
-  padding: 0px 20px 0px 0px;
   align-self: stretch;
 
   $xs: map.get(ngf.$device, xs);

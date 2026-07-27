@@ -18,6 +18,7 @@ export class FeaturesFramePage {
 
   protected readonly options: FrameOptions = {
     title: signal(`Demo Frame`),
+    icon: () => 'ngf-icon heart',
     headerMenu: () => [
       { text: 'Guides', href: '/home' },
       { text: 'Features', href: '/home' },
