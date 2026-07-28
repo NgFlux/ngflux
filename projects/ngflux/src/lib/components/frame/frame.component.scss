@@ -171,17 +171,17 @@
         display: flex;
         flex-direction: column;
         background-color: #EEE;
-        margin-right: calc(var(--left-width) * -1);
         transition: all .3s ease-in-out;
+        margin-right: 0px;
         flex: 1 0 0;
         width: 0px;
 
         &.drawer {
-          margin-left: 0px;
+          margin-right: calc(var(--left-width) * -1);
         }
 
         @container frame (min-width: #{$md}) {
-          margin-left: 0px;
+          margin-right: 0px;
         }
       }
     }
