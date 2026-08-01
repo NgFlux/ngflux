@@ -10,9 +10,9 @@ import {
 
 import { NgFluxDialogRef } from '../../../../services';
 
-import { NgFluxDialogHeaderComponent } from '../../header/header.component';
-import { NgFluxDialogBodyComponent } from '../../body/body.component';
-import { NgFluxDialogFooterComponent } from '../../footer/footer.component';
+import { NgFluxDialogHeader } from '../../header/header.component';
+import { NgFluxDialogBody } from '../../body/body.component';
+import { NgFluxDialogFooter } from '../../footer/footer.component';
 import { NgFluxButton } from '../../../button/button.component';
 
 @Component({
@@ -21,9 +21,9 @@ import { NgFluxButton } from '../../../button/button.component';
   styleUrls: ['alert.dialog.scss'],
   imports: [
     NgFluxButton,
-    NgFluxDialogHeaderComponent,
-    NgFluxDialogBodyComponent,
-    NgFluxDialogFooterComponent,
+    NgFluxDialogHeader,
+    NgFluxDialogBody,
+    NgFluxDialogFooter,
   ],
 })
 export class NgFluxAlertDialog {
@@ -35,17 +35,14 @@ export class NgFluxAlertDialog {
   readonly buttons = computed<NgFluxDialogButton<boolean>[]>(() => {
     const config = this.config.dialog?.alert || {};
 
+    const baseOkayButton: NgFluxDialogButtonObj<boolean> = {
+      text: 'Okay',
+      theme: 'primary',
+      onClick: (e, btn, ref) => ref.close(),
+    };
+
     return (
-      this.options.buttons ?? [
-        Object.assign(
-          {
-            text: 'Okay',
-            theme: 'primary',
-            onClick: (e, btn, ref) => ref.close(),
-          } as NgFluxDialogButtonObj<boolean>,
-          config.okayButton,
-        ),
-      ]
+      this.options.buttons ?? [Object.assign(baseOkayButton, config.okayButton)]
     );
   });
 

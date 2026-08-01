@@ -1,8 +1,8 @@
-import { Component, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 
-import { NgFluxDialogHeaderComponent } from '../../header/header.component';
-import { NgFluxDialogFooterComponent } from '../../footer/footer.component';
-import { NgFluxDialogBodyComponent } from '../../body/body.component';
+import { NgFluxDialogHeader } from '../../header/header.component';
+import { NgFluxDialogFooter } from '../../footer/footer.component';
+import { NgFluxDialogBody } from '../../body/body.component';
 import { NgFluxButton } from '../../../button/button.component';
 
 import { NgFluxDialogRef } from '../../../../services';
@@ -18,15 +18,15 @@ import {
   selector: 'ngf-dialog-box-confirm',
   templateUrl: 'confirm.dialog.html',
   styleUrls: ['confirm.dialog.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     NgFluxButton,
-    NgFluxDialogHeaderComponent,
-    NgFluxDialogFooterComponent,
-    NgFluxDialogBodyComponent,
+    NgFluxDialogHeader,
+    NgFluxDialogFooter,
+    NgFluxDialogBody,
   ],
 })
 export class NgFluxConfirmDialog {
+
   readonly config = inject(NGF_CONFIG);
   readonly dialogRef = inject<NgFluxDialogRef<boolean>>(NgFluxDialogRef);
   readonly options: NgFluxDialogConfirmOptions = inject(NGF_DIALOG_DATA);
@@ -34,26 +34,21 @@ export class NgFluxConfirmDialog {
   readonly buttons = computed(() => {
     const config = this.config.dialog?.prompt ?? {};
 
-    return [
-      this.options.cancelButton ??
-        Object.assign(
-          {
-            text: 'Cancel',
-            theme: 'dark',
-            onClick: (e, btn, dialogRef) => dialogRef.close(),
-          } as NgFluxDialogButtonObj,
-          config.cancelButton,
-        ),
+    const baseCancelButton: NgFluxDialogButtonObj = {
+      text: 'Cancel',
+      theme: 'dark',
+      onClick: (e, btn, dialogRef) => dialogRef.close(),
+    };
 
-      this.options.okayButton ??
-        Object.assign(
-          {
-            text: 'Okay',
-            theme: 'primary',
-            onClick: (e, btn, dialogRef) => dialogRef.close(true),
-          } as NgFluxDialogButtonObj,
-          config.submitButton,
-        ),
+    const baseSubmitButton: NgFluxDialogButtonObj = {
+      text: 'Okay',
+      theme: 'primary',
+      onClick: (e, btn, dialogRef) => dialogRef.close(true),
+    };
+
+    return [
+      this.options.cancelButton ?? Object.assign(baseCancelButton, config.cancelButton),
+      this.options.okayButton ?? Object.assign(baseSubmitButton, config.submitButton),
     ];
   });
 

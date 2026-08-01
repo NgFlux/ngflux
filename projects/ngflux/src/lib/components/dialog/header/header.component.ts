@@ -1,5 +1,5 @@
+import { Component, inject, input } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
 
 import { NGF_DIALOG_CONFIG } from '../../../internal';
 import { NgFluxDialogRef } from '../../../services';
@@ -8,10 +8,10 @@ import { NgFluxDialogRef } from '../../../services';
   selector: 'ngf-dialog-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgClass],
 })
-export class NgFluxDialogHeaderComponent {
+export class NgFluxDialogHeader {
+
   readonly config = inject(NGF_DIALOG_CONFIG);
   readonly dialogRef = inject(NgFluxDialogRef);
 
