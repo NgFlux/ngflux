@@ -1,7 +1,9 @@
-<div class="toggle" (click)="toggle($event)">
-  @let icons = ['ngf-icon', open() ? 'close' : 'menu'];
-  <i [className]="icons.join(' ')"></i>
-</div>
+@if (menu().length) {
+  <div class="toggle" (click)="toggle($event)">
+    @let icons = ['ngf-icon', open() ? 'close' : 'menu'];
+    <i [className]="icons.join(' ')"></i>
+  </div>
+}
 
 <div class="wrapper" [class.open]="open()">
   @if (menu().length) {
