@@ -23,14 +23,14 @@
 
   @if (multi()) {
     <div class="footer">
-      @if (!vmap().size) {
+      @if (!items().length) {
         <div class="none">No item selected</div>
       } @else {
         <div class="entries">
-          @for (item of vmap() | keyvalue; track $index) {
+          @for (item of items(); track $index) {
             <div class="entries-item">
-              <div class="text">{{ transform().getLabel(item.value) }}</div>
-              <div class="btn" (click)="toggle(item.value)">
+              <div class="text">{{ transform().getLabel(item) }}</div>
+              <div class="btn" (click)="toggle(item)">
                 <i class="ngf-icon close"></i>
               </div>
             </div>
@@ -43,6 +43,12 @@
   @if (multi()) {
     <div class="clear-btn" (click)="value.set(null)">
       <span>Clear All</span>
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="overlay">
+      <div class="text">{{ loadingText() }}</div>
     </div>
   }
 </div>

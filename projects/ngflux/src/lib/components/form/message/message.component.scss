@@ -1,0 +1,18 @@
+:host {
+  display: none;
+  font-size: .8em;
+
+  &.show {
+    display: block;
+  }
+
+  > .pending {
+    display: block;
+    color: #666;
+  }
+
+  > .error {
+    display: block;
+    color: #F00;
+  }
+}

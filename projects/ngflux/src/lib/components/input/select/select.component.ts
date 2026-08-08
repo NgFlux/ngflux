@@ -1,7 +1,6 @@
-import { booleanAttribute, Component, computed, ElementRef, inject, input, InputSignal, InputSignalWithTransform, model, ModelSignal, OutputRef, signal } from "@angular/core";
+import { booleanAttribute, Component, computed, effect, ElementRef, inject, input, InputSignal, InputSignalWithTransform, model, ModelSignal, OutputRef, signal } from "@angular/core";
 import { DisabledReason, FormValueControl, ValidationError, WithOptionalFieldTree } from "@angular/forms/signals";
 import { FormsModule } from "@angular/forms";
-import { KeyValuePipe } from "@angular/common";
 
 import { SelectItem, SelectTransformer } from "../../../interfaces";
 import { NgFluxSelectItems, SelectItemOptions } from "./items/items.component";
@@ -15,7 +14,6 @@ type Item<V = any> = Partial<SelectItem<any, V>>;
   imports: [
     FormsModule,
     NgFluxSelectItems,
-    KeyValuePipe,
   ],
   host: {
     '[class.block]': 'block()',
@@ -30,6 +28,8 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
   readonly block = input(false, { transform: booleanAttribute });
   readonly multi = input(false, { transform: booleanAttribute });
   readonly placeholder = input<string>();
+  readonly loading = input(false);
+  readonly loadingText = input('Please wait...');
 
   readonly transform = input<SelectTransformer<any, V>>({
     getLabel: item => (item as Item<V>).label ?? '',
@@ -65,6 +65,8 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     return result;
   });
 
+  protected readonly items = computed(() => Array.from(this.vmap().values()));
+
   protected readonly open = signal(false);
 
   protected readonly searchbox = signal('');
@@ -82,7 +84,7 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
     const multi = this.multi();
     const placeholder = this.placeholder() ?? 'Select Item' + (multi ? 's' : '');
 
-    const items = Array.from(this.vmap().values());
+    const items = Array.from(this.items());
     if (!items.length) return placeholder;
 
     const transform = this.transform();
@@ -93,6 +95,13 @@ export class NgFluxSelect<V = any> implements FormValueControl<V | V[] | null> {
 
     return text;
   });
+
+  constructor() {
+    effect(() => {
+      const loading = this.loading();
+      if (loading) this.open.set(false);
+    });
+  }
 
   private doFlatMap(map: Map<V, any>, data: any[]) {
     const transform = this.transform();
