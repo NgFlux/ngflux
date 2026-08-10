@@ -23,6 +23,9 @@ type CloseFn = () => void;
   styleUrls: ['main.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [],
+  host: {
+    '(click)': 'onBackdropClick($event)',
+  },
 })
 export class NgFluxDialogComponent {
   private readonly injector = inject(Injector);
@@ -58,19 +61,20 @@ export class NgFluxDialogComponent {
       nativeElement.classList.add('ngf-dialog-box');
       nativeElement.focus();
 
-      nativeElement.addEventListener('click', this.onComponentClick);
       nativeElement.addEventListener('animationend', this.onAnimationComplete);
 
       onCleanup(() => {
-        nativeElement.removeEventListener('click', this.onComponentClick);
         nativeElement.removeEventListener('animationend', this.onAnimationComplete);
       });
     });
   }
 
-  @HostListener('click', ['$event'])
-  onBackdropClick(e: MouseEvent) {
-    const { instance } = this;
+  protected onBackdropClick(e: PointerEvent) {
+    const { instance, componentRef } = this;
+    const { nativeElement: comp } = componentRef.location as ElementRef<HTMLElement>;
+
+    const target = e.target as HTMLElement | null;
+    if (target && comp.contains(target)) return;
 
     instance.send({
       name: 'backdrop.close',
@@ -78,22 +82,14 @@ export class NgFluxDialogComponent {
     });
   }
 
-  private readonly onComponentClick = (e: MouseEvent) => {
-    e.stopPropagation();
-  };
-
   private readonly onAnimationComplete = (e: AnimationEvent) => {
     switch (e.animationName) {
-      case 'ngfDialogOpen':
-        {
-        }
-        break;
+      case 'ngfDialogOpen':{
+      } break;
 
-      case 'ngfDialogClose':
-        {
-          this.onClosed(this.data);
-        }
-        break;
+      case 'ngfDialogClose': {
+        this.onClosed(this.data);
+      } break;
     }
   };
 

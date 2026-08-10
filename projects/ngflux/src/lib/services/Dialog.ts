@@ -63,12 +63,12 @@ export class NgFluxDialog {
   }
 
   success(data: NgFluxDialogAlertOptions) {
-    data.content = `<div class="success">${data.content}</div>`;
+    data.content = `<div class="ngf-dialog-success">${data.content}</div>`;
     return this.alert(data);
   }
 
   error(data: NgFluxDialogAlertOptions) {
-    data.content = `<div class="error">${data.content}</div>`;
+    data.content = `<div class="ngf-dialog-error">${data.content}</div>`;
     return this.alert(data);
   }
 

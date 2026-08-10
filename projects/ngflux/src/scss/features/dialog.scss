@@ -29,33 +29,43 @@
   height: 0px;
 }
 
-.ngf-dialog-box {
-  display: block;
-  position: relative;
-  font-family: "Poppins", sans-serif;
-  background-color: var(--ngf-dialog-background-color) !important;
-  box-shadow: var(--ngf-dialog-box-shadow) !important;
-  border: 1px solid transparent;
-  border-top: none;
-  border-bottom: none;
-  animation: ngfDialogOpen .5s forwards;
+.ngf-dialog {
+  &-box {
+    display: block;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--ngf-dialog-background-color) !important;
+    box-shadow: var(--ngf-dialog-box-shadow) !important;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: none;
+    animation: ngfDialogOpen .5s forwards;
 
-  &:focus {
-    outline: none;
+    &:focus {
+      outline: none;
+    }
+
+    &.close {
+      pointer-events: none;
+      user-select: none;
+      -moz-user-select: none;
+      animation: ngfDialogClose .3s forwards;
+    }
+
+    [ngf-dialog-title] {
+      margin: 0px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
   }
 
-  &.close {
-    pointer-events: none;
-    user-select: none;
-    -moz-user-select: none;
-    animation: ngfDialogClose .3s forwards;
+  &-success {
+    color: #090;
   }
 
-  [ngf-dialog-title] {
-    margin: 0px;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    font-weight: 500;
+  &-error {
+    color: #F00;
   }
 }
 
