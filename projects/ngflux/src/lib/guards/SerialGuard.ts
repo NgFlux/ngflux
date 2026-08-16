@@ -1,3 +1,4 @@
+import { inject, Injector, runInInjectionContext } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivateChildFn,
@@ -16,7 +17,7 @@ import { from, Observable, of, switchMap } from "rxjs";
 
 export namespace NgFlux.SerialGuard {
 
-  function run<T extends Function>(guards: T[], callback: (guard: T) => MaybeAsync<GuardResult>): MaybeAsync<GuardResult> {
+  function run<T extends Function>(injector: Injector, guards: T[], callback: (guard: T) => MaybeAsync<GuardResult>): MaybeAsync<GuardResult> {
     let result: MaybeAsync<GuardResult> = of(true);
 
     for (let guard of guards) {
@@ -24,7 +25,8 @@ export namespace NgFlux.SerialGuard {
         switchMap(resp => {
           if (resp !== true) return of(resp);
 
-          const output = callback(guard);
+          const output = runInInjectionContext(injector, () => callback(guard));
+
           if (output instanceof Observable) return output;
           if (output instanceof Promise) return from(output);
 
@@ -38,7 +40,8 @@ export namespace NgFlux.SerialGuard {
 
   export function canActivateFn(...guards: CanActivateFn[]): CanActivateFn {
     return (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> => {
-      return run(guards, guard => guard(route, state));
+      const injector = inject(Injector);
+      return run(injector, guards, guard => guard(route, state));
     };
   }
 
@@ -48,13 +51,15 @@ export namespace NgFlux.SerialGuard {
 
   export function canDeactivateFn<T>(...guards: CanDeactivateFn<T>[]): CanDeactivateFn<T> {
     return (component: T, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): MaybeAsync<GuardResult> => {
-      return run(guards, guard => guard(component, currentRoute, currentState, nextState));
+      const injector = inject(Injector);
+      return run(injector, guards, guard => guard(component, currentRoute, currentState, nextState));
     };
   }
 
   export function canMatchFn(...guards: CanMatchFn[]): CanMatchFn {
     return (route: Route, segments: UrlSegment[], currentSnapshot: PartialMatchRouteSnapshot): MaybeAsync<GuardResult> => {
-      return run(guards, guard => guard(route, segments, currentSnapshot));
+      const injector = inject(Injector);
+      return run(injector, guards, guard => guard(route, segments, currentSnapshot));
     }
   }
 
