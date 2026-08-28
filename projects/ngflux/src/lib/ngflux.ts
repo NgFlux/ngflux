@@ -9,12 +9,14 @@ import {
 import {
   NgFluxDialog,
   NgFluxLoading,
+  NgFluxToast,
 } from "./services";
 
 import {
   MetaInternal,
   NgFluxDialogInternal,
   NgFluxLoadingInternal,
+  NgFluxToastController,
   RouteTitleStrategy,
 } from "./internal";
 
@@ -33,6 +35,9 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
 
     MetaInternal,
 
+    NgFluxToast,
+    NgFluxToastController,
+
     provideAppInitializer(() => {
       const meta = inject(MetaInternal);
       meta.initialize();
@@ -48,6 +53,11 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
 
       loading.initialize();
       loading.showOnRouteNavigation();
+    }),
+
+    provideAppInitializer(() => {
+      const toast = inject(NgFluxToastController);
+      toast.initialize();
     }),
   ]);
 };

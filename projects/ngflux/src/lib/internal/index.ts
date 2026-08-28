@@ -5,3 +5,4 @@ export * from './RouteTitleStrategy';
 export * from './Meta';
 export * from './TabNavController';
 export * from './TabGroupController';
+export * from './ToastController';
