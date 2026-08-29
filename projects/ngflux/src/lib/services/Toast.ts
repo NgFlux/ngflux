@@ -10,7 +10,7 @@ export class NgFluxToast {
   private readonly ctrl = inject(NgFluxToastController)
 
   show(options: ToastOptions) {
-    const config = this.config.toast;
+    const config = this.config.toast?.options;
 
     options.placement ??= config?.placement ?? 'topRight';
     options.showCloseButton ??= config?.showCloseButton ?? true;
