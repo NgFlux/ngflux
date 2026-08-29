@@ -1,0 +1,5 @@
+<div class="wrapper">
+  @for (item of items(); track item) {
+    <ngf-toast [options]="item" animate.enter="fade-in" animate.leave="fade-out" />
+  }
+</div>

@@ -10,12 +10,12 @@ import { NgFluxDialogInternal } from "../internal";
 import {
   NgFluxComponent,
   NgFluxDialogAlertOptions,
-  NgFluxDialogButton,
   NgFluxDialogConfig,
   NgFluxDialogConfirmOptions,
   NgFluxDialogEvents,
   NgFluxDialogPromptOptions,
 } from "../interfaces";
+import { map } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class NgFluxDialog {
@@ -73,14 +73,16 @@ export class NgFluxDialog {
   }
 
   confirm(data: NgFluxDialogConfirmOptions) {
-    const dialog = this.open(NgFluxConfirmDialog, {
+    const dialog = this.open<boolean>(NgFluxConfirmDialog, {
       closeOnBackBtn: false,
       backdropClose: false,
       closeOnEsc: false,
       data
     });
 
-    return dialog.closed;
+    return dialog.closed.pipe(
+      map(resp => resp ?? false)
+    );
   }
 
   prompt(data: NgFluxDialogPromptOptions) {

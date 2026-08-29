@@ -2,12 +2,14 @@ import { InjectionToken } from "@angular/core";
 import type { NgFluxComponent } from "./Component";
 import type { ButtonOptions } from "./Button";
 import type { PaginationTransformer } from "./Pagination";
+import type { ToastOptions } from "./Toast";
 
 export type NgFluxConfig = {
   loading?: LoadingOptions;
   dialog?: DialogOptions;
   pagination?: PaginationOptions;
   title?: RouterTitleOptions;
+  toast?: ToastConfiguration;
 };
 
 export const NGF_CONFIG = new InjectionToken<NgFluxConfig>('ngf-config');
@@ -57,4 +59,8 @@ type PaginationOptions = {
   limitOptions?: number[];
   limit?: number;
 };
+// END: Pagination
+
+// BEGIN: Pagination
+type ToastConfiguration = Omit<ToastOptions, 'content'>;
 // END: Pagination

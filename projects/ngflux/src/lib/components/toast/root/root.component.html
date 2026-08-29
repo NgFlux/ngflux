@@ -1,0 +1,5 @@
+<div class="wrapper">
+  @for (item of ctrl.map() | keyvalue; track item.key) {
+    <ngf-toast-group [placement]="item.key" [items]="item.value" animate.leave="fade-out" />
+  }
+</div>

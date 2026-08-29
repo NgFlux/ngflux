@@ -1,0 +1,23 @@
+@use '../system' as ngf;
+
+:root {
+  // --ngf-dialog-z-index: #{ngf.$dialog-z-index};
+  // --ngf-dialog-backdrop-color: #{ngf.$dialog-backdrop-color};
+
+  // --ngf-dialog-closebtn-color: #{ngf.$dialog-closebtn-color};
+  // --ngf-dialog-closebtn-opacity: #{ngf.$dialog-closebtn-opacity};
+
+  // --ngf-dialog-text-color: #{ngf.$dialog-text-color};
+  // --ngf-dialog-header-text-color: #{ngf.$dialog-header-text-color};
+  // --ngf-dialog-footer-text-color: #{ngf.$dialog-footer-text-color};
+
+  // --ngf-dialog-padding: #{ngf.$dialog-padding};
+  // --ngf-dialog-background-color: #{ngf.$dialog-background-color};
+  // --ngf-dialog-box-shadow: #{ngf.$dialog-box-shadow};
+  // --ngf-dialog-border: #{ngf.$dialog-border};
+
+  --ngf-toast-x: #{ngf.$toast-x};
+  --ngf-toast-y: #{ngf.$toast-y};
+
+  --ngf-toast-z-index: #{ngf.$toast-z-index};
+}

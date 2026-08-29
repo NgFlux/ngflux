@@ -17,6 +17,7 @@ import {
   NgFluxDialogInternal,
   NgFluxLoadingInternal,
   NgFluxToastController,
+  NgFluxToastInitializer,
   RouteTitleStrategy,
 } from "./internal";
 
@@ -37,6 +38,7 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
 
     NgFluxToast,
     NgFluxToastController,
+    NgFluxToastInitializer,
 
     provideAppInitializer(() => {
       const meta = inject(MetaInternal);
@@ -56,7 +58,7 @@ export const provideNgFlux = (config?: NgFluxConfig) => {
     }),
 
     provideAppInitializer(() => {
-      const toast = inject(NgFluxToastController);
+      const toast = inject(NgFluxToastInitializer);
       toast.initialize();
     }),
   ]);

@@ -77,6 +77,13 @@ export const routes: NgFluxRoutes = [
         addParentTitle: true,
         title: 'Frame',
       },
+
+      {
+        path: 'toast',
+        loadComponent: () => import('./toast/toast.page').then(m => m.FeaturesToastPage),
+        addParentTitle: true,
+        title: 'Toast',
+      },
     ],
   }
 ];

@@ -1,30 +1,42 @@
-import { ApplicationRef, ComponentRef, createComponent, inject, Injectable } from "@angular/core";
+import { computed, inject, Injectable, signal } from "@angular/core";
 
-import { NGF_CONFIG } from "../interfaces";
-import { NgFluxToastRootComponent } from "../components/toast/root/root.component";
+import { NGF_CONFIG, ToastOptions, ToastPlacement } from "../interfaces";
+
+export type ToastMappedOptions = Required<ToastOptions>;
 
 @Injectable({ providedIn: 'root' })
 export class NgFluxToastController {
 
   private readonly config = inject(NGF_CONFIG);
-  private readonly appRef = inject(ApplicationRef);
 
-  readonly rootRef: ComponentRef<NgFluxToastRootComponent>;
+  private readonly data = signal(new Map<ToastMappedOptions, any>());
 
-  constructor() {
-    const { appRef } = this;
+  readonly map = computed(() => {
+    const data = this.data();
+    const map = new Map<ToastPlacement, ToastMappedOptions[]>();
 
-    this.rootRef = createComponent(NgFluxToastRootComponent, {
-      environmentInjector: appRef.injector,
-    });
-  }
+    for (const [ item ] of data.entries()) {
+      const key = item.placement;
 
-  initialize() {
-    const { appRef, rootRef } = this;
-    appRef.attachView(rootRef.hostView);
+      const entries = map.get(key) ?? [];
+      entries.push(item);
 
-    const elem = rootRef.location.nativeElement as HTMLElement;
-    document.body.appendChild(elem);
-  }
+      map.set(key, entries);
+    }
+
+    return map;
+  });
+
+  readonly add = (options: ToastMappedOptions) => this.data.update(v => {
+    const data = new Map(v);
+    data.set(options, true);
+    return data;
+  });
+
+  readonly remove = (options: ToastMappedOptions) => this.data.update(v => {
+    const data = new Map(v);
+    data.delete(options);
+    return data;
+  });
 
 }

@@ -6,3 +6,4 @@ export * from './Meta';
 export * from './TabNavController';
 export * from './TabGroupController';
 export * from './ToastController';
+export * from './ToastInitializer';

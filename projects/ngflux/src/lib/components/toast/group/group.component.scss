@@ -1,3 +1,55 @@
 :host {
   display: block;
+  position: absolute;
+  width: calc(100% - (2 * var(--ngf-toast-x)));
+  transition: opacity .5s ease-in-out;
+  max-width: 300px;
+
+  --flex-direction: column;
+
+  &.topLeft {
+    inset: var(--ngf-toast-y) auto auto var(--ngf-toast-x);
+  }
+
+  &.topCenter {
+    inset: var(--ngf-toast-y) auto auto 50%;
+    transform: translateX(-50%);
+  }
+
+  &.topRight {
+    inset: var(--ngf-toast-y) var(--ngf-toast-x) auto auto;
+  }
+
+  &.bottomLeft {
+    inset: auto auto var(--ngf-toast-y) var(--ngf-toast-x);
+
+    --flex-direction: column-reverse;
+  }
+
+  &.bottomCenter {
+    inset: auto auto var(--ngf-toast-y) 50%;
+    transform: translateX(-50%);
+
+    --flex-direction: column-reverse;
+  }
+
+  &.bottomRight {
+    inset: auto var(--ngf-toast-x) var(--ngf-toast-y) auto;
+
+    --flex-direction: column-reverse;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: var(--flex-direction) !important;
+    gap: 10px;
+
+    .fade-in {
+      opacity: 1;
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+  }
 }

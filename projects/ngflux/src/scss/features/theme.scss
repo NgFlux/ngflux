@@ -1,0 +1,51 @@
+.ngf-theme {
+  &-default {
+    background-color: var(--ngf-default) !important;
+    color: var(--ngf-default-fg) !important;
+  }
+
+  &-primary {
+    background-color: var(--ngf-primary) !important;
+    color: var(--ngf-primary-fg) !important;
+  }
+
+  &-secondary {
+    background-color: var(--ngf-secondary) !important;
+    color: var(--ngf-secondary-fg) !important;
+  }
+
+  &-error {
+    background-color: var(--ngf-error) !important;
+    color: var(--ngf-error-fg) !important;
+  }
+
+  &-danger {
+    background-color: var(--ngf-danger) !important;
+    color: var(--ngf-danger-fg) !important;
+  }
+
+  &-success {
+    background-color: var(--ngf-success) !important;
+    color: var(--ngf-success-fg) !important;
+  }
+
+  &-warning {
+    background-color: var(--ngf-warning) !important;
+    color: var(--ngf-warning-fg) !important;
+  }
+
+  &-info {
+    background-color: var(--ngf-info) !important;
+    color: var(--ngf-info-fg) !important;
+  }
+
+  &-light {
+    background-color: var(--ngf-light) !important;
+    color: var(--ngf-light-fg) !important;
+  }
+
+  &-dark {
+    background-color: var(--ngf-dark) !important;
+    color: var(--ngf-dark-fg) !important;
+  }
+}
