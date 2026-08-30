@@ -22,7 +22,7 @@ export type ToastOptions = {
 
   /**
    * Timeout in milliseconds.
-   * The default timeout is `5000` (5 seconds).
+   * The default timeout is `10000` (10 seconds).
    */
   timeout?: number;
 

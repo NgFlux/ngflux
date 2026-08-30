@@ -14,7 +14,7 @@ export class NgFluxToast {
 
     options.placement ??= config?.placement ?? 'topRight';
     options.showCloseButton ??= config?.showCloseButton ?? true;
-    options.timeout ??= Math.max(config?.timeout ?? 5000, 0);
+    options.timeout ??= Math.max(config?.timeout ?? 10000, 0);
     options.theme ??= config?.theme ?? 'info';
 
     this.ctrl.add(options as ToastMappedOptions);

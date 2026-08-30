@@ -66,6 +66,7 @@ export class MyComponent {}
   protected readonly showBottomRight = () => this.toast.show({
     content: 'Bottom Right Toast',
     placement: 'bottomRight',
+    timeout: 0,
   })
 
 }
