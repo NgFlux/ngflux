@@ -98,5 +98,7 @@ $dialog-border: 1px solid #DDD !default;
 // BEGIN: Toast Variables
 $toast-x: 20px !default;
 $toast-y: 20px !default;
+$toast-min-width: 400px !default;
+$toast-max-width: 500px !default;
 $toast-z-index: 2000 !default;
 // END: Toast Variables
