@@ -9,9 +9,5 @@
     visibility: hidden;
     z-index: var(--ngf-toast-z-index) !important;
     inset: 0px;
-
-    .fade-out {
-      opacity: 0;
-    }
   }
 }
