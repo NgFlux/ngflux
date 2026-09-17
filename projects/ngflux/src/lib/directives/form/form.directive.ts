@@ -4,6 +4,7 @@ import { FieldTree, FormSubmitOptions, submit } from "@angular/forms/signals";
 @Directive({
   selector: 'form',
   host: {
+    '[noValidate]': 'true',
     '(submit)': 'submit($event)',
   },
 })
