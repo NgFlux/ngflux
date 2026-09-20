@@ -1,4 +1,8 @@
 :host {
   display: block;
   padding: 20px;
+
+  &.flat {
+    padding: 0px !important;
+  }
 }
