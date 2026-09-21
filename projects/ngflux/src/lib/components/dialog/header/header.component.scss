@@ -5,6 +5,7 @@
   background-color: var(--ngf-dialog-background-color) !important;
   border-bottom: var(--ngf-dialog-border) !important;
   min-height: 50px;
+  z-index: 30;
   top: 0px;
 
   > .left {
