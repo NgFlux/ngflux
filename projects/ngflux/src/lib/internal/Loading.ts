@@ -2,7 +2,7 @@ import { ApplicationRef, ComponentRef, computed, createComponent, EmbeddedViewRe
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from "@angular/router";
 import { filter } from "rxjs";
 
-import { NgFluxLoadingRootComponent } from "../components";
+import { NgFluxLoadingRootComponent } from "../components/loading/root/root.component";
 import { NGF_CONFIG } from "../interfaces";
 
 @Injectable({ providedIn: 'root' })

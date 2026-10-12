@@ -10,6 +10,7 @@ export class NgFluxLoading {
 
   readonly data = computed(() => this.root.entry());
   readonly isLoading = computed(() => this.root.isLoading());
+  readonly isSuspended = computed(() => this.root.suspended());
 
   readonly start = (text: string = '') => this.root.start(text);
   readonly stop = () => this.root.stop();
