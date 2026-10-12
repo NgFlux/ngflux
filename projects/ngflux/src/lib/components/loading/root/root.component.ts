@@ -55,7 +55,12 @@ export class NgFluxLoadingRootComponent {
     });
   }
 
+  readonly suspended = signal(false);
+
   readonly entry = computed(() => {
+    const suspended = this.suspended();
+    if (suspended) return undefined;
+
     const entries = this.entries();
     return entries.at(entries.length - 1);
   });
