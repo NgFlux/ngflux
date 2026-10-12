@@ -19,6 +19,9 @@ import { NGF_CONFIG, NgFluxLoadingEntry } from '../../../interfaces';
   templateUrl: 'root.component.html',
   styleUrls: ['root.component.scss'],
   imports: [],
+  host: {
+    '[class.show]': 'isLoading()',
+  },
 })
 export class NgFluxLoadingRootComponent {
 
@@ -28,7 +31,7 @@ export class NgFluxLoadingRootComponent {
   private readonly entries = signal<NgFluxLoadingEntry[]>([]);
 
   readonly count = computed(() => this.entries().length);
-  readonly isLoading = computed(() => this.count() > 0);
+  readonly isLoading = computed(() => !!this.entry());
 
   @HostBinding('class.show')
   get showLoading() { return this.isLoading(); }
