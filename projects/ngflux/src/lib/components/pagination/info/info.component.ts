@@ -5,7 +5,6 @@ import {
   input,
   model,
   output,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -15,13 +14,12 @@ import { Pagination, PaginationInfo } from '../../../interfaces';
   selector: 'ngf-pagination-info',
   templateUrl: 'info.component.html',
   styleUrls: ['info.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule],
 })
 export class NgFluxPaginationInfo {
   readonly data = input.required<Pagination>();
-  readonly callback = output<PaginationInfo>();
 
+  readonly page = model.required<number>();
   readonly limit = model.required<number>();
   readonly limitOptions = input.required<number[]>();
 
@@ -47,19 +45,11 @@ export class NgFluxPaginationInfo {
 
   protected prev() {
     const data = this.data();
-
-    this.callback.emit({
-      page: data.currentPage - 1,
-      limit: data.perPage,
-    });
+    this.page.set(data.currentPage - 1);
   }
 
   protected next() {
     const data = this.data();
-
-    this.callback.emit({
-      page: data.currentPage + 1,
-      limit: data.perPage,
-    });
+    this.page.set(data.currentPage + 1);
   }
 }

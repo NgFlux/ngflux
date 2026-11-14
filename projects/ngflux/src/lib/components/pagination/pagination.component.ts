@@ -18,7 +18,6 @@ import { NGF_CONFIG, Pagination, PaginationInfo, PaginationTransformer } from '.
   selector: 'ngf-pagination',
   templateUrl: 'pagination.component.html',
   styleUrls: ['pagination.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgFluxPaginationInfo],
 })
 export class NgFluxPagination {
@@ -28,6 +27,7 @@ export class NgFluxPagination {
   readonly preload = input<boolean>(this.config.pagination?.preload ?? false);
   readonly transform = input<PaginationTransformer>();
 
+  readonly page = model<number>(1);
   readonly limit = model<number>(this.config.pagination?.limit ?? 10);
   readonly limitOptions = input<number[]>(this.config.pagination?.limitOptions ?? [5, 10, 20, 30, 40, 50]);
 
@@ -52,19 +52,24 @@ export class NgFluxPagination {
     };
   });
 
+  private readonly init = signal(false);
+
   constructor() {
-    let init = false;
+    effect(() => {
+      const value = untracked(this.value);
+      this.page.set(value.currentPage);
+    });
 
     effect(() => {
-      const limit = Number(this.limit());
+      const page = this.page(), limit = this.limit();
       const preload = untracked(this.preload);
-      const { currentPage: page } = untracked(this.value);
+
+      const init = untracked(this.init);
+      if (!init) this.init.set(true);
 
       if (preload || init) {
         this.callback.emit({ limit, page });
       }
-
-      init = true;
     });
   }
 }
